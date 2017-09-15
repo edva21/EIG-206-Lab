@@ -27,6 +27,9 @@ public class LabEIF206Ver10 {
         Interfaz.AdministradorVista vista= new AdministradorVista();
         Control.AdministradorControl Control = new AdministradorControl(modelo, vista);
         vista.setVisible(true);
+        String test="A tout le Mounde";
+        String aux=test.substring(0, 1);
+        System.out.println(aux);
         //create a frame
         
     }
