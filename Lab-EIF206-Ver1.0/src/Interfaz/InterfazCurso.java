@@ -19,27 +19,13 @@ import javax.swing.table.DefaultTableModel;
  */ 
 public class InterfazCurso extends myInterface implements Observer {
     public static final String MANTENIMIENTO_CURSO="Mantenimiento CURSO";
-     private JTable jTable;     
-    private  DefaultTableModel defaultTableModel;    
-    private JScrollPane jScrollPane;
+     
     /**
      * Creates new form InterfazEstudiante
      */
     public InterfazCurso() {
-        initComponents();
-        this.setTitle(MANTENIMIENTO_CURSO);
-        jTable= new JTable();
-        jScrollPane= new JScrollPane(jTable);
-        defaultTableModel=(DefaultTableModel) jTable.getModel();
-        defaultTableModel.addColumn("A");
-        defaultTableModel.addColumn("B");
-        defaultTableModel.addColumn("C");
-        defaultTableModel.addColumn("D");
-        defaultTableModel.addColumn("E");
-        defaultTableModel.addColumn("F");
-        this.add(jScrollPane);
-        jScrollPane.setVisible(true);
-        jScrollPane.setBounds(100, 100, 300, 300);
+        super();
+        this.setTitle(MANTENIMIENTO_CURSO);        
     }
     /**
      * @return the defaultTableModel

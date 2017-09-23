@@ -7,6 +7,9 @@ package Interfaz;
 
 import Control.Control;
 import Modelo.Modelo;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +18,20 @@ import Modelo.Modelo;
 abstract class myInterface extends javax.swing.JFrame {
      protected Control control;
     protected Modelo modelo;
+    protected JTable jTable;
+    protected  DefaultTableModel defaultTableModel;    
+    protected JScrollPane jScrollPane;
     /**
      * Creates new form Interfaz
      */
     public myInterface() {
         initComponents();
+        jTable= new JTable();
+        jScrollPane= new JScrollPane(jTable);
+        defaultTableModel=(DefaultTableModel) jTable.getModel();        
+        this.add(jScrollPane);
+        jScrollPane.setVisible(true);
+        jScrollPane.setBounds(100, 100, 300, 300);
     }
     /**
      * @param control the control to set

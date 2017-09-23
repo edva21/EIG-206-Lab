@@ -18,28 +18,13 @@ import javax.swing.table.DefaultTableModel;
  * @author edva5
  */
 public class InterfazGrupo extends myInterface implements Observer {
-    public static final String MANTENIMIENTO_GRUPO="Mantenimiento Grupo";
-    private JTable jTable;    
-    private  DefaultTableModel defaultTableModel;    
-    private JScrollPane jScrollPane;
+    public static final String MANTENIMIENTO_GRUPO="Mantenimiento Grupo";  
     /**
      * Creates new form InterfazEstudiante
      */
     public InterfazGrupo() {
-        initComponents();
-        this.setTitle(MANTENIMIENTO_GRUPO);
-        jTable= new JTable();
-        jScrollPane= new JScrollPane(jTable);
-        defaultTableModel=(DefaultTableModel) jTable.getModel();
-        defaultTableModel.addColumn("A");
-        defaultTableModel.addColumn("B");
-        defaultTableModel.addColumn("C");
-        defaultTableModel.addColumn("D");
-        defaultTableModel.addColumn("E");
-        defaultTableModel.addColumn("F");
-        this.add(jScrollPane);
-        jScrollPane.setVisible(true);
-        jScrollPane.setBounds(100, 100, 300, 300);
+        super();
+        this.setTitle(MANTENIMIENTO_GRUPO);       
     }
     /**
      * @return the defaultTableModel

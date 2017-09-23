@@ -9,6 +9,9 @@ import Control.Control;
 import Modelo.Modelo;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,13 +25,14 @@ public class InterfazAdministrador extends myInterface implements Observer{
    
     public static final String MANTENIMIENTO_ADMINISTRADOR="Mantenimiento Administrador";
     private Control control;
-    private Modelo modelo;
+    private Modelo modelo;    
     /**
      * Creates new form InterfazAdministrador
      */
     public InterfazAdministrador() {
-        initComponents();
+        super();
         this.setTitle(MANTENIMIENTO_ADMINISTRADOR);
+        
     }    
 
     /**
@@ -53,7 +57,7 @@ public class InterfazAdministrador extends myInterface implements Observer{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 721, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

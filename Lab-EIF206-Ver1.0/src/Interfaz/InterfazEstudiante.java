@@ -15,7 +15,7 @@ public static final String MANTENIMIENTO_ESTUDIANTE="Mantenimiento Estudiante";
      * Creates new form InterfazEstudiante
      */
     public InterfazEstudiante() {
-        initComponents();
+        super();
         this.setTitle(MANTENIMIENTO_ESTUDIANTE);
     }
 

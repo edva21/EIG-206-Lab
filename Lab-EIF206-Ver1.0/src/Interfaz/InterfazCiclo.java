@@ -19,27 +19,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InterfazCiclo extends myInterface implements Observer {
 public static final String MANTENIMIENTO_CICLO="Mantenimiento Ciclo";    
-    private JTable jTable;
-    private  DefaultTableModel defaultTableModel;    
-    private JScrollPane jScrollPane;
+    
     /**
      * Creates new form InterfazEstudiante
      */
     public InterfazCiclo() {
-        initComponents();
+        super();
         this.setTitle(MANTENIMIENTO_CICLO);
-        jTable= new JTable();
-        jScrollPane= new JScrollPane(jTable);
-        defaultTableModel=(DefaultTableModel) jTable.getModel();
-        defaultTableModel.addColumn("A");
-        defaultTableModel.addColumn("B");
-        defaultTableModel.addColumn("C");
-        defaultTableModel.addColumn("D");
-        defaultTableModel.addColumn("E");
-        defaultTableModel.addColumn("F");
-        this.add(jScrollPane);
-        jScrollPane.setVisible(true);
-        jScrollPane.setBounds(100, 100, 300, 300);
+       
     }
     /**
      * @return the defaultTableModel

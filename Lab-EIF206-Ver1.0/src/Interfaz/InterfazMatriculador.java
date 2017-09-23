@@ -26,20 +26,9 @@ public class InterfazMatriculador extends myInterface implements Observer{
      * Creates new form InterfazEstudiante
      */
     public InterfazMatriculador() {
-        initComponents();
+        super();
         this.setTitle(MANTENIMIENTO_MATRICULADOR);
-        jTable= new JTable();
-        jScrollPane= new JScrollPane(jTable);
-        defaultTableModel=(DefaultTableModel) jTable.getModel();
-        defaultTableModel.addColumn("A");
-        defaultTableModel.addColumn("B");
-        defaultTableModel.addColumn("C");
-        defaultTableModel.addColumn("D");
-        defaultTableModel.addColumn("E");
-        defaultTableModel.addColumn("F");
-        this.add(jScrollPane);
-        jScrollPane.setVisible(true);
-        jScrollPane.setBounds(100, 100, 300, 300);
+        
     }
     /**
      * @return the defaultTableModel
