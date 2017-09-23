@@ -23,8 +23,10 @@ public class LabEIF206Ver10 {
      */
     public static void main(String[] args) {
         Dispatcher dispatcher=new Dispatcher();
-        Modelo accesoDatos=new Modelo();
-        Control control = new Control(accesoDatos, dispatcher);
+        Modelo modelo=new Modelo();
+        
+/************************************************************************************/        
+        Control control = new Control(modelo, dispatcher);
     }
     
 }

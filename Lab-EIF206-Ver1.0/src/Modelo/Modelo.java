@@ -5,76 +5,176 @@
  */
 package Modelo;
 
+import LogicaDeNegocio.Administrador;
+import LogicaDeNegocio.Carrera;
+import LogicaDeNegocio.Ciclo;
+import LogicaDeNegocio.Curso;
+import LogicaDeNegocio.Estudiante;
+import LogicaDeNegocio.Grupo;
+import LogicaDeNegocio.Matriculador;
+import LogicaDeNegocio.Nota;
+import LogicaDeNegocio.Profesor;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author edva5
  */
 public class Modelo {
-    private AccesoDatos.AccesoDatosAdministrador accesoDatosAdministrador;
+    /*private AccesoDatos.AccesoDatosAdministrador accesoDatosAdministrador;
     private AccesoDatos.AccesoDatosCarrera accesoDatosCarrera;
     private AccesoDatos.AccesoDatosCiclo accesoDatosCiclo;
+    grupo
     private AccesoDatos.AccesoDatosCurso accesoDatosCurso;
     private AccesoDatos.AccesoDatosEstudiante accesoDatosEstudiante;
     private AccesoDatos.AccesoDatosMatriculador accesoDatosMatriculador;
     private AccesoDatos.AccesoDatosNota accesoDatosNota;
-    private AccesoDatos.AccesoDatosProfesor accesoDatosProfesor;
+    private AccesoDatos.AccesoDatosProfesor accesoDatosProfesor;*/
 
     public Modelo() {
-    }    
-    /**
-     * @return the accesoDatosAdministrador
-     */
-    public AccesoDatos.AccesoDatosAdministrador getAccesoDatosAdministrador() {
-        return accesoDatosAdministrador;
+        
     }
-
-    /**
-     * @return the accesoDatosCarrera
-     */
-    public AccesoDatos.AccesoDatosCarrera getAccesoDatosCarrera() {
-        return accesoDatosCarrera;
+    public void remove(Grupo grupo){
+        AccesoDatos.AccesoDatosGrupo.GetInstance().eliminar(grupo);
     }
-
-    /**
-     * @return the accesoDatosCiclo
-     */
-    public AccesoDatos.AccesoDatosCiclo getAccesoDatosCiclo() {
-        return accesoDatosCiclo;
+    public void remove(Profesor profesor){
+        AccesoDatos.AccesoDatosProfesor.getInstance().eliminar(profesor);
     }
-
-    /**
-     * @return the accesoDatosCurso
-     */
-    public AccesoDatos.AccesoDatosCurso getAccesoDatosCurso() {
-        return accesoDatosCurso;
+    public void remove(Nota nota){
+        AccesoDatos.AccesoDatosNota.getInstance().eliminar(nota);
     }
-
-    /**
-     * @return the accesoDatosEstudiante
-     */
-    public AccesoDatos.AccesoDatosEstudiante getAccesoDatosEstudiante() {
-        return accesoDatosEstudiante;
+    public void remove(Matriculador matriculador){
+        AccesoDatos.AccesoDatosMatriculador.getInstance().eliminar(matriculador);
     }
-
-    /**
-     * @return the accesoDatosMatriculador
-     */
-    public AccesoDatos.AccesoDatosMatriculador getAccesoDatosMatriculador() {
-        return accesoDatosMatriculador;
+    public void remove(Estudiante estudiante){
+        AccesoDatos.AccesoDatosEstudiante.getInstance().eliminar(estudiante);
     }
-
-    /**
-     * @return the accesoDatosNota
-     */
-    public AccesoDatos.AccesoDatosNota getAccesoDatosNota() {
-        return accesoDatosNota;
+    public void remove(Curso curso){
+        AccesoDatos.AccesoDatosCurso.getInstance().eliminar(curso);
     }
-
-    /**
-     * @return the accesoDatosProfesor
-     */
-    public AccesoDatos.AccesoDatosProfesor getAccesoDatosProfesor() {
-        return accesoDatosProfesor;
+    public void remove(Ciclo ciclo){
+        AccesoDatos.AccesoDatosCiclo.getInstance().eliminar(ciclo);
+    }
+    public void remove(Carrera carrera){
+        AccesoDatos.AccesoDatosCarrera.getInstance().eliminar(carrera);
+    }
+    public void remove(Administrador administrador){
+        AccesoDatos.AccesoDatosAdministrador.getInstance().eliminar(administrador);
+    }
+    /********************************************************************/
+    public void update(Grupo grupo){
+        AccesoDatos.AccesoDatosGrupo.GetInstance().modificar(grupo);
+    }
+    public void update(Profesor profesor){
+        AccesoDatos.AccesoDatosProfesor.getInstance().modificar(profesor);
+    }
+    public void update(Nota nota){
+        AccesoDatos.AccesoDatosNota.getInstance().modificar(nota);
+    }
+    public void update(Matriculador matriculador){
+        AccesoDatos.AccesoDatosMatriculador.getInstance().modificar(matriculador);
+    }
+    public void update(Estudiante estudiante){
+        AccesoDatos.AccesoDatosEstudiante.getInstance().modificar(estudiante);
+    }
+    public void update(Curso curso){
+        AccesoDatos.AccesoDatosCurso.getInstance().modificar(curso);
+    }
+    public void update(Ciclo ciclo){
+        AccesoDatos.AccesoDatosCiclo.getInstance().modificar(ciclo);
+    }
+    public void update(Carrera carrera){
+        AccesoDatos.AccesoDatosCarrera.getInstance().modificar(carrera);
+    }
+    public void update(Administrador administrador){
+        AccesoDatos.AccesoDatosAdministrador.getInstance().modificar(administrador);
+    }
+/************************************************************************************************/
+    public List<Profesor> getAllProfesores(){
+        return AccesoDatos.AccesoDatosProfesor.getInstance().getAll();
+    }
+    public List<Nota> getAllNotas(){
+        return AccesoDatos.AccesoDatosNota.getInstance().getAll();
+    }
+    public List<Matriculador> getAllMatriculadores(){
+        return AccesoDatos.AccesoDatosMatriculador.getInstance().getAll();
+    }
+    public List<Estudiante> getAllEstudiantes(){
+        return AccesoDatos.AccesoDatosEstudiante.getInstance().getAll();
+    }
+    public List<Curso> getAllCursos(){
+        return AccesoDatos.AccesoDatosCurso.getInstance().getAll();
+    }
+    public List<Grupo> getAllGrupos(){
+        return AccesoDatos.AccesoDatosGrupo.GetInstance().getAll();
+    }
+    public List<Ciclo> getAllCiclos(){
+        return AccesoDatos.AccesoDatosCiclo.getInstance().getAll();
+    }
+    public List<Carrera> getAllCarreras(){
+        return AccesoDatos.AccesoDatosCarrera.getInstance().getAll();
+    }
+    public List<Administrador> getAllAdministradores(){
+        return AccesoDatos.AccesoDatosAdministrador.getInstance().getAll();
+    }
+/************************************************************************************************/    
+    public Profesor getProfesor(Object o){
+        return AccesoDatos.AccesoDatosProfesor.getInstance().get(o);
+    }
+    public Nota getNota(Object o){
+        return AccesoDatos.AccesoDatosNota.getInstance().get(o);
+    }
+    public Matriculador getMatriculador(Object o){
+        return AccesoDatos.AccesoDatosMatriculador.getInstance().get(o);
+    }
+    public Estudiante getEstudiante(Object o){
+        return AccesoDatos.AccesoDatosEstudiante.getInstance().get(o);
+    }
+    public Curso getCurso(Object o){
+        return AccesoDatos.AccesoDatosCurso.getInstance().get(o);
+    }
+    public Grupo getGrupo(Object o){
+        return AccesoDatos.AccesoDatosGrupo.GetInstance().get(o);
+    }
+    public Ciclo getCiclo(Object o){
+        return AccesoDatos.AccesoDatosCiclo.getInstance().get(o);
+    }
+    public Carrera getCarrera(Object o){
+        return AccesoDatos.AccesoDatosCarrera.getInstance().get(o);
+    }
+    public Administrador getAdministrador(Object o){
+        return AccesoDatos.AccesoDatosAdministrador.getInstance().get(o);
+    }
+    public void set(Grupo grupo){
+        AccesoDatos.AccesoDatosGrupo.GetInstance().insertar(grupo);
+    }
+    public void set(Profesor profesor){
+        AccesoDatos.AccesoDatosProfesor.getInstance().insertar(profesor);
+    }
+    public void set(Nota nota){
+        AccesoDatos.AccesoDatosNota.getInstance().insertar(nota);
+    }
+    public void set(Matriculador matriculador){
+        AccesoDatos.AccesoDatosMatriculador.getInstance().insertar(matriculador);
+    }
+    public void set(Estudiante estudiante){
+        AccesoDatos.AccesoDatosEstudiante.getInstance().insertar(estudiante);
+    }
+    public void set(Curso curso){
+        AccesoDatos.AccesoDatosCurso.getInstance().insertar(curso);
+    }
+    public void set(Ciclo ciclo){
+        AccesoDatos.AccesoDatosCiclo.getInstance().insertar(ciclo);
+    }
+    public void set(Carrera carrera){
+        AccesoDatos.AccesoDatosCarrera.getInstance().insertar(carrera);
+    }
+    public void set(Administrador administrador){
+        AccesoDatos.AccesoDatosAdministrador.getInstance().insertar(administrador);
     }
     
+    /**
+     * @return the accesoDatosAdministrador
+     */    
 }

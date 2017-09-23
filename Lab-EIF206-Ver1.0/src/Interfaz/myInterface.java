@@ -7,6 +7,7 @@ package Interfaz;
 
 import Control.Control;
 import Modelo.Modelo;
+import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -15,30 +16,40 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author edva5
  */
-abstract class myInterface extends javax.swing.JFrame {
+public class myInterface extends javax.swing.JFrame {
+
+
 
     /**
      * @return the defaultTableModel
-     */
-    
-     protected Control control;
+     */    
+    protected Control control;
     protected Modelo modelo;
     protected JTable jTable;
-    protected  DefaultTableModel defaultTableModel;    
-    protected JScrollPane jScrollPane;
+    protected DefaultTableModel defaultTableModel;    
+    protected JScrollPane jScrollPane;    
+    protected ButtonColumn saveButtonColumn;
+    protected ButtonColumn deleteButtonColumn;
     /**
      * Creates new form Interfaz
      */
     public myInterface() {
         initComponents();
+        
         jTable= new JTable();
         jScrollPane= new JScrollPane(jTable);
-        defaultTableModel=(DefaultTableModel) jTable.getModel();        
+        defaultTableModel=(DefaultTableModel) jTable.getModel();       
+        
         this.add(jScrollPane);
         jScrollPane.setVisible(true);
         jScrollPane.setBounds(50, 50, 600, 250);
-        this.setBounds(0, 0, 800, 500);
-        
+        this.setBounds(0, 0, 800, 500);                
+    }
+    public void addButtonsToTable(){
+        defaultTableModel.addColumn("Guardar");
+        defaultTableModel.addColumn("Eliminar");
+        saveButtonColumn = new ButtonColumn(jTable, null, 0, null, "Guardar");
+        deleteButtonColumn = new ButtonColumn(jTable, null, 1, null, "Eliminar");
     }
     /**
      * @param control the control to set
@@ -53,7 +64,12 @@ abstract class myInterface extends javax.swing.JFrame {
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
     }
-   public DefaultTableModel getDefaultTableModel() {
+
+    /**
+     *
+     * @return
+     */
+    public DefaultTableModel getDefaultTableModel() {
         return defaultTableModel;
     }
 

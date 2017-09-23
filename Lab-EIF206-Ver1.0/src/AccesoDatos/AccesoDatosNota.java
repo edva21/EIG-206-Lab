@@ -21,7 +21,9 @@ public class AccesoDatosNota {
 
     private AccesoDatosNota() {
     }
-    public AccesoDatosNota getInstance(){
+    public static AccesoDatosNota getInstance(){
+        if (instance==null)
+            instance = new AccesoDatosNota();
         return instance;
     }
     public void insertar(Nota c) {
@@ -36,11 +38,11 @@ public class AccesoDatosNota {
     public void eliminar(Nota c) {
         
     }    
-    public Nota getNota(Object o) {
+    public Nota get(Object o) {
         return null;
     }
     
-    public List<Nota> getAllNotas() {
+    public List<Nota> getAll() {
         return listaNotas;
     }
 }

@@ -44,34 +44,13 @@ public class AccesoDatosCurso {
     public void eliminar(Curso c) {
         
     }    
-    public Curso getCurso(Object o) {
+    public Curso get(Object o) {
         return null;
     }
     
-    public List<Curso> getAllCursos() {
+    public List<Curso> getAll() {
         return listaCursos;
     }
     /************************Grupo********************************/
-    private ArrayList<Grupo> listaGrupos;    
-    static Comparator<Grupo> GrupoCOMPARATOR;
-       
-    public void insertar(Grupo c) {
-        listaGrupos.add(c);
-        
-    }
-    public void modificar(Grupo c) {
-        eliminar(c);
-        insertar(c);
-    }
-    
-    public void eliminar(Grupo c) {
-        
-    }    
-    public Curso getGrupo(Object o) {
-        return null;
-    }
-    
-    public List<Grupo> getAllGrupos() {
-        return listaGrupos;
-    }
+   
 }

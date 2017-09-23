@@ -18,9 +18,23 @@ import javax.swing.JFrame;
 public class Dispatcher {
 
     /**
+     * @return the interfazEstudiante
+     */
+    public InterfazEstudiante getInterfazEstudiante() {
+        return (InterfazEstudiante) interfazEstudiante;
+    }
+
+    /**
+     * @param interfazEstudiante the interfazEstudiante to set
+     */
+    public void setInterfazEstudiante(myInterface interfazEstudiante) {
+        this.interfazEstudiante = interfazEstudiante;
+    }
+
+    /**
      * @return the interfazActual
      */
-    public JFrame getInterfazActual() {
+    public myInterface getInterfazActual() {
         return interfazActual;
     }
     private myInterface interfazActual;
@@ -30,6 +44,7 @@ public class Dispatcher {
     private myInterface interfazCiclo;
     private myInterface interfazCurso;
     private myInterface interfazGrupo;
+    private myInterface interfazEstudiante;
     private myInterface interfazMatriculador;
     private myInterface interfazNota;
     private myInterface interfazProfesor;
@@ -38,7 +53,7 @@ public class Dispatcher {
     private myInterface interfazMenuMatriculador;
     private myInterface interfazLogIn;
     public static String LOGIN="LogIn",MENUADMINISTRADOR="Menu Administrador",MENUESTUDIANTE="Menu Estudiante",MENUMATRICULADOR="Menu Matriculador",
-            ADMINISTRADOR="Administrador",CARRERA="Carrera",CICLO="Cliclo",CURSO="Curso",GRUPO="Grupo",MATRICULADOR="Matriculador",NOTA="Nota",PROFESOR="Profesor";
+            ADMINISTRADOR="Administrador",CARRERA="Carrera",CICLO="Cliclo",CURSO="Curso",GRUPO="Grupo",MATRICULADOR="Matriculador",NOTA="Nota",PROFESOR="Profesor",ESTUDIANTE="Estudiante";
     public Dispatcher() {
         interfazActual=null;
         interfaces=new ArrayList<myInterface>();
@@ -103,6 +118,10 @@ public class Dispatcher {
                 break;
             case "Profesor":
                 setInterfazProfesor(new InterfazProfesor());
+                this.switchWindow(getInterfazProfesor(), modelo, control);
+                break;
+            case "Estudiante":
+                setInterfazEstudiante(new InterfazEstudiante());
                 this.switchWindow(getInterfazProfesor(), modelo, control);
                 break;
         }

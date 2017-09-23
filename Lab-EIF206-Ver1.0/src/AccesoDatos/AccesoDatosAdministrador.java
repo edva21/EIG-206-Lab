@@ -28,7 +28,8 @@ public class AccesoDatosAdministrador {
              }
          };
      }
-     public static AccesoDatosAdministrador GetInstance(){
+     
+     public static AccesoDatosAdministrador getInstance(){
          if (INSTANCE==null) 
              INSTANCE=new AccesoDatosAdministrador();
          return INSTANCE;
@@ -46,11 +47,11 @@ public class AccesoDatosAdministrador {
     public void eliminar(Administrador c) {
         
     }    
-    public Administrador getAdministrador(Object o) {
+    public Administrador get(Object o) {
         return null;
     }
     
-    public List<Administrador> getAllAdministradores() {
+    public List<Administrador> getAll() {
         return listaAdministradores;
     }            
 }

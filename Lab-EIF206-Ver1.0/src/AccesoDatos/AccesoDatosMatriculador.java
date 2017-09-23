@@ -21,7 +21,7 @@ public class AccesoDatosMatriculador {
 
     private AccesoDatosMatriculador() {
     }
-    public AccesoDatosMatriculador getInstance(){
+    public static AccesoDatosMatriculador getInstance(){
         if (instance==null)
             instance= new AccesoDatosMatriculador();
         return instance;
@@ -37,11 +37,11 @@ public class AccesoDatosMatriculador {
     public void eliminar(Matriculador c) {
         
     }    
-    public Matriculador getMatriculador(Object o) {
+    public Matriculador get(Object o) {
         return null;
     }
     
-    public List<Matriculador> getAllMatriculadores() {
+    public List<Matriculador> getAll() {
         return listaMatriculadores;
     }
 }

@@ -22,7 +22,7 @@ public class AccesoDatosCiclo {
 
     private AccesoDatosCiclo() {
     }
-    public AccesoDatosCiclo getInstance(){
+    public static AccesoDatosCiclo getInstance(){
         if (instance==null)
             instance= new AccesoDatosCiclo();
         return instance;
@@ -39,11 +39,11 @@ public class AccesoDatosCiclo {
     public void eliminar(Ciclo c) {
         
     }    
-    public Administrador getCiclo(Object o) {
+    public Ciclo get(Object o) {
         return null;
     }
     
-    public List<Ciclo> getAllCiclos() {
+    public List<Ciclo> getAll() {
         return listaCiclos;
     }                
 }

@@ -44,11 +44,11 @@ public class AccesoDatosCarrera {
     public void eliminar(Carrera c) {
         
     }    
-    public Administrador getCarrera(Object o) {
+    public Carrera get(Object o) {
         return null;
     }
     
-    public List<Carrera> getAllCarreras() {
+    public List<Carrera> getAll() {
         return listaCarreras;
     }                
 }

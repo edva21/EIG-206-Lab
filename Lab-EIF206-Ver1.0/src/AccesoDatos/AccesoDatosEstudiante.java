@@ -20,7 +20,7 @@ public class AccesoDatosEstudiante {
 
     private AccesoDatosEstudiante() {
     }
-    public AccesoDatosEstudiante getInstance(){
+    public static AccesoDatosEstudiante getInstance(){
         if (instance==null)
             instance=new AccesoDatosEstudiante();
         return instance;
@@ -38,7 +38,7 @@ public class AccesoDatosEstudiante {
         listaEstudiantes.remove(c);        
     }
     
-    public Estudiante getEstudiante(Object o) {
+    public Estudiante get(Object o) {
         return get(o,listaEstudiantes.size()/2);
     }
    
@@ -51,7 +51,7 @@ public class AccesoDatosEstudiante {
             return get(o,i+i/2);
     }
     
-    public List<Estudiante> getAllEstudiantes() {
+    public List<Estudiante> getAll() {
         return listaEstudiantes;
     }
     private int comparator(Object o,Estudiante e){

@@ -31,8 +31,7 @@ public class InterfazAdministrador extends myInterface implements Observer{
      */
     public InterfazAdministrador() {
         initComponents();
-        this.setTitle(MANTENIMIENTO_ADMINISTRADOR);        
-        this.defaultTableModel.setColumnIdentifiers(LogicaDeNegocio.Administrador.toVectorOfString2());                
+        this.setTitle(MANTENIMIENTO_ADMINISTRADOR);                
     }    
 
     /**

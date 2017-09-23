@@ -21,7 +21,7 @@ public class AccesoDatosProfesor {
 
     private AccesoDatosProfesor() {
     }
-    public AccesoDatosProfesor getInstance(){
+    public static AccesoDatosProfesor getInstance(){
         if (instance==null)
             instance= new AccesoDatosProfesor();
         return instance;
@@ -38,11 +38,11 @@ public class AccesoDatosProfesor {
     public void eliminar(Profesor c) {
         
     }    
-    public Profesor getProfesor(Object o) {
+    public Profesor get(Object o) {
         return null;
     }
     
-    public List<Profesor> getAllProfesores() {
+    public List<Profesor> getAll() {
         return listaProfesores;
     }
 }

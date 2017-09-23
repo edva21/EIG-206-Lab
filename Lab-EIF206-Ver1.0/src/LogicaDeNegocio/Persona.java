@@ -160,7 +160,7 @@ public abstract class Persona {
         String[] aux = {cedula_o_passaporte,nombre,Apellido1,Apellido2,telefono,email,clave};        
         return aux;
     }
-    public static final String[] toVectorOfString2(){        
+    public static final String[] getClassNames(){        
          final String[] aux = {"Cedula/Pasaporte","Nombre","Apellido Uno","Apellido Dos","Telefono","Email","Clave"};   
          return aux;
         //return "s";
