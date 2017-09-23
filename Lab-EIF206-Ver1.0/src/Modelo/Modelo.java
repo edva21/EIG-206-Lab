@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaz;
+package Modelo;
 
-import LogicaDeNegocio.Persona;
-import LogicaDeNegocio.Estudiante;
 /**
  *
  * @author edva5
  */
-public class Main {
-    Persona p = new Estudiante();
+public class Modelo {
+    
 }

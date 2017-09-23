@@ -5,9 +5,10 @@
  */
 package lab.eif206.ver1.pkg0;
 
-import AccesoDatos.AccesoDatoAdministrador;
-import Control.AdministradorControl;
-import Interfaz.AdministradorVista;
+import Modelo.Modelo;
+import Control.Control;
+import Interfaz.Dispatcher;
+import Interfaz.InterfazCiclo;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -21,17 +22,9 @@ public class LabEIF206Ver10 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        //JOptionPane.showMessageDialog(null, "Hola Mundo","Prblem Lodaing",JOptionPane.PLAIN_MESSAGE);        
-        AccesoDatos.AccesoDatoAdministrador modelo= new AccesoDatoAdministrador();
-        Interfaz.AdministradorVista vista= new AdministradorVista();
-        Control.AdministradorControl Control = new AdministradorControl(modelo, vista);
-        vista.setVisible(true);
-        String test="A tout le Mounde";
-        String aux=test.substring(0, 1);
-        System.out.println(aux);
-        //create a frame
-        
+        Dispatcher dispatcher=new Dispatcher();
+        Modelo accesoDatos=new Modelo();
+        Control control = new Control(accesoDatos, dispatcher);
     }
     
 }
