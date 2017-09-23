@@ -16,8 +16,21 @@ import java.util.List;
  * @author edva5
  */
 public class AccesoDatosCurso {
+    private static AccesoDatosCurso instance;
      private ArrayList<Curso> listaCursos;        
     static Comparator<Curso> CursoCOMPARATOR;
+
+    public AccesoDatosCurso() {
+    }
+    /**
+     * @return the instance
+     */
+    public static AccesoDatosCurso getInstance() {
+        if (instance==null)
+            instance= new AccesoDatosCurso();
+        return instance;
+    }
+    
        
     public void insertar(Curso c) {
         listaCursos.add(c);

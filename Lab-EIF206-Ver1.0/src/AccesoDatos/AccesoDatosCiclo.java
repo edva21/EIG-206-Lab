@@ -16,8 +16,18 @@ import java.util.List;
  * @author edva5
  */
 public class AccesoDatosCiclo {
+    private static AccesoDatosCiclo instance;
      private ArrayList<Ciclo> listaCiclos;    
     static Comparator<Ciclo> CicloCOMPARATOR;
+
+    private AccesoDatosCiclo() {
+    }
+    public AccesoDatosCiclo getInstance(){
+        if (instance==null)
+            instance= new AccesoDatosCiclo();
+        return instance;
+    }
+    
     public void insertar(Ciclo c) {
         listaCiclos.add(c);        
     }

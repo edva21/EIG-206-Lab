@@ -15,8 +15,17 @@ import java.util.List;
  * @author edva5
  */
 public class AccesoDatosProfesor {
+    private static AccesoDatosProfesor instance;
      private ArrayList<Profesor> listaProfesores;    
     static Comparator<Profesor> ProfesorCOMPARATOR;
+
+    public AccesoDatosProfesor() {
+    }
+    public AccesoDatosProfesor getInstance(){
+        if (instance==null)
+            instance= new AccesoDatosProfesor();
+        return instance;
+    }
     public void insertar(Profesor c) {
         listaProfesores.add(c);
         

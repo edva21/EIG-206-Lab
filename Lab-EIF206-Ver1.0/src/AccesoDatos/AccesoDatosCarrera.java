@@ -16,12 +16,26 @@ import java.util.List;
  * @author edva5
  */
 public class AccesoDatosCarrera {
+    private static AccesoDatosCarrera instance;
     private ArrayList<Carrera> listaCarreras;    
     static Comparator<Carrera> CarreraCOMPARATOR;
+
+    public AccesoDatosCarrera() {
+    }
+    
     public void insertar(Carrera c) {
         listaCarreras.add(c);
         
     }
+    /**
+     * @return the instance
+     */
+    public static AccesoDatosCarrera getInstance() {
+        if (instance==null) 
+            instance = new AccesoDatosCarrera();
+        return instance;
+    }
+    
     public void modificar(Carrera c) {
         eliminar(c);
         insertar(c);

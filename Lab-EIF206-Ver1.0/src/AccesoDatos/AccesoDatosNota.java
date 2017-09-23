@@ -15,8 +15,15 @@ import java.util.List;
  * @author edva5
  */
 public class AccesoDatosNota {
+    private static AccesoDatosNota instance;
     private ArrayList<Nota> listaNotas;    
     static Comparator<Nota> NotaCOMPARATOR;
+
+    private AccesoDatosNota() {
+    }
+    public AccesoDatosNota getInstance(){
+        return instance;
+    }
     public void insertar(Nota c) {
         listaNotas.add(c);
         

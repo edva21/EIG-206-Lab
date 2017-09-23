@@ -14,9 +14,17 @@ import java.util.List;
  * @author edva5
  */
 public class AccesoDatosEstudiante {
+    private static AccesoDatosEstudiante instance;
     static Comparator<Estudiante> EstudianteCOMPARATOR;
     private List<Estudiante> listaEstudiantes;
-        
+
+    private AccesoDatosEstudiante() {
+    }
+    public AccesoDatosEstudiante getInstance(){
+        if (instance==null)
+            instance=new AccesoDatosEstudiante();
+        return instance;
+    }    
     public void insertar(Estudiante c) {
         listaEstudiantes.add(c);       
         listaEstudiantes.sort(EstudianteCOMPARATOR);

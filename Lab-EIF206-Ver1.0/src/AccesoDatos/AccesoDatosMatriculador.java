@@ -15,8 +15,17 @@ import java.util.List;
  * @author edva5
  */
 public class AccesoDatosMatriculador {
+    private static AccesoDatosMatriculador instance;
      private ArrayList<Matriculador> listaMatriculadores;    
     static Comparator<Matriculador> MatriculadorCOMPARATOR;
+
+    private AccesoDatosMatriculador() {
+    }
+    public AccesoDatosMatriculador getInstance(){
+        if (instance==null)
+            instance= new AccesoDatosMatriculador();
+        return instance;
+    }
     public void insertar(Matriculador c) {
         listaMatriculadores.add(c);        
     }
