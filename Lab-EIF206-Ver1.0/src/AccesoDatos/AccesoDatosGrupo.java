@@ -48,4 +48,7 @@ public class AccesoDatosGrupo {
     public List<Grupo> getAll() {
         return listaGrupos;
     }
+    public List<Grupo> getAll(Object o) {
+        return null;
+    }
 }

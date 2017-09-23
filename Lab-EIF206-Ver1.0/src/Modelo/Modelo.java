@@ -177,4 +177,32 @@ public class Modelo {
     /**
      * @return the accesoDatosAdministrador
      */    
+    /***************************************************************************/
+    public List<Profesor> getProfesores(Object o){
+        return AccesoDatos.AccesoDatosProfesor.getInstance().getAll(o);
+    }
+    public List<Nota> getNotas(Object o){
+        return AccesoDatos.AccesoDatosNota.getInstance().getAll(o);
+    }
+    public List<Matriculador> getMatriculadores(Object o){
+        return AccesoDatos.AccesoDatosMatriculador.getInstance().getAll(o);
+    }
+    public List<Estudiante> getEstudiantes(Object o){
+        return AccesoDatos.AccesoDatosEstudiante.getInstance().getAll(o);
+    }
+    public List<Curso> getCursos(Object o){
+        return AccesoDatos.AccesoDatosCurso.getInstance().getAll(o);
+    }
+    public List<Grupo> getGrupos(Object o){
+        return AccesoDatos.AccesoDatosGrupo.GetInstance().getAll(o);
+    }
+    public List<Ciclo> getCiclos(Object o){
+        return AccesoDatos.AccesoDatosCiclo.getInstance().getAll(o);
+    }
+    public List<Carrera> getCarreras(Object o){
+        return AccesoDatos.AccesoDatosCarrera.getInstance().getAll(o);
+    }
+    public List<Administrador> getAdministradores(Object o){
+        return AccesoDatos.AccesoDatosAdministrador.getInstance().getAll(o);
+    }
 }

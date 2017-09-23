@@ -44,4 +44,7 @@ public class AccesoDatosMatriculador {
     public List<Matriculador> getAll() {
         return listaMatriculadores;
     }
+    public List<Matriculador> getAll(Object o) {
+        return null;
+    }
 }

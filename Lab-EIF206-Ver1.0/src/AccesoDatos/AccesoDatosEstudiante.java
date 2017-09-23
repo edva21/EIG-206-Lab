@@ -74,4 +74,7 @@ public class AccesoDatosEstudiante {
         else
             return -1;
     }
+    public List<Estudiante> getAll(Object o) {
+        return null;
+    }
 }

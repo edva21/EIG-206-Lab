@@ -45,5 +45,8 @@ public class AccesoDatosCiclo {
     
     public List<Ciclo> getAll() {
         return listaCiclos;
-    }                
+    }         
+    public List<Ciclo> getAll(Object o) {
+        return null;
+    }
 }

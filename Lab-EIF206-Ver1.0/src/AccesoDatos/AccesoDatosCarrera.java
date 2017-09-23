@@ -50,5 +50,8 @@ public class AccesoDatosCarrera {
     
     public List<Carrera> getAll() {
         return listaCarreras;
-    }                
+    }       
+    public List<Carrera> getAll(Object o) {
+        return null;
+    }
 }

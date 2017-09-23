@@ -53,5 +53,8 @@ public class AccesoDatosAdministrador {
     
     public List<Administrador> getAll() {
         return listaAdministradores;
-    }            
+    }         
+    public List<Administrador> getAll(Object o) {
+        return null;
+    }
 }

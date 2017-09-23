@@ -51,6 +51,8 @@ public class AccesoDatosCurso {
     public List<Curso> getAll() {
         return listaCursos;
     }
-    /************************Grupo********************************/
+    public List<Curso> getAll(Object o) {
+        return null;
+    }
    
 }

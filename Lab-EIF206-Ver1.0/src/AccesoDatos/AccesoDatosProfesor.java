@@ -45,4 +45,7 @@ public class AccesoDatosProfesor {
     public List<Profesor> getAll() {
         return listaProfesores;
     }
+    public List<Profesor> getAll(Object o) {
+        return null;
+    }
 }

@@ -45,4 +45,7 @@ public class AccesoDatosNota {
     public List<Nota> getAll() {
         return listaNotas;
     }
+    public List<Nota> getAll(Object o) {
+        return null;
+    }
 }
