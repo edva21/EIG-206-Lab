@@ -32,7 +32,7 @@ public static final String MANTENIMIENTO_CICLO="Mantenimiento Ciclo";
      * @return the defaultTableModel
      */
     public DefaultTableModel getDefaultTableModel() {
-        return defaultTableModel;
+        return getDefaultTableModel();
     }
    
 

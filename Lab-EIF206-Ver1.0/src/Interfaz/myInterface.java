@@ -16,6 +16,11 @@ import javax.swing.table.DefaultTableModel;
  * @author edva5
  */
 abstract class myInterface extends javax.swing.JFrame {
+
+    /**
+     * @return the defaultTableModel
+     */
+    
      protected Control control;
     protected Modelo modelo;
     protected JTable jTable;
@@ -31,7 +36,9 @@ abstract class myInterface extends javax.swing.JFrame {
         defaultTableModel=(DefaultTableModel) jTable.getModel();        
         this.add(jScrollPane);
         jScrollPane.setVisible(true);
-        jScrollPane.setBounds(100, 100, 300, 300);
+        jScrollPane.setBounds(50, 50, 600, 250);
+        this.setBounds(0, 0, 800, 500);
+        
     }
     /**
      * @param control the control to set
@@ -46,7 +53,9 @@ abstract class myInterface extends javax.swing.JFrame {
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
     }
-   
+   public DefaultTableModel getDefaultTableModel() {
+        return defaultTableModel;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

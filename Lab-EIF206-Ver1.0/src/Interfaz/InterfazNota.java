@@ -31,7 +31,7 @@ public class InterfazNota extends myInterface implements Observer{
      * @return the defaultTableModel
      */
     public DefaultTableModel getDefaultTableModel() {
-        return defaultTableModel;
+        return getDefaultTableModel();
     }
 
     

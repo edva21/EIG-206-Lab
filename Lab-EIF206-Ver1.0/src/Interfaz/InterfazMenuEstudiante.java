@@ -19,6 +19,7 @@ public class InterfazMenuEstudiante extends myInterface {
     public InterfazMenuEstudiante() {
         initComponents();
         this.setTitle(MENU_ESTUDIANTE);
+        this.jScrollPane.setVisible(false);
     }
 
     /**

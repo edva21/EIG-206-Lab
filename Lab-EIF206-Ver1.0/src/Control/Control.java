@@ -59,6 +59,7 @@ public class Control implements ActionListener{
                     break;
                 case InterfazAdministrador.MANTENIMIENTO_ADMINISTRADOR:
                     this.dispatcher.dispatcherRequest(Dispatcher.ADMINISTRADOR, modelo, this);
+                    //this.dispatcher.getInterfazActual().getdefa
                     break;
                 case Interfaz.InterfazCarrera.MANTENIMIENTO_CARRERA:
                     this.dispatcher.dispatcherRequest(Dispatcher.CARRERA, modelo, this);

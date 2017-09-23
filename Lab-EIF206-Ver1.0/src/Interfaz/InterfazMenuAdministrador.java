@@ -22,6 +22,7 @@ public class InterfazMenuAdministrador extends myInterface  {
      */
     public InterfazMenuAdministrador() {
         initComponents();
+        this.jScrollPane.setVisible(false);
         this.setTitle(MENU_ADMINISTRADOR);
         jButtons=new ArrayList<JButton>();
        this.mntoAdministradorBtn.setText(InterfazAdministrador.MANTENIMIENTO_ADMINISTRADOR);

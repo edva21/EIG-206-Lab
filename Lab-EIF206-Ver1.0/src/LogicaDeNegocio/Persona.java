@@ -154,15 +154,15 @@ public abstract class Persona {
      *
      */
     public String toString(){        
-        return cedula_o_passaporte+" "+nombre+" "+telefono+" "+email;
+        return "Cedula/Pasaporte:"+cedula_o_passaporte+" Nombre:"+nombre+" Apellido1:"+Apellido1+" Apellido2:"+Apellido2+" Telefono:"+telefono+" Email:"+email;
     }
-    public Vector<String> toVectorOfString(){        
-        Vector<String> aux = new Vector<>();
-        aux.add(cedula_o_passaporte);
-        aux.add(nombre);
-        aux.add(telefono);
-        aux.add(email);
-        aux.add(clave);
-       return aux;
+    public String[] toVectorOfString(){        
+        String[] aux = {cedula_o_passaporte,nombre,Apellido1,Apellido2,telefono,email,clave};        
+        return aux;
+    }
+    public static final String[] toVectorOfString2(){        
+         final String[] aux = {"Cedula/Pasaporte","Nombre","Apellido Uno","Apellido Dos","Telefono","Email","Clave"};   
+         return aux;
+        //return "s";
     }
 }

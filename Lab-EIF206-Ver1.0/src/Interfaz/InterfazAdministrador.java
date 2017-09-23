@@ -30,9 +30,9 @@ public class InterfazAdministrador extends myInterface implements Observer{
      * Creates new form InterfazAdministrador
      */
     public InterfazAdministrador() {
-        super();
-        this.setTitle(MANTENIMIENTO_ADMINISTRADOR);
-        
+        initComponents();
+        this.setTitle(MANTENIMIENTO_ADMINISTRADOR);        
+        this.defaultTableModel.setColumnIdentifiers(LogicaDeNegocio.Administrador.toVectorOfString2());                
     }    
 
     /**

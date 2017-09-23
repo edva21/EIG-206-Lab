@@ -30,7 +30,7 @@ public class InterfazProfesor extends myInterface {
      * @return the defaultTableModel
      */
     public DefaultTableModel getDefaultTableModel() {
-        return defaultTableModel;
+        return getDefaultTableModel();
     }
 
 

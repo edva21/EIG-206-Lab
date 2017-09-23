@@ -73,7 +73,7 @@ public class Carrera {
     public String toString(){
         return codigo + nombre + titulo;
     }
-
+    
     /**
      * @return the cursos
      */

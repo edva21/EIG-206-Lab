@@ -19,6 +19,8 @@ public class InterfazMenuMatriculador extends myInterface {
     public InterfazMenuMatriculador() {
         initComponents();
         this.setTitle(MENU_MATRICULADOR);
+        this.jScrollPane.setVisible(false);
+        
     }
 
     /**

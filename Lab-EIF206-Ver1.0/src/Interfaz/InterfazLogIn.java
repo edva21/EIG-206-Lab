@@ -92,6 +92,7 @@ public class InterfazLogIn extends myInterface implements Observer {
         logInBtn = new JButton("LogIn");
         logInBtn.setBounds(100, 100, 100, 25);
         this.add(logInBtn);
+        this.jScrollPane.setVisible(false);
     }
 
     /**
