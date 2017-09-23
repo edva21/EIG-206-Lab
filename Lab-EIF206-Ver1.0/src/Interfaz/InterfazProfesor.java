@@ -27,7 +27,7 @@ public class InterfazProfesor extends myInterface {
      */
     public InterfazProfesor() {
         initComponents();
-        
+        this.setTitle(MANTENIMIENTO_PROFESOR);
         jTable= new JTable();
         jScrollPane= new JScrollPane(jTable);
         defaultTableModel=(DefaultTableModel) jTable.getModel();

@@ -10,12 +10,13 @@ package Interfaz;
  * @author edva5
  */
 public class InterfazEstudiante extends myInterface {
-
+public static final String MANTENIMIENTO_ESTUDIANTE="Mantenimiento Estudiante";
     /**
      * Creates new form InterfazEstudiante
      */
     public InterfazEstudiante() {
         initComponents();
+        this.setTitle(MANTENIMIENTO_ESTUDIANTE);
     }
 
     /**

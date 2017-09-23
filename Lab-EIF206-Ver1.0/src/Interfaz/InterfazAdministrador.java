@@ -19,9 +19,7 @@ public class InterfazAdministrador extends myInterface implements Observer{
     /**
      * @param modelo the modelo to set
      */
-    public void setModelo(Modelo modelo) {
-        this.modelo = modelo;
-    }
+   
     public static final String MANTENIMIENTO_ADMINISTRADOR="Mantenimiento Administrador";
     private Control control;
     private Modelo modelo;
@@ -30,14 +28,13 @@ public class InterfazAdministrador extends myInterface implements Observer{
      */
     public InterfazAdministrador() {
         initComponents();
+        this.setTitle(MANTENIMIENTO_ADMINISTRADOR);
     }    
 
     /**
      * @param control the control to set
      */
-    public void setControl(Control control) {
-        this.control = control;
-    }
+    
     
     
 

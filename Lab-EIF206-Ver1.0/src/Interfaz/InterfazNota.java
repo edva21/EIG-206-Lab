@@ -28,7 +28,7 @@ public class InterfazNota extends myInterface implements Observer{
      */
     public InterfazNota() {
         initComponents();
-        
+        this.setTitle(MANTENIMIENTO_NOTA);
         jTable= new JTable();
         jScrollPane= new JScrollPane(jTable);
         defaultTableModel=(DefaultTableModel) jTable.getModel();

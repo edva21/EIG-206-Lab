@@ -61,6 +61,7 @@ public class InterfazLogIn extends myInterface implements Observer {
      */
     public InterfazLogIn() {
         initComponents();
+        this.setTitle(LOGIN);
         jCheckBoxs = new ArrayList<JCheckBox>();
         jCheckBoxs.add(new JCheckBox(ESTUDIANTE));
         jCheckBoxs.add(new JCheckBox(MATRICULADOR));

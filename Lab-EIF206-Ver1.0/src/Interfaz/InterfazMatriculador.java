@@ -27,7 +27,7 @@ public class InterfazMatriculador extends myInterface implements Observer{
      */
     public InterfazMatriculador() {
         initComponents();
-        
+        this.setTitle(MANTENIMIENTO_MATRICULADOR);
         jTable= new JTable();
         jScrollPane= new JScrollPane(jTable);
         defaultTableModel=(DefaultTableModel) jTable.getModel();
@@ -47,25 +47,7 @@ public class InterfazMatriculador extends myInterface implements Observer{
     public DefaultTableModel getDefaultTableModel() {
         return defaultTableModel;
     }
-    public void setControl(Control control) {
-        this.setControl(control);
-    }
-
-    /**
-     * @return the modelo
-     */
-    public Modelo getModelo() {
-        return modelo;
-    }
-
-    /**
-     * @param modelo the modelo to set
-     */
-    public void setModelo(Modelo modelo) {
-        this.setModelo(modelo);
-    }
-    
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -27,7 +27,7 @@ public static final String MANTENIMIENTO_CICLO="Mantenimiento Ciclo";
      */
     public InterfazCiclo() {
         initComponents();
-        
+        this.setTitle(MANTENIMIENTO_CICLO);
         jTable= new JTable();
         jScrollPane= new JScrollPane(jTable);
         defaultTableModel=(DefaultTableModel) jTable.getModel();
@@ -41,28 +41,11 @@ public static final String MANTENIMIENTO_CICLO="Mantenimiento Ciclo";
         jScrollPane.setVisible(true);
         jScrollPane.setBounds(100, 100, 300, 300);
     }
-    public void setControl(Control control) {
-        this.setControl(control);
-    }
     /**
      * @return the defaultTableModel
      */
     public DefaultTableModel getDefaultTableModel() {
         return defaultTableModel;
-    }
-
-    /**
-     * @return the modelo
-     */
-    public Modelo getModelo() {
-        return modelo;
-    }
-
-    /**
-     * @param modelo the modelo to set
-     */
-    public void setModelo(Modelo modelo) {
-        this.setModelo(modelo);
     }
    
 

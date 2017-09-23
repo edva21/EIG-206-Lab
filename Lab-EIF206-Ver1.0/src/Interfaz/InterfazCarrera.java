@@ -19,9 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author edva5
  */
 public class InterfazCarrera extends myInterface implements Observer{
-    public void setModelo(Modelo modelo) {
-        this.setModelo(modelo);
-    }    
+    
     public static final String MANTENIMIENTO_CARRERA="Mantenimiento Carrera";
     private JTable jTable;
     private  DefaultTableModel defaultTableModel;    
@@ -32,7 +30,7 @@ public class InterfazCarrera extends myInterface implements Observer{
      */
     public InterfazCarrera() {
         initComponents();
-        
+        this.setTitle(MANTENIMIENTO_CARRERA);
         jTable= new JTable();
         jScrollPane= new JScrollPane(jTable);
         defaultTableModel=(DefaultTableModel) jTable.getModel();
@@ -46,9 +44,9 @@ public class InterfazCarrera extends myInterface implements Observer{
         jScrollPane.setVisible(true);
         jScrollPane.setBounds(100, 100, 300, 300);
     }
-    public void setControl(Control control) {
+    /*public void setControl(Control control) {
         this.setControl(control);
-    }
+    }*/
     /**
      * @return the defaultTableModel
      */
@@ -59,9 +57,7 @@ public class InterfazCarrera extends myInterface implements Observer{
     /**
      * @return the modelo
      */
-    public Modelo getModelo() {
-        return modelo;
-    }
+   
 
     /**
      * @param modelo the modelo to set

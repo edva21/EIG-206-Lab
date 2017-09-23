@@ -20,7 +20,7 @@ public class AccesoDatosCurso {
      private ArrayList<Curso> listaCursos;        
     static Comparator<Curso> CursoCOMPARATOR;
 
-    public AccesoDatosCurso() {
+    private AccesoDatosCurso() {
     }
     /**
      * @return the instance

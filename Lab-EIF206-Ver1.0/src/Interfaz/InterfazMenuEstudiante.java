@@ -18,6 +18,7 @@ public class InterfazMenuEstudiante extends myInterface {
      */
     public InterfazMenuEstudiante() {
         initComponents();
+        this.setTitle(MENU_ESTUDIANTE);
     }
 
     /**

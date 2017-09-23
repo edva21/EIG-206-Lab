@@ -19,7 +19,7 @@ public class AccesoDatosProfesor {
      private ArrayList<Profesor> listaProfesores;    
     static Comparator<Profesor> ProfesorCOMPARATOR;
 
-    public AccesoDatosProfesor() {
+    private AccesoDatosProfesor() {
     }
     public AccesoDatosProfesor getInstance(){
         if (instance==null)

@@ -20,7 +20,7 @@ public class AccesoDatosCarrera {
     private ArrayList<Carrera> listaCarreras;    
     static Comparator<Carrera> CarreraCOMPARATOR;
 
-    public AccesoDatosCarrera() {
+    private AccesoDatosCarrera() {
     }
     
     public void insertar(Carrera c) {

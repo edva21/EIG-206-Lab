@@ -26,24 +26,26 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="mntoAdministradorBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="mntoCarreraBtn" min="-2" pref="201" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="mntoCursoBtn" min="-2" pref="201" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="mntoCarreraBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="mntoCursoBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="mntoGrupoBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="mntoNotaBtn" pref="201" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="mntoMatriculadorBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="mntoNotaBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="mntoProfesorBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="mntoAdministradorBtn" max="32767" attributes="0"/>
+                          <Component id="mntoMatriculadorBtn" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="mntoGrupoBtn" pref="201" max="32767" attributes="0"/>
+                          <Component id="mntoProfesorBtn" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,19 +53,24 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="mntoCarreraBtn" alignment="1" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="mntoNotaBtn" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="mntoCursoBtn" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="mntoAdministradorBtn" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="mntoCarreraBtn" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="mntoCursoBtn" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
                   <Component id="mntoGrupoBtn" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="mntoMatriculadorBtn" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="mntoNotaBtn" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
                   <Component id="mntoProfesorBtn" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="139" max="32767" attributes="0"/>
+              <EmptySpace pref="55" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
