@@ -5,6 +5,7 @@
  */
 package LogicaDeNegocio;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Vector;
 
@@ -13,6 +14,20 @@ import java.util.Vector;
  * @author edva5
  */
 public abstract class Persona {
+
+    /**
+     * @return the fechaNacimiento
+     */
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    /**
+     * @param fechaNacimiento the fechaNacimiento to set
+     */
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
         protected String cedula_o_passaporte;//using protected attributes can be accessed directly by sons, otherwise, just by gets and sets
     protected String nombre;
     private String Apellido1;
@@ -20,20 +35,8 @@ public abstract class Persona {
     protected String telefono;
     protected String email;
     protected String clave;
-    private Date fechaNacimiento;
-    /**
-     * @return the fechaNacimiento
-     */
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
+    private LocalDate fechaNacimiento;
 
-    /**
-     * @param fechaNacimiento the fechaNacimiento to set
-     */
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
 
     /**
      * @return the Apellido1
@@ -67,7 +70,7 @@ public abstract class Persona {
     public Persona() {
     }
 
-    public Persona(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, Date fecaNacimiento) {
+    public Persona(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
         this.cedula_o_passaporte = cedula_o_passaporte;
         this.nombre = nombre;
         this.Apellido1 = Apellido1;
