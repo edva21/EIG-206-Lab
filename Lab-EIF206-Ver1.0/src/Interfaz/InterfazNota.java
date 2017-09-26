@@ -24,7 +24,7 @@ public class InterfazNota extends myInterface implements Observer{
      * Creates new form InterfazEstudiante
      */
     public InterfazNota() {
-        super();
+        super();        
         this.setTitle(MANTENIMIENTO_NOTA);        
     }
     /**

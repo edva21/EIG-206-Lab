@@ -17,13 +17,15 @@ import LogicaDeNegocio.Nota;
 import LogicaDeNegocio.Profesor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author edva5
  */
-public class Modelo {
-
+public class Modelo extends Observable{
+    private String k;
     private ArrayList<String> historialDeVentana;
     public Modelo() {
         historialDeVentana= new ArrayList<String>();
@@ -34,7 +36,7 @@ public class Modelo {
     public String getLastHistorial(){
         String aux=historialDeVentana.get(historialDeVentana.size());
         historialDeVentana.remove(aux);
-        return aux;
+        return aux;        
     }
     public void remove(Grupo grupo){        
         AccesoDatosGrupo.GetInstance().eliminar(grupo);

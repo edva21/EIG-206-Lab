@@ -52,8 +52,8 @@ public class Dispatcher {
     private myInterface interfazMenuEstudiante;
     private myInterface interfazMenuMatriculador;
     private myInterface interfazLogIn;
-    public static String LOGIN="LogIn",MENUADMINISTRADOR="Menu Administrador",MENUESTUDIANTE="Menu Estudiante",MENUMATRICULADOR="Menu Matriculador",
-            ADMINISTRADOR="Administrador",CARRERA="Carrera",CICLO="Cliclo",CURSO="Curso",GRUPO="Grupo",MATRICULADOR="Matriculador",NOTA="Nota",PROFESOR="Profesor",ESTUDIANTE="Estudiante";
+    private InterfazMenu interfazMenu;
+    
     public Dispatcher() {
         interfazActual=null;
         interfaces=new ArrayList<myInterface>();
@@ -69,60 +69,55 @@ public class Dispatcher {
         interfaces.add(interfazCiclo);
         interfaces.add(interfazCarrera);
         interfaces.add(interfazAdministrador);
+        
     }
     public void dispatcherRequest(String Interface,Modelo modelo,Control control){
         switch(Interface){
-            case "LogIn":                
+            case Interfaz.InterfazLogIn.LOGIN:                
                 setInterfazLogIn(new InterfazLogIn());
                 this.switchWindow(getInterfazLogIn(), modelo, control);
-                break;
-            case "Menu Administrador":
-                setInterfazMenuAdministrador(new InterfazMenuAdministrador());
-                this.switchWindow(getInterfazMenuAdministrador(), modelo, control);
-                break;
-            case "Menu Estudiante":
-                setInterfazMenuEstudiante(new InterfazMenuEstudiante());
-                this.switchWindow(getInterfazMenuEstudiante(), modelo, control);
-                break;
-            case "Menu Matriculador":
-                setInterfazMenuMatriculador(new InterfazMenuMatriculador());
-                this.switchWindow(getInterfazMenuMatriculador(), modelo, control);
-                break;
-            case "Administrador":
+                break;           
+            case InterfazAdministrador.MANTENIMIENTO_ADMINISTRADOR:
                 setInterfazAdministrador(new InterfazAdministrador());
                 this.switchWindow(getInterfazAdministrador(), modelo, control);
                 break;
-            case "Carrera":
+            case InterfazCarrera.MANTENIMIENTO_CARRERA:
                 setInterfazCarrera(new InterfazCarrera());
                 this.switchWindow(getInterfazCarrera(), modelo, control);
                 break;
-            case "Ciclo":
+            case InterfazCiclo.MANTENIMIENTO_CICLO:
                 setInterfazCiclo(new InterfazCiclo());
                 this.switchWindow(getInterfazCiclo(), modelo, control);
                 break;
-            case "Curso":
+            case InterfazCurso.MANTENIMIENTO_CURSO:
                 setInterfazCurso(new InterfazCurso());
                 this.switchWindow(getInterfazCurso(), modelo, control);
                 break;
-            case "Grupo":
+            case InterfazGrupo.MANTENIMIENTO_GRUPO:
                 setInterfazGrupo(new InterfazGrupo());
                 this.switchWindow(getInterfazGrupo(), modelo, control);
                 break;
-            case "Matriculador":
+            case InterfazMatriculador.MANTENIMIENTO_MATRICULADOR:
                 setInterfazMatriculador(new InterfazMatriculador());
                 this.switchWindow(getInterfazMatriculador(), modelo, control);
                 break;
-            case "Nota":
+            case InterfazNota.MANTENIMIENTO_NOTA:
                 setInterfazNota(new InterfazNota());
                 this.switchWindow(getInterfazNota(), modelo, control);
                 break;
-            case "Profesor":
+            case InterfazProfesor.MANTENIMIENTO_PROFESOR:
                 setInterfazProfesor(new InterfazProfesor());
                 this.switchWindow(getInterfazProfesor(), modelo, control);
                 break;
-            case "Estudiante":
+            case InterfazEstudiante.MANTENIMIENTO_ESTUDIANTE:
                 setInterfazEstudiante(new InterfazEstudiante());
                 this.switchWindow(getInterfazProfesor(), modelo, control);
+                break;
+            case InterfazMenu.INTERFAZ_MENU:
+                interfazMenu = new InterfazMenu();                
+                this.switchWindow(interfazMenu, modelo, control);
+                break;
+            default:
                 break;
         }
     }
@@ -236,50 +231,7 @@ public class Dispatcher {
      */
     public void setInterfazProfesor(InterfazProfesor interfazProfesor) {
         this.interfazProfesor = interfazProfesor;
-    }
-
-    /**
-     * @return the interfazMenuAdministrador
-     */
-    public InterfazMenuAdministrador getInterfazMenuAdministrador() {
-        return (InterfazMenuAdministrador) interfazMenuAdministrador;
-    }
-
-    /**
-     * @param interfazMenuAdministrador the interfazMenuAdministrador to set
-     */
-    public void setInterfazMenuAdministrador(InterfazMenuAdministrador interfazMenuAdministrador) {
-        this.interfazMenuAdministrador = interfazMenuAdministrador;
-    }
-
-    /**
-     * @return the interfazMenuEstudiante
-     */
-    public InterfazMenuEstudiante getInterfazMenuEstudiante() {
-        return (InterfazMenuEstudiante) interfazMenuEstudiante;
-    }
-
-    /**
-     * @param interfazMenuEstudiante the interfazMenuEstudiante to set
-     */
-    public void setInterfazMenuEstudiante(InterfazMenuEstudiante interfazMenuEstudiante) {
-        this.interfazMenuEstudiante = interfazMenuEstudiante;
-    }
-
-    /**
-     * @return the interfazMenuMatriculador
-     */
-    public InterfazMenuMatriculador getInterfazMenuMatriculador() {
-        return (InterfazMenuMatriculador) interfazMenuMatriculador;
-    }
-
-    /**
-     * @param interfazMenuMatriculador the interfazMenuMatriculador to set
-     */
-    public void setInterfazMenuMatriculador(InterfazMenuMatriculador interfazMenuMatriculador) {
-        this.interfazMenuMatriculador = interfazMenuMatriculador;
-    }
-
+    }      
     /**
      * @return the interfazLogIn
      */

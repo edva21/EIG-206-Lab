@@ -5,17 +5,71 @@
  */
 package Interfaz;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
 /**
  *
  * @author edva5
  */
-public class InterfazMenu extends javax.swing.JFrame {
-
+public class InterfazMenu extends myInterface {
+    public static final String INTERFAZ_MENU="Interfaz Menu";
+    private JMenuItem administradorMnuItm,carreraMnuItm,cicloMnuItm,CursoMnuItm,estudianteMnuItm,grupoMnuItm,matriculadorMnuItm,notaMnuItm,profesorMnuItm;
+    private JMenuBar menuBar;
+    private JMenu administradorMnu,matriculadorMnu,estudianteMnu,profesorMnu;
     /**
      * Creates new form InterfazMenu
      */
     public InterfazMenu() {
-        initComponents();
+        initComponents();        
+        this.setTitle(INTERFAZ_MENU);
+        super.jScrollPane.setVisible(false);
+        InitiaizePrimaryButtons();
+    }
+    private void InitiaizePrimaryButtons(){
+//        this.addKeyListener(controlador);
+        this.setFocusable(true);
+        menuBar = new JMenuBar();        
+            //ediMnu= new JMenu("Edit");
+            administradorMnu= new JMenu("Administrador");
+                administradorMnuItm=new JMenuItem(Interfaz.InterfazAdministrador.MANTENIMIENTO_ADMINISTRADOR);
+            administradorMnu.add(administradorMnuItm);
+                carreraMnuItm= new JMenuItem(Interfaz.InterfazCarrera.MANTENIMIENTO_CARRERA);
+            administradorMnu.add(carreraMnuItm);
+                cicloMnuItm= new JMenuItem(InterfazCiclo.MANTENIMIENTO_CICLO);
+            administradorMnu.add(cicloMnuItm);
+                CursoMnuItm = new JMenuItem(InterfazCurso.MANTENIMIENTO_CURSO);
+            administradorMnu.add(CursoMnuItm);
+            estudianteMnuItm = new JMenuItem(InterfazEstudiante.MANTENIMIENTO_ESTUDIANTE);
+            administradorMnu.add(estudianteMnuItm);
+            grupoMnuItm = new JMenuItem(InterfazGrupo.MANTENIMIENTO_GRUPO);
+            administradorMnu.add(grupoMnuItm);
+            matriculadorMnuItm = new JMenuItem(InterfazMatriculador.MANTENIMIENTO_MATRICULADOR);
+            administradorMnu.add(matriculadorMnuItm);
+            matriculadorMnuItm = new JMenuItem(InterfazMatriculador.MANTENIMIENTO_MATRICULADOR);
+            administradorMnu.add(matriculadorMnuItm);
+            
+        menuBar.add(administradorMnu);//CursoMnuItm,estudianteMnuItm,grupoMnuItm        
+            matriculadorMnu=new JMenu("Profesor");
+                CursoMnuItm= new JMenuItem("Inicial");
+            matriculadorMnu.add(CursoMnuItm);
+                estudianteMnuItm= new JMenuItem("Intermedio");
+            matriculadorMnu.add(estudianteMnuItm);
+                grupoMnuItm  = new JMenuItem("Final");
+            matriculadorMnu.add(grupoMnuItm);             
+            
+        menuBar.add(matriculadorMnu);
+            estudianteMnu=new JMenu("Verificar");
+                matriculadorMnuItm= new JMenuItem("Hilera");
+            estudianteMnu.add(matriculadorMnuItm);
+        menuBar.add(estudianteMnu);
+            notaMnuItm= new JMenuItem("Undo");
+            /*ediMnu.add(notaMnuItm);
+            profesorMnuItm= new JMenuItem("Redo");
+            ediMnu.add(profesorMnuItm);
+        menuBar.add(ediMnu);*/
+        this.setJMenuBar(menuBar);
     }
 
     /**
@@ -43,40 +97,7 @@ public class InterfazMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfazMenu().setVisible(true);
-            }
-        });
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

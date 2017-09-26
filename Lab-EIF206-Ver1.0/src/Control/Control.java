@@ -8,6 +8,8 @@ package Control;
 
 import Interfaz.Dispatcher;
 import Interfaz.InterfazAdministrador;
+import Interfaz.InterfazLogIn;
+import Interfaz.InterfazMenu;
 import Modelo.Modelo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,34 +32,25 @@ public class Control implements ActionListener,MouseListener{
     public Control(Modelo modelo, Dispatcher dispatcher) {
         this.modelo = modelo;
         this.dispatcher = dispatcher;
-        this.dispatcher.dispatcherRequest(Dispatcher.LOGIN, modelo, this);
+        this.dispatcher.dispatcherRequest(InterfazLogIn.LOGIN, modelo, this);
         
     }        
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof JButton) {
-            this.modelo.addHistorial(e.getActionCommand());
+            if (e.getActionCommand().equals("LogIn"))
+                dispatcher.dispatcherRequest(InterfazMenu.INTERFAZ_MENU, modelo, this);
+            else
+                dispatcher.dispatcherRequest(e.getActionCommand(), modelo, this);
+                
+            /*this.modelo.addHistorial(e.getActionCommand());
             switch(e.getActionCommand()){
                 
                 case "LogIn":
                     if (!dispatcher.getInterfazLogIn().getjCheckBoxs().isEmpty()) {                                                                
-                    switch(dispatcher.getInterfazLogIn().getjCheckBoxs().stream().filter(x->x.isSelected()).collect(Collectors.toList()).get(0).getActionCommand()){
-                        case Interfaz.InterfazLogIn.ADMINISTRADOR:
-                            dispatcher.getInterfazLogIn().dispose();
-                            dispatcher.dispatcherRequest(Dispatcher.MENUADMINISTRADOR, modelo, this);
-                            break;
-                        case Interfaz.InterfazLogIn.ESTUDIANTE:
-                            dispatcher.getInterfazLogIn().dispose();
-                            dispatcher.dispatcherRequest(Dispatcher.MENUESTUDIANTE, modelo, this);
-                            break;
-                        case Interfaz.InterfazLogIn.MATRICULADOR:
-                            dispatcher.getInterfazLogIn().dispose();
-                            dispatcher.dispatcherRequest(Dispatcher.MENUMATRICULADOR, modelo, this);
-                            break;
-                        default:
-                            break;
-                    }
+                        dispatcher.getInterfazLogIn().dispose();
+                            dispatcher.dispatcherRequest(e.getActionCommand(), modelo, this);
                      }
                     break;
                 case InterfazAdministrador.MANTENIMIENTO_ADMINISTRADOR:
@@ -105,7 +98,7 @@ public class Control implements ActionListener,MouseListener{
                     break;                 
                 default:
                     break;
-            }
+            }*/
         }
         else if (e.getSource() instanceof String) {
             switch(((String)e.getSource())){
