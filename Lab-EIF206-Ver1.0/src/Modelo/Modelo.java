@@ -19,25 +19,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Stack;
 
 /**
  *
  * @author edva5
  */
-public class Modelo extends Observable{
-    private String k;
-    private ArrayList<String> historialDeVentana;
+public class Modelo extends Observable{    
+    private Stack<String> historialDeVentana;
     public Modelo() {
-        historialDeVentana= new ArrayList<String>();
+        historialDeVentana= new Stack<String>();        
     }
-    public void addHistorial(String s){
-        historialDeVentana.add(s);
+    /**
+     * @return the historialDeVentana
+     */
+    public Stack<String> getHistorialDeVentana() {
+        return historialDeVentana;
     }
-    public String getLastHistorial(){
-        String aux=historialDeVentana.get(historialDeVentana.size());
-        historialDeVentana.remove(aux);
-        return aux;        
+
+    /**
+     * @param historialDeVentana the historialDeVentana to set
+     */
+    public void setHistorialDeVentana(Stack<String> historialDeVentana) {
+        this.historialDeVentana = historialDeVentana;
     }
+    
+    
     public void remove(Grupo grupo){        
         AccesoDatosGrupo.GetInstance().eliminar(grupo);
     }

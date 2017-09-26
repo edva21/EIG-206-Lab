@@ -24,8 +24,8 @@ public class InterfazAdministrador extends myInterface implements Observer{
      */
    
     public static final String MANTENIMIENTO_ADMINISTRADOR="Mantenimiento Administrador";
-    private Control control;
-    private Modelo modelo;    
+    /*private Control control;
+    private Modelo modelo;    */
     /**
      * Creates new form InterfazAdministrador
      */

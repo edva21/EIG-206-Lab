@@ -5,6 +5,10 @@
  */
 package Interfaz;
 
+import Control.Control;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -16,6 +20,7 @@ import javax.swing.JMenuItem;
 public class InterfazMenu extends myInterface {
     public static final String INTERFAZ_MENU="Interfaz Menu";
     private JMenuItem administradorMnuItm,carreraMnuItm,cicloMnuItm,CursoMnuItm,estudianteMnuItm,grupoMnuItm,matriculadorMnuItm,notaMnuItm,profesorMnuItm;
+    private ArrayList<JMenuItem> jMenuItems;
     private JMenuBar menuBar;
     private JMenu administradorMnu,matriculadorMnu,estudianteMnu,profesorMnu;
     /**
@@ -29,7 +34,20 @@ public class InterfazMenu extends myInterface {
     }
     private void InitiaizePrimaryButtons(){
 //        this.addKeyListener(controlador);
-        this.setFocusable(true);
+//private JMenuItem ,,,,,,,,;
+        jMenuItems= new ArrayList<JMenuItem>();
+        jMenuItems.add(administradorMnuItm);
+        
+        /*jMenuItems.add(carreraMnuItm);
+        jMenuItems.add(cicloMnuItm);
+        jMenuItems.add(CursoMnuItm);
+        jMenuItems.add(estudianteMnuItm);
+        jMenuItems.add(grupoMnuItm);
+        jMenuItems.add(matriculadorMnuItm);
+        jMenuItems.add(notaMnuItm);
+        jMenuItems.add(profesorMnuItm);*/
+        
+        //this.setFocusable(true);
         menuBar = new JMenuBar();        
             //ediMnu= new JMenu("Edit");
             administradorMnu= new JMenu("Administrador");
@@ -41,36 +59,89 @@ public class InterfazMenu extends myInterface {
             administradorMnu.add(cicloMnuItm);
                 CursoMnuItm = new JMenuItem(InterfazCurso.MANTENIMIENTO_CURSO);
             administradorMnu.add(CursoMnuItm);
-            estudianteMnuItm = new JMenuItem(InterfazEstudiante.MANTENIMIENTO_ESTUDIANTE);
+                estudianteMnuItm = new JMenuItem(InterfazEstudiante.MANTENIMIENTO_ESTUDIANTE);
             administradorMnu.add(estudianteMnuItm);
-            grupoMnuItm = new JMenuItem(InterfazGrupo.MANTENIMIENTO_GRUPO);
+               grupoMnuItm = new JMenuItem(InterfazGrupo.MANTENIMIENTO_GRUPO);
             administradorMnu.add(grupoMnuItm);
-            matriculadorMnuItm = new JMenuItem(InterfazMatriculador.MANTENIMIENTO_MATRICULADOR);
-            administradorMnu.add(matriculadorMnuItm);
-            matriculadorMnuItm = new JMenuItem(InterfazMatriculador.MANTENIMIENTO_MATRICULADOR);
-            administradorMnu.add(matriculadorMnuItm);
+                matriculadorMnuItm = new JMenuItem(InterfazMatriculador.MANTENIMIENTO_MATRICULADOR);
+            administradorMnu.add(matriculadorMnuItm);                        
+                profesorMnuItm = new JMenuItem(InterfazProfesor.MANTENIMIENTO_PROFESOR);
+            administradorMnu.add(profesorMnuItm);
             
         menuBar.add(administradorMnu);//CursoMnuItm,estudianteMnuItm,grupoMnuItm        
-            matriculadorMnu=new JMenu("Profesor");
-                CursoMnuItm= new JMenuItem("Inicial");
-            matriculadorMnu.add(CursoMnuItm);
-                estudianteMnuItm= new JMenuItem("Intermedio");
-            matriculadorMnu.add(estudianteMnuItm);
-                grupoMnuItm  = new JMenuItem("Final");
-            matriculadorMnu.add(grupoMnuItm);             
+            profesorMnu=new JMenu("Profesor");
+                notaMnuItm = new JMenuItem(InterfazNota.MANTENIMIENTO_NOTA);
+            profesorMnu.add(notaMnuItm);
             
-        menuBar.add(matriculadorMnu);
-            estudianteMnu=new JMenu("Verificar");
-                matriculadorMnuItm= new JMenuItem("Hilera");
-            estudianteMnu.add(matriculadorMnuItm);
+        menuBar.add(profesorMnu);
+            estudianteMnu=new JMenu("Estudiante");            
         menuBar.add(estudianteMnu);
-            notaMnuItm= new JMenuItem("Undo");
-            /*ediMnu.add(notaMnuItm);
-            profesorMnuItm= new JMenuItem("Redo");
-            ediMnu.add(profesorMnuItm);
-        menuBar.add(ediMnu);*/
+            
         this.setJMenuBar(menuBar);
+        administradorMnuItm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.actionPerformed(e);
+            }
+        });
+        jMenuItems.add(carreraMnuItm);
+        carreraMnuItm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.actionPerformed(e);
+            }
+        });
+        jMenuItems.add(cicloMnuItm);
+        cicloMnuItm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.actionPerformed(e);
+            }
+        });
+        jMenuItems.add(CursoMnuItm);
+        CursoMnuItm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.actionPerformed(e);
+            }
+        });
+        jMenuItems.add(estudianteMnuItm);
+        estudianteMnuItm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.actionPerformed(e);
+            }
+        });
+        jMenuItems.add(grupoMnuItm);
+        grupoMnuItm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.actionPerformed(e);
+            }
+        });
+        jMenuItems.add(matriculadorMnuItm);
+        matriculadorMnuItm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.actionPerformed(e);
+            }
+        });
+        jMenuItems.add(notaMnuItm);
+        notaMnuItm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.actionPerformed(e);
+            }
+        });
+        jMenuItems.add(profesorMnuItm);
+        profesorMnuItm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.actionPerformed(e);
+            }
+        });                
     }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.

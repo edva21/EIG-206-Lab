@@ -72,7 +72,8 @@ public class Dispatcher {
         
     }
     public void dispatcherRequest(String Interface,Modelo modelo,Control control){
-        switch(Interface){
+        modelo.getHistorialDeVentana().push(Interface);
+        switch(Interface){            
             case Interfaz.InterfazLogIn.LOGIN:                
                 setInterfazLogIn(new InterfazLogIn());
                 this.switchWindow(getInterfazLogIn(), modelo, control);
@@ -80,6 +81,7 @@ public class Dispatcher {
             case InterfazAdministrador.MANTENIMIENTO_ADMINISTRADOR:
                 setInterfazAdministrador(new InterfazAdministrador());
                 this.switchWindow(getInterfazAdministrador(), modelo, control);
+                modelo.getAllAdministradores().forEach(x->getInterfazAdministrador().defaultTableModel.addRow(x.toVectorOfString()));
                 break;
             case InterfazCarrera.MANTENIMIENTO_CARRERA:
                 setInterfazCarrera(new InterfazCarrera());
@@ -246,16 +248,16 @@ public class Dispatcher {
         this.interfazLogIn = interfazLogIn;
     }    
     private void switchWindow(myInterface i,Modelo modelo,Control control){
-        if (interfazActual!=null) {            
+        /*if (interfazActual!=null) {            
             interfazActual.dispose();
             interfazActual=null;
             interfaces.stream().forEach(x->x=null);
-        }
+        }*/
         interfazActual=null;        
         i.setControl(control);
         i.setModelo(modelo);
         i.setVisible(true);
-        interfazActual=null;
+        interfazActual=i;
     }
     
 }

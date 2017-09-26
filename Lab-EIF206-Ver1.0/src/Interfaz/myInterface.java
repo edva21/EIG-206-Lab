@@ -8,6 +8,7 @@ package Interfaz;
 import Control.Control;
 import Modelo.Modelo;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -37,7 +38,7 @@ public class myInterface extends javax.swing.JFrame {
      */
     public myInterface() {
         initComponents();
-        
+        atrasBtn= new JButton("Atras");
         jTable= new JTable();
         jScrollPane= new JScrollPane(jTable);
         defaultTableModel=(DefaultTableModel) jTable.getModel();       
