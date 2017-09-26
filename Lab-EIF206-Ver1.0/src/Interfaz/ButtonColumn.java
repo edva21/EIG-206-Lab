@@ -1,5 +1,6 @@
 package Interfaz;
 
+import Control.Control;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -32,6 +33,16 @@ import javax.swing.table.*;
 public class ButtonColumn extends AbstractCellEditor
 	implements TableCellRenderer, TableCellEditor, ActionListener, MouseListener
 {
+
+    /**
+     * @param control the control to set
+     */
+    public void setControl(Control control) {
+        this.control = control;
+        renderButton.addActionListener(control);
+        editButton.addActionListener(control);
+    }
+        private Control control;
 	private JTable table;
 	private Action action;
 	private int mnemonic;
@@ -52,10 +63,10 @@ public class ButtonColumn extends AbstractCellEditor
 	 *  @param action the Action to be invoked when the button is invoked
 	 *  @param column the column to which the button renderer/editor is added
 	 */
-	public ButtonColumn(JTable table, Action action, int column,ImageIcon icon,String buttonName)
+	public ButtonColumn(JTable table, int column,ImageIcon icon,String buttonName)
 	{
 		this.table = table;
-		this.action = action;
+		
                    
 		renderButton = new JButton(buttonName,icon);               
 		editButton = new JButton(buttonName,icon);
@@ -201,11 +212,11 @@ public class ButtonColumn extends AbstractCellEditor
 
 		//  Invoke the Action
 
-		ActionEvent event = new ActionEvent(
+		/*ActionEvent event = new ActionEvent(
 			table,
 			ActionEvent.ACTION_PERFORMED,
 			"" + row);
-		action.actionPerformed(event);
+		action.actionPerformed(event);*/
 	}
 
 //

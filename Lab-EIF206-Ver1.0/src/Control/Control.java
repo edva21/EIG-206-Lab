@@ -8,23 +8,20 @@ package Control;
 
 import Interfaz.Dispatcher;
 import Interfaz.InterfazAdministrador;
-import Interfaz.InterfazCiclo;
-import LogicaDeNegocio.Carrera;
-import LogicaDeNegocio.Estudiante;
 import Modelo.Modelo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.stream.Collectors;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author edva5
  */
-public class Control implements ActionListener{
+public class Control implements ActionListener,MouseListener{
     private Modelo modelo;
     private Dispatcher dispatcher;  
 
@@ -40,7 +37,9 @@ public class Control implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof JButton) {
+            this.modelo.addHistorial(e.getActionCommand());
             switch(e.getActionCommand()){
+                
                 case "LogIn":
                     if (!dispatcher.getInterfazLogIn().getjCheckBoxs().isEmpty()) {                                                                
                     switch(dispatcher.getInterfazLogIn().getjCheckBoxs().stream().filter(x->x.isSelected()).collect(Collectors.toList()).get(0).getActionCommand()){
@@ -66,6 +65,7 @@ public class Control implements ActionListener{
                     this.dispatcher.getInterfazAdministrador().getDefaultTableModel().setColumnIdentifiers(LogicaDeNegocio.Administrador.getClassNames());
                     this.dispatcher.getInterfazAdministrador().setTitle(InterfazAdministrador.MANTENIMIENTO_ADMINISTRADOR);
                     this.dispatcher.getInterfazAdministrador().addButtonsToTable();
+                    modelo.getAllAdministradores().forEach(x->this.dispatcher.getInterfazAdministrador().getDefaultTableModel().addRow(x.toVectorOfString()));
                     break;
                 case Interfaz.InterfazCarrera.MANTENIMIENTO_CARRERA:
                     this.dispatcher.dispatcherRequest(Dispatcher.CARRERA, modelo, this);
@@ -83,7 +83,7 @@ public class Control implements ActionListener{
                     this.dispatcher.dispatcherRequest(Dispatcher.MATRICULADOR, modelo, this);
                     this.dispatcher.getInterfazMatriculador().getDefaultTableModel().setColumnIdentifiers(LogicaDeNegocio.Matriculador.getClassNames());
                     this.dispatcher.getInterfazMatriculador().setTitle(Interfaz.InterfazMatriculador.MANTENIMIENTO_MATRICULADOR);
-                    this.dispatcher.getInterfazMatriculador().addButtonsToTable();
+                    this.dispatcher.getInterfazMatriculador().addButtonsToTable();                                        
                     break;
                 case Interfaz.InterfazNota.MANTENIMIENTO_NOTA:
                     this.dispatcher.dispatcherRequest(Dispatcher.NOTA, modelo, this);
@@ -102,11 +102,43 @@ public class Control implements ActionListener{
                     break;
                 case Interfaz.InterfazLogIn.LOGIN:
                     this.dispatcher.dispatcherRequest(Dispatcher.LOGIN, modelo, this);
-                    break;
+                    break;                 
                 default:
                     break;
             }
         }
+        else if (e.getSource() instanceof String) {
+            switch(((String)e.getSource())){
+                case "Atras":
+                    //dispatcher.
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

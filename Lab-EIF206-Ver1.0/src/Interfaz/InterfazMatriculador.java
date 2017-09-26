@@ -18,24 +18,18 @@ import javax.swing.table.DefaultTableModel;
  * @author edva5
  */
 public class InterfazMatriculador extends myInterface implements Observer{
-    public static final String MANTENIMIENTO_MATRICULADOR="Mantenimiento Matriculador";
-    private JTable jTable;    
-    private  DefaultTableModel defaultTableModel;    
-    private JScrollPane jScrollPane;
+    public static final String MANTENIMIENTO_MATRICULADOR="Mantenimiento Matriculador";    
     /**
      * Creates new form InterfazEstudiante
      */
     public InterfazMatriculador() {
-        super();
+        initComponents();
         this.setTitle(MANTENIMIENTO_MATRICULADOR);
         
     }
     /**
      * @return the defaultTableModel
-     */
-    public DefaultTableModel getDefaultTableModel() {
-        return defaultTableModel;
-    }
+     */   
    
     /**
      * This method is called from within the constructor to initialize the form.

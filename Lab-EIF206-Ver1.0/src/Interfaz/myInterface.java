@@ -8,6 +8,7 @@ package Interfaz;
 import Control.Control;
 import Modelo.Modelo;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -28,8 +29,9 @@ public class myInterface extends javax.swing.JFrame {
     protected JTable jTable;
     protected DefaultTableModel defaultTableModel;    
     protected JScrollPane jScrollPane;    
-    protected ButtonColumn saveButtonColumn;
+    //protected ButtonColumn saveButtonColumn;
     protected ButtonColumn deleteButtonColumn;
+    public static JOptionPane jOptionPane;
     /**
      * Creates new form Interfaz
      */
@@ -46,16 +48,17 @@ public class myInterface extends javax.swing.JFrame {
         this.setBounds(0, 0, 800, 500);                
     }
     public void addButtonsToTable(){
-        defaultTableModel.addColumn("Guardar");
-        defaultTableModel.addColumn("Eliminar");
-        saveButtonColumn = new ButtonColumn(jTable, null, 0, null, "Guardar");
-        deleteButtonColumn = new ButtonColumn(jTable, null, 1, null, "Eliminar");
+        
+        defaultTableModel.addColumn("Eliminar");        
+        deleteButtonColumn = new ButtonColumn(jTable, defaultTableModel.getColumnCount()-1, null, "Eliminar");
+        //saveButtonColumn.setControl(control);
     }
     /**
      * @param control the control to set
      */
     public void setControl(Control control) {
         this.control = control;
+        atrasBtn.addActionListener(control);
     }
 
     /**
@@ -82,17 +85,25 @@ public class myInterface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        atrasBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        atrasBtn.setText("Atras");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 341, Short.MAX_VALUE)
+                .addComponent(atrasBtn))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 277, Short.MAX_VALUE)
+                .addComponent(atrasBtn))
         );
 
         pack();
@@ -104,5 +115,6 @@ public class myInterface extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atrasBtn;
     // End of variables declaration//GEN-END:variables
 }

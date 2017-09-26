@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import AccesoDatos.AccesoDatosGrupo;
 import LogicaDeNegocio.Administrador;
 import LogicaDeNegocio.Carrera;
 import LogicaDeNegocio.Ciclo;
@@ -22,21 +23,21 @@ import java.util.List;
  * @author edva5
  */
 public class Modelo {
-    /*private AccesoDatos.AccesoDatosAdministrador accesoDatosAdministrador;
-    private AccesoDatos.AccesoDatosCarrera accesoDatosCarrera;
-    private AccesoDatos.AccesoDatosCiclo accesoDatosCiclo;
-    grupo
-    private AccesoDatos.AccesoDatosCurso accesoDatosCurso;
-    private AccesoDatos.AccesoDatosEstudiante accesoDatosEstudiante;
-    private AccesoDatos.AccesoDatosMatriculador accesoDatosMatriculador;
-    private AccesoDatos.AccesoDatosNota accesoDatosNota;
-    private AccesoDatos.AccesoDatosProfesor accesoDatosProfesor;*/
 
+    private ArrayList<String> historialDeVentana;
     public Modelo() {
-        
+        historialDeVentana= new ArrayList<String>();
     }
-    public void remove(Grupo grupo){
-        AccesoDatos.AccesoDatosGrupo.GetInstance().eliminar(grupo);
+    public void addHistorial(String s){
+        historialDeVentana.add(s);
+    }
+    public String getLastHistorial(){
+        String aux=historialDeVentana.get(historialDeVentana.size());
+        historialDeVentana.remove(aux);
+        return aux;
+    }
+    public void remove(Grupo grupo){        
+        AccesoDatosGrupo.GetInstance().eliminar(grupo);
     }
     public void remove(Profesor profesor){
         AccesoDatos.AccesoDatosProfesor.getInstance().eliminar(profesor);

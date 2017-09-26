@@ -10,8 +10,10 @@ import Control.Control;
 import Interfaz.Dispatcher;
 import Interfaz.InterfazCiclo;
 import LogicaDeNegocio.Administrador;
+import LogicaDeNegocio.Ciclo;
 import java.time.LocalDate;
 import java.time.Month;
+import javafx.util.converter.LocalDateStringConverter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -27,9 +29,11 @@ public class LabEIF206Ver10 {
     public static void main(String[] args) {
         Dispatcher dispatcher=new Dispatcher();
         Modelo modelo=new Modelo();
-        modelo.set(new Administrador("116240021", "Eddy", "Valverde", "Garro", "84444530", "edva5901112@gmail.com", "SeaSapo", LocalDate.of(21, Month.OCTOBER, 1995)));
-        modelo.set(new Administrador("120042611", "Ydde", "Edrevlav", "Orrag", "03544448", "211095avde@gmail.com", "soap", LocalDate.of(12, Month.JANUARY, 1996)));
-/************************************************************************************/        
+        modelo.set(new Administrador("116240021", "Eddy", "Valverde", "Garro", "84444530", "edva5901112@gmail.com", "SeaSapo", LocalDate.now()));
+        modelo.set(new Administrador("120042611", "Ydde", "Edrevlav", "Orrag", "03544448", "211095avde@gmail.com", "soap", LocalDate.now()));
+        modelo.set(new Administrador("123456789", "Abcd", "Defgh", "Ijklm", "123456", "loco@gmail.com", "loco", LocalDate.now()));
+        
+        /************************************************************************************/        
         Control control = new Control(modelo, dispatcher);
     }
     
