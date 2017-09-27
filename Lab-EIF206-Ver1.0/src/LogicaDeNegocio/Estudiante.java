@@ -8,19 +8,23 @@ package LogicaDeNegocio;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
  * @author edva5
  */
-public class Estudiante extends Persona {
+public class Estudiante extends Persona implements Comparable<Estudiante>{
   private ArrayList<Grupo> grupos;
     private ArrayList<Nota> notas;
     private Carrera carrera;
-    public Estudiante() {        
-        super();
-    }
+    private HashMap<String, Estudiante> Cedula_o_passaporte = new HashMap<String, Estudiante>();
 
+    public Estudiante(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
+        super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);
+     
+    }
+    
     public Estudiante(Carrera carrera, String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
         super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);
         this.grupos = grupos;
@@ -77,6 +81,17 @@ public class Estudiante extends Persona {
      */
     public void setGrupos(ArrayList<Grupo> grupos) {
         this.grupos = grupos;
+    }
+    
+
+    @Override
+    public int compareTo(Estudiante o) {
+        /*System.out.println("LogicaDeNegocio.Estudiante.compareTo()"+Integer.valueOf(this.cedulaOPassaporte));
+        if(Integer.valueOf(this.cedulaOPassaporte)==Integer.valueOf(o.cedulaOPassaporte)){return 0;}
+        if(Integer.valueOf(this.cedulaOPassaporte)<Integer.valueOf(o.cedulaOPassaporte)){return 1;}
+        else return -1;*/
+        return o.cedulaOPassaporte.compareTo(this.cedulaOPassaporte);
+        
     }
     
 }

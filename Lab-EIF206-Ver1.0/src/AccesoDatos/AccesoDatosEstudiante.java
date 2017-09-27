@@ -5,9 +5,15 @@
  */
 package AccesoDatos;
 
+import LogicaDeNegocio.Carrera;
 import LogicaDeNegocio.Estudiante;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -15,10 +21,30 @@ import java.util.List;
  */
 public class AccesoDatosEstudiante {
     private static AccesoDatosEstudiante instance;
-    static Comparator<Estudiante> EstudianteCOMPARATOR;
+    private static Comparator<Estudiante> comparatorNombre,comparatoCarrera;
+    private HashMap<String, Estudiante> Cedula = new HashMap<String, Estudiante>();
+    
     private List<Estudiante> listaEstudiantes;
 
     private AccesoDatosEstudiante() {
+        comparatorNombre = new Comparator<Estudiante>() {
+            @Override
+            public int compare(Estudiante o1, Estudiante o2) {
+                if (o1.getApellido1().compareTo(o2.getApellido1())==0){
+                  if(o1.getApellido2().compareTo(o2.getApellido2())==0){
+                      return o1.getNombre().compareTo(o2.getNombre());
+                  }
+                  else return o1.getApellido2().compareTo(o2.getApellido2());
+                }
+                else return o1.getApellido1().compareTo(o2.getApellido1());
+            }
+        };
+        comparatoCarrera = new Comparator<Estudiante>() {
+            @Override
+            public int compare(Estudiante o1, Estudiante o2) {
+                return o1.getCarrera().getCodigo().compareTo(o2.getCarrera().getCodigo());
+            }
+        };
     }
     public static AccesoDatosEstudiante getInstance(){
         if (instance==null)
@@ -26,55 +52,50 @@ public class AccesoDatosEstudiante {
         return instance;
     }    
     public void insertar(Estudiante c) {
-        listaEstudiantes.add(c);       
-        listaEstudiantes.sort(EstudianteCOMPARATOR);
+        listaEstudiantes.add(c);
+        Collections.sort(listaEstudiantes);
     }
-    public void modificar(Estudiante c) {
-        //eliminar(get(c.getCedula_o_passaporte()));
-        insertar(c);
-    }
-    
+    public void modificar(Estudiante c, int post) {
+       listaEstudiantes.add(post, c);
+       }
     public void eliminar(Estudiante c) {
         listaEstudiantes.remove(c);        
     }
     
-    public Estudiante get(Object o) {
-        return get(o,listaEstudiantes.size()/2);
+    public Estudiante get(int x) {
+        return listaEstudiantes.get(x);
     }
-   
-    private Estudiante get(Object o,int i){
-        if (comparator(o, listaEstudiantes.get(i))==0)
-            return listaEstudiantes.get(i);
-        else if (comparator(o, listaEstudiantes.get(i))==-1)
-            return get(o,i/2);
-        else
-            return get(o,i+i/2);
-    }
+
     
-    public List<Estudiante> getAll() {
-        return listaEstudiantes;
-    }
-    private int comparator(Object o,Estudiante e){
-        int smallerSize;
-        if (o.toString().length()>e.getCedula_o_passaporte().length())
-            smallerSize=e.getCedula_o_passaporte().length();        
-        else 
-            smallerSize=o.toString().length();
-        for (int i = 0; i < smallerSize; i++) {            
-                if (o.toString().charAt(i)>e.getCedula_o_passaporte().charAt(i))
-                    return 1;
-                else if (o.toString().charAt(i)<e.getCedula_o_passaporte().charAt(i)) 
-                    return -1;
+   
+    public List<Estudiante> buscar(String nombre,Carrera carrera, String id){
+        if(nombre!= null && carrera== null && id== null){
+            return listaEstudiantes.stream().filter(x->x.getNombre().equals(nombre)).collect(Collectors.toList());
         }
-        if (o.toString().length()==e.getCedula_o_passaporte().length()) {
-            return 0;
+        if(nombre!= null && carrera!= null && id== null){
+            return listaEstudiantes.stream().filter(x->x.getNombre().equals(nombre)&& x.getCarrera().getCodigo().equals(carrera.getCodigo())).collect(Collectors.toList());
         }
-        else if (o.toString().length()>e.getCedula_o_passaporte().length())
-            return 1;        
-        else
-            return -1;
+        if(nombre!= null && carrera!= null && id!= null){
+            return listaEstudiantes.stream().filter(
+            x->x.getNombre().equals(nombre)&& 
+            x.getCarrera().getCodigo().equals(carrera.getCodigo())
+            && x.getCedulaOPassaporte().equals(id)).collect(Collectors.toList());
+        }
+        if(nombre== null && carrera!= null && id== null){
+            return listaEstudiantes.stream().filter(x->x.getCarrera().equals(carrera.getCodigo())).collect(Collectors.toList());
+        }
+        if(nombre== null && carrera!= null && id!= null){
+           return listaEstudiantes.stream().filter(x->x.getCarrera().getCodigo().equals(carrera.getCodigo())
+            && x.getCedulaOPassaporte().equals(id)).collect(Collectors.toList());
+        }
+         if(nombre== null && carrera== null && id!= null){
+           return listaEstudiantes.stream().filter(x->x.getCedulaOPassaporte().equals(id)).collect(Collectors.toList());
+        }
+        return listaEstudiantes;  
     }
-    public List<Estudiante> getAll(Object o) {
-        return null;
+    public int buscar(Estudiante cedula){
+        return Collections.binarySearch(listaEstudiantes,cedula);
+        //Collections.
+        
     }
 }
