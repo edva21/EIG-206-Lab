@@ -86,7 +86,7 @@ public class Modelo extends Observable{
         AccesoDatos.AccesoDatosMatriculador.getInstance().modificar(matriculador);
     }
     public void update(Estudiante estudiante){
-        AccesoDatos.AccesoDatosEstudiante.getInstance().modificar(estudiante);
+       // AccesoDatos.AccesoDatosEstudiante.getInstance().modificar(estudiante);
     }
     public void update(Curso curso){
         AccesoDatos.AccesoDatosCurso.getInstance().modificar(curso);
@@ -138,7 +138,7 @@ public class Modelo extends Observable{
     public Matriculador getMatriculador(Object o){
         return AccesoDatos.AccesoDatosMatriculador.getInstance().get(o);
     }
-    public Estudiante getEstudiante(Object o){
+    public Estudiante getEstudiante(int o){
         return AccesoDatos.AccesoDatosEstudiante.getInstance().get(o);
     }
     public Curso getCurso(Object o){

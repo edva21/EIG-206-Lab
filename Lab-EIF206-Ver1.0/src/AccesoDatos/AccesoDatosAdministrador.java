@@ -24,7 +24,7 @@ public class AccesoDatosAdministrador {
          AdministradorCOMPARATOR= new Comparator<Administrador>() {
              @Override
              public int compare(Administrador o1, Administrador o2) {
-                 return Integer.valueOf(o1.getCedula_o_passaporte()).compareTo(Integer.valueOf(o2.getCedula_o_passaporte()));
+                 return Integer.valueOf(o1.getCedulaOPassaporte()).compareTo(Integer.valueOf(o2.getCedulaOPassaporte()));
              }
          };
      }

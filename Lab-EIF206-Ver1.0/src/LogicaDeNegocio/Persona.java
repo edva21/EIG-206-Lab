@@ -28,7 +28,7 @@ public abstract class Persona {
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-        protected String cedula_o_passaporte;//using protected attributes can be accessed directly by sons, otherwise, just by gets and sets
+    protected String cedulaOPassaporte;//using protected attributes can be accessed directly by sons, otherwise, just by gets and sets
     protected String nombre;
     private String Apellido1;
     private String Apellido2;
@@ -71,7 +71,7 @@ public abstract class Persona {
     }
 
     public Persona(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
-        this.cedula_o_passaporte = cedula_o_passaporte;
+        this.cedulaOPassaporte = cedula_o_passaporte;
         this.nombre = nombre;
         this.Apellido1 = Apellido1;
         this.Apellido2 = Apellido2;
@@ -84,17 +84,17 @@ public abstract class Persona {
     
 
     /**
-     * @return the cedula_o_passaporte
+     * @return the cedulaOPassaporte
      */
-    public String getCedula_o_passaporte() {
-        return cedula_o_passaporte;
+    public String getCedulaOPassaporte() {
+        return cedulaOPassaporte;
     }
 
     /**
-     * @param cedula_o_passaporte the cedula_o_passaporte to set
+     * @param cedulaOPassaporte the cedulaOPassaporte to set
      */
-    public void setCedula_o_passaporte(String cedula_o_passaporte) {
-        this.cedula_o_passaporte = cedula_o_passaporte;
+    public void setCedulaOPassaporte(String cedulaOPassaporte) {
+        this.cedulaOPassaporte = cedulaOPassaporte;
     }
 
     /**
@@ -157,10 +157,10 @@ public abstract class Persona {
      *
      */
     public String toString(){        
-        return "Cedula/Pasaporte:"+cedula_o_passaporte+" Nombre:"+nombre+" Apellido1:"+Apellido1+" Apellido2:"+Apellido2+" Telefono:"+telefono+" Email:"+email;
+        return "Cedula/Pasaporte:"+cedulaOPassaporte+" Nombre:"+nombre+" Apellido1:"+Apellido1+" Apellido2:"+Apellido2+" Telefono:"+telefono+" Email:"+email;
     }
     public String[] toVectorOfString(){        
-        String[] aux = {cedula_o_passaporte,nombre,Apellido1,Apellido2,telefono,email,clave};        
+        String[] aux = {cedulaOPassaporte,nombre,Apellido1,Apellido2,telefono,email,clave};        
         return aux;
     }
     public static final String[] getClassNames(){        
@@ -168,4 +168,5 @@ public abstract class Persona {
          return aux;
         //return "s";
     }
+   
 }
