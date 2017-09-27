@@ -97,13 +97,13 @@ public class myInterface extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 341, Short.MAX_VALUE)
+                .addGap(0, 541, Short.MAX_VALUE)
                 .addComponent(atrasBtn))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 277, Short.MAX_VALUE)
+                .addGap(0, 327, Short.MAX_VALUE)
                 .addComponent(atrasBtn))
         );
 

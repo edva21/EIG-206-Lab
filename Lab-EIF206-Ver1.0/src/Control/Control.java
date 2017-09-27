@@ -33,8 +33,7 @@ public class Control implements ActionListener,MouseListener{
     public Control(Modelo modelo, Dispatcher dispatcher) {
         this.modelo = modelo;
         this.dispatcher = dispatcher;
-        this.dispatcher.dispatcherRequest(InterfazLogIn.LOGIN, modelo, this);
-        
+        this.dispatcher.dispatcherRequest(InterfazLogIn.LOGIN, modelo, this);        
     }        
 
     @Override
@@ -44,8 +43,7 @@ public class Control implements ActionListener,MouseListener{
                 dispatcher.dispatcherRequest(InterfazMenu.INTERFAZ_MENU, modelo, this);
             else if (e.getActionCommand().equals("Atras")) {
                 dispatcher.dispatcherRequest(modelo.getHistorialDeVentana().pop(), modelo, this);                           
-            }
-                
+            }                
         }
         else if (e.getSource() instanceof JMenuItem) {
             dispatcher.dispatcherRequest(e.getActionCommand(), modelo, this);                           

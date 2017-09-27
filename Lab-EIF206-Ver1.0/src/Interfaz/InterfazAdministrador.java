@@ -34,10 +34,15 @@ public class InterfazAdministrador extends myInterface implements Observer{
         this.setTitle(MANTENIMIENTO_ADMINISTRADOR);                
     }    
 
+    @Override
+    public void setModelo(Modelo modelo) {
+        modelo.getAllAdministradores().stream().forEach(x->this.defaultTableModel.addRow(x.toVectorOfString()));
+        super.setModelo(modelo); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     /**
      * @param control the control to set
-     */
-    
+     */    
     
     
 
