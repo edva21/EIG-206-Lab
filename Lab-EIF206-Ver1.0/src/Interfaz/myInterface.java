@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author edva5
  */
-public class myInterface extends javax.swing.JFrame {
+public class myInterface extends javax.swing.JInternalFrame {
 
 
 
