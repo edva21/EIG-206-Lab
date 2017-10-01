@@ -110,9 +110,9 @@ public class Modelo extends Observable{
     public List<Matriculador> getAllMatriculadores(){
         return AccesoDatos.AccesoDatosMatriculador.getInstance().getAll();
     }
-    public List<Estudiante> getAllEstudiantes(){
+   /* public List<Estudiante> getAllEstudiantes(){
         return AccesoDatos.AccesoDatosEstudiante.getInstance().getAll();
-    }
+    }*/
     public List<Curso> getAllCursos(){
         return AccesoDatos.AccesoDatosCurso.getInstance().getAll();
     }
@@ -197,12 +197,12 @@ public class Modelo extends Observable{
     public List<Matriculador> getMatriculadores(Object o){
         return AccesoDatos.AccesoDatosMatriculador.getInstance().getAll(o);
     }
-    public List<Estudiante> getEstudiantes(Object o){
+    /*public List<Estudiante> getEstudiantes(Object o){
         return AccesoDatos.AccesoDatosEstudiante.getInstance().getAll(o);
     }
     public List<Curso> getCursos(Object o){
         return AccesoDatos.AccesoDatosCurso.getInstance().getAll(o);
-    }
+    }*/
     public List<Grupo> getGrupos(Object o){
         return AccesoDatos.AccesoDatosGrupo.GetInstance().getAll(o);
     }

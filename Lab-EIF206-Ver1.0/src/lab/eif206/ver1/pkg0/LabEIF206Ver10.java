@@ -32,7 +32,7 @@ public class LabEIF206Ver10 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      /*  Dispatcher dispatcher=new Dispatcher();
+        Dispatcher dispatcher=new Dispatcher();
         Modelo modelo=new Modelo();
         modelo.set(new Administrador("116240021", "Eddy", "Valverde", "Garro", "84444530", "edva5901112@gmail.com", "SeaSapo", LocalDate.now()));
         modelo.set(new Administrador("120042611", "Ydde", "Edrevlav", "Orrag", "03544448", "211095avde@gmail.com", "soap", LocalDate.now()));
@@ -53,7 +53,7 @@ public class LabEIF206Ver10 {
         for (Estudiante estudiante : lista) {
             System.out.println("lab.eif206.ver1.pkg0.LabEIF206Ver10.main()"+estudiante.getNombre());
         }
-        
+        System.out.println(AccesoDatos.AccesoDatosAdministrador.getInstance().get("116240021"));
         int x =b.compareTo(a);
         //System.out.println("lab.eif206.ver1.pkg0.LabEIF206Ver10.main()"+x);
         
