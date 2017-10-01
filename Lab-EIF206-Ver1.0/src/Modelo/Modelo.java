@@ -212,7 +212,5 @@ public class Modelo extends Observable{
     public List<Carrera> getCarreras(Object o){
         return AccesoDatos.AccesoDatosCarrera.getInstance().getAll(o);
     }
-    public List<Administrador> getAdministradores(Object o){
-        return AccesoDatos.AccesoDatosAdministrador.getInstance().getAll(o);
-    }
+    
 }

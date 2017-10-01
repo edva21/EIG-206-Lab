@@ -1,5 +1,6 @@
 package Interfaz;
 
+
 import Control.Control;
 import java.awt.*;
 import java.awt.event.*;

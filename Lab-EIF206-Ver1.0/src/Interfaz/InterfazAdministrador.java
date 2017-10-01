@@ -5,46 +5,28 @@
  */
 package Interfaz;
 
-import Control.Control;
-import Modelo.Modelo;
-import java.util.Observable;
-import java.util.Observer;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableColumnModel;
 
 /**
  *
  * @author edva5
  */
-public class InterfazAdministrador extends myInterface implements Observer{
+public class InterfazAdministrador extends javax.swing.JFrame {
 
     /**
-     * @param modelo the modelo to set
+     * @return the defaultTableColumnModel
      */
-   
-    public static final String MANTENIMIENTO_ADMINISTRADOR="Mantenimiento Administrador";
-    /*private Control control;
-    private Modelo modelo;    */
+    public DefaultTableColumnModel getDefaultTableColumnModel() {
+        return defaultTableColumnModel;
+    }
+    private DefaultTableColumnModel defaultTableColumnModel;
     /**
      * Creates new form InterfazAdministrador
      */
     public InterfazAdministrador() {
         initComponents();
-        this.setTitle(MANTENIMIENTO_ADMINISTRADOR);                
-    }    
-
-    @Override
-    public void setModelo(Modelo modelo) {
-        modelo.getAllAdministradores().stream().forEach(x->this.defaultTableModel.addRow(x.toVectorOfString()));
-        super.setModelo(modelo); //To change body of generated methods, choose Tools | Templates.
+        this.defaultTableColumnModel = (DefaultTableColumnModel) jTable1.getModel();
     }
-    
-    /**
-     * @param control the control to set
-     */    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,31 +37,50 @@ public class InterfazAdministrador extends myInterface implements Observer{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    @Override
-    public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * @param args the command line arguments
-     */   
+     */    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

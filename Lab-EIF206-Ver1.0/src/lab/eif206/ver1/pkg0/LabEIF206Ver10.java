@@ -9,7 +9,9 @@ import AccesoDatos.AccesoDatosEstudiante;
 import Modelo.Modelo;
 import Control.Control;
 import Interfaz.Dispatcher;
+import Interfaz.InterfazAdministrador;
 import Interfaz.InterfazCiclo;
+import Interfaz.InterfazMain;
 import LogicaDeNegocio.Administrador;
 import LogicaDeNegocio.Ciclo;
 import LogicaDeNegocio.Estudiante;
@@ -21,6 +23,9 @@ import java.util.Collections;
 import javafx.util.converter.LocalDateStringConverter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import sun.awt.im.InputContext;
+import sun.awt.im.InputMethodContext;
+import sun.awt.im.InputMethodJFrame;
 
 /**
  *
@@ -38,9 +43,22 @@ public class LabEIF206Ver10 {
         modelo.set(new Administrador("120042611", "Ydde", "Edrevlav", "Orrag", "03544448", "211095avde@gmail.com", "soap", LocalDate.now()));
         modelo.set(new Administrador("123456789", "Abcd", "Defgh", "Ijklm", "123456", "loco@gmail.com", "loco", LocalDate.now()));
         
+        Interfaz.InterfazAdministrador interfaz = new InterfazAdministrador();        
+        
+        
+        JFrame frame = new InterfazMain();
+        frame.add(interfaz);
+        frame.setVisible(true);
+        //frame.setBounds(0, 0, 300, 300);
+        interfaz.setVisible(true);
+//        AccesoDatos.AccesoDatosAdministrador.getInstance().getAll().stream().forEach(x->interfaz.getDefaultTableModel().addRow(x.toVectorOfString()));
+        
+        
+        
+        //modelo.getAllAdministradores().stream().forEach(x->interfaz.getDefaultTableModel().addRow(x.toVectorOfString()));
         /************************************************************************************/        
         //Control control = new Control(modelo, dispatcher);
-        LocalDate d = LocalDate.of(1, Month.MARCH, 1);
+        /*LocalDate d = LocalDate.of(1, Month.MARCH, 1);
        
         Estudiante a = new Estudiante("100", "a", "a", "a", "a", "a","a", d);  
         Estudiante b = new Estudiante("300", "b", "b", "b", "b", "b","b", d);
@@ -56,7 +74,7 @@ public class LabEIF206Ver10 {
         Administrador x=AccesoDatos.AccesoDatosAdministrador.getInstance().get("123456789");
         x.setNombre("Elvis Tek");
         
-        System.out.println(AccesoDatos.AccesoDatosAdministrador.getInstance().get("123456789"));
+        System.out.println(AccesoDatos.AccesoDatosAdministrador.getInstance().get("123456789"));*/
        // int x =b.compareTo(a);
         //System.out.println("lab.eif206.ver1.pkg0.LabEIF206Ver10.main()"+x);
         
