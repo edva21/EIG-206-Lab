@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableColumnModel;
  *
  * @author edva5
  */
-public class InterfazAdministrador extends javax.swing.JFrame {
+public class InterfazAdministrador extends javax.swing.JInternalFrame {
 
     /**
      * @return the defaultTableColumnModel
