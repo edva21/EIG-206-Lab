@@ -53,8 +53,11 @@ public class LabEIF206Ver10 {
         for (Estudiante estudiante : lista) {
             System.out.println("lab.eif206.ver1.pkg0.LabEIF206Ver10.main()"+estudiante.getNombre());
         }
-        System.out.println(AccesoDatos.AccesoDatosAdministrador.getInstance().get("116240021"));
-        int x =b.compareTo(a);
+        Administrador x=AccesoDatos.AccesoDatosAdministrador.getInstance().get("123456789");
+        x.setNombre("Elvis Tek");
+        
+        System.out.println(AccesoDatos.AccesoDatosAdministrador.getInstance().get("123456789"));
+       // int x =b.compareTo(a);
         //System.out.println("lab.eif206.ver1.pkg0.LabEIF206Ver10.main()"+x);
         
     }

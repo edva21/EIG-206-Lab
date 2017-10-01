@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -23,7 +24,7 @@ public class AccesoDatosEstudiante {
     private static AccesoDatosEstudiante instance;
     private static Comparator<Estudiante> comparatorNombre,comparatoCarrera;
     private HashMap<String, Estudiante> Cedula = new HashMap<String, Estudiante>();
-    
+    private Predicate<Estudiante> nombrePrdct;
     private List<Estudiante> listaEstudiantes;
 
     private AccesoDatosEstudiante() {
@@ -38,13 +39,14 @@ public class AccesoDatosEstudiante {
                 }
                 else return o1.getApellido1().compareTo(o2.getApellido1());
             }
+                       
         };
         comparatoCarrera = new Comparator<Estudiante>() {
             @Override
             public int compare(Estudiante o1, Estudiante o2) {
                 return o1.getCarrera().getCodigo().compareTo(o2.getCarrera().getCodigo());
             }
-        };
+        };        
     }
     public static AccesoDatosEstudiante getInstance(){
         if (instance==null)
@@ -97,5 +99,8 @@ public class AccesoDatosEstudiante {
         return Collections.binarySearch(listaEstudiantes,cedula);
         //Collections.
         
+    }
+    private static Predicate<Estudiante> nameEqualsTo(String name){
+        return x->x.getNombre().equals(name);
     }
 }

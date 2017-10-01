@@ -44,21 +44,19 @@ public class AccesoDatosAdministrador {
         
     }
     public void modificar(Administrador c) {
-        eliminar(c);
-        insertar(c);
+        listaAdministradores.add(buscar(c.getCedulaOPassaporte()), c);
     }
     
-    public void eliminar(Administrador c) {
-        
+    public void eliminar(Object o) {
+        listaAdministradores.remove(get(o));
     }    
-    public Administrador get(Object o) {
-        return listaAdministradores.get(Collections.binarySearch(listaAdministradores, new Administrador(o.toString(), null, null, null, null, null, null, null), COMPARATOR));
+    public Administrador get(Object o) {                        
+        return listaAdministradores.get(buscar(o));
     }
-    
+    private int buscar(Object o) {                        
+        return Collections.binarySearch(listaAdministradores, new Administrador(o.toString(), null, null, null, null, null, null, null), COMPARATOR);
+    }
     public List<Administrador> getAll() {
         return listaAdministradores;
-    }         
-    public List<Administrador> getAll(Object o) {
-        return null;
-    }
+    }                         
 }
