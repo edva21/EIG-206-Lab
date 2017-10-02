@@ -5,29 +5,69 @@
  */
 package Interfaz;
 
-import javax.swing.table.DefaultTableColumnModel;
+
+import Modelo.Modelos.ModeloAdministrador;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author edva5
  */
-public class InterfazAdministrador extends javax.swing.JInternalFrame {
+public class InterfazAdministrador extends javax.swing.JInternalFrame implements Observer{
+    private Control.ControlIntrfzAdmin control;
+    private DefaultTableModel defaultTableModel;
+    private ButtonColumn deleteBtn;    
+    private Modelo.Modelos.ModeloAdministrador modelo;
+    public InterfazAdministrador() {
+        initComponents();        
+        this.defaultTableModel = (DefaultTableModel) jTable1.getModel();                  
+        
+    }
+    /**
+     * @return the control
+     */
+    public void addDeleteButton(){
+        this.defaultTableModel.addColumn("Eliminar");                 
+        ImageIcon eliminarImageIcon = (new ImageIcon(getClass().getResource("/Interfaz/Images/trash2Small.png")));     
+        deleteBtn = new ButtonColumn(jTable1, null, this.defaultTableModel.getColumnCount()-1, eliminarImageIcon, "");
+        deleteBtn.setControl(control);
+    }
+    public Control.ControlIntrfzAdmin getControlIntrfzAdmin() {
+        return control;
+    }
 
     /**
-     * @return the defaultTableColumnModel
+     * @param control the control to set
      */
-    public DefaultTableColumnModel getDefaultTableColumnModel() {
-        return defaultTableColumnModel;
+    public void setControl(Control.ControlIntrfzAdmin control) {
+        this.control = control;
+        this.jTable1.addMouseListener(control);
+        
+    }    
+    /**
+     * @return the defaultTableModel
+     */
+    public DefaultTableModel getDefaultTableModel() {
+        return defaultTableModel;
     }
-    private DefaultTableColumnModel defaultTableColumnModel;
+    
     /**
      * Creates new form InterfazAdministrador
      */
-    public InterfazAdministrador() {
-        initComponents();
-        this.defaultTableColumnModel = (DefaultTableColumnModel) jTable1.getModel();
-    }
-
+    
+    /**
+     * @return the formAdministrador
+     */
+   
+    /**
+     * @return the deleteBtn
+     */
+    public ButtonColumn getDeleteBtn() {
+        return deleteBtn;
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,19 +80,13 @@ public class InterfazAdministrador extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
+        jTable1.setCellSelectionEnabled(true);
+        jTable1.setFillsViewportHeight(true);
+        jTable1.setFocusCycleRoot(true);
+        jTable1.setIntercellSpacing(new java.awt.Dimension(1, 2));
+        jTable1.setRowHeight(26);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -60,9 +94,9 @@ public class InterfazAdministrador extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,5 +116,15 @@ public class InterfazAdministrador extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    public  javax.swing.JTable getJTable1(){
+        return jTable1;
+    }
     // End of variables declaration//GEN-END:variables
+    
+    @Override
+    public void update(Observable o, Object arg) {
+        modelo=(ModeloAdministrador) o;
+        defaultTableModel.setRowCount(0);
+        AccesoDatos.AccesoDatosAdministrador.getInstance().getAll().stream().forEach(x->defaultTableModel.addRow(x.toVectorOfString()));
+    }
 }

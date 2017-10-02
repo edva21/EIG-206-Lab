@@ -5,24 +5,13 @@
  */
 package lab.eif206.ver1.pkg0;
 
-import AccesoDatos.AccesoDatosEstudiante;
-import Modelo.Modelo;
-import Control.Control;
+
+import Control.ControlIntrfzAdmin;
 import Interfaz.InterfazAdministrador;
 import LogicaDeNegocio.Administrador;
-import LogicaDeNegocio.Ciclo;
-import LogicaDeNegocio.Estudiante;
-import java.lang.reflect.Array;
+import Modelo.Modelos.ModeloAdministrador;
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.Collections;
-import javafx.util.converter.LocalDateStringConverter;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import sun.awt.im.InputContext;
-import sun.awt.im.InputMethodContext;
-import sun.awt.im.InputMethodJFrame;
+
 
 /**
  *
@@ -34,8 +23,12 @@ public class LabEIF206Ver10 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-
+        AccesoDatos.AccesoDatosAdministrador.getInstance().insertar(new Administrador("116240021", "Eddy", "dad", "sada", "sda", "sss", "eer", LocalDate.now()));
+        AccesoDatos.AccesoDatosAdministrador.getInstance().insertar(new Administrador("116240022", "Eddy", "dad", "sada", "sda", "sss", "eer", LocalDate.now()));
+        AccesoDatos.AccesoDatosAdministrador.getInstance().insertar(new Administrador("116240023", "Eddy", "dad", "sada", "sda", "sss", "eer", LocalDate.now()));
+        AccesoDatos.AccesoDatosAdministrador.getInstance().insertar(new Administrador("116240024", "Eddy", "dad", "sada", "sda", "sss", "eer", LocalDate.now()));
+        AccesoDatos.AccesoDatosAdministrador.getInstance().insertar(new Administrador("116240025", "Eddy", "dad", "sada", "sda", "sss", "eer", LocalDate.now()));
+        ControlIntrfzAdmin controlIntrfzAdmin = new ControlIntrfzAdmin(new InterfazAdministrador(),new ModeloAdministrador());
         
     }
     

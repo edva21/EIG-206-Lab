@@ -44,7 +44,10 @@ public class AccesoDatosAdministrador {
         
     }
     public void modificar(Administrador c) {
-        listaAdministradores.add(buscar(c.getCedulaOPassaporte()), c);
+        int aux=listaAdministradores.indexOf(get(c.getCedulaOPassaporte()));
+        listaAdministradores.remove(aux);
+        listaAdministradores.add(aux, c);
+        
     }
     
     public void eliminar(Object o) {

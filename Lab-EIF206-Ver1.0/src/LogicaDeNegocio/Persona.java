@@ -35,7 +35,7 @@ public abstract class Persona {
     protected String telefono;
     protected String email;
     protected String clave;
-    private LocalDate fechaNacimiento;
+    protected LocalDate fechaNacimiento;
 
 
     /**
