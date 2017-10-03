@@ -5,17 +5,20 @@
  */
 package LogicaDeNegocio;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
+
 
 /**
  *
  * @author edva5
  */
-public class Administrador extends Persona{    
+public class Administrador extends Persona implements Serializable{    
     public Administrador() {        
         super();
+    }
+    public Administrador(Administrador a) {        
+        super(a.getCedulaOPassaporte(),a.getNombre(),a.getApellido1(),a.getApellido2(),a.getTelefono(),a.getEmail(),a.getClave(),a.getFechaNacimiento());
     }
     public Administrador(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
         super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);

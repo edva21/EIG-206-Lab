@@ -95,6 +95,9 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="idTxtFld">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField(9)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="nombreTxtFld">
     </Component>

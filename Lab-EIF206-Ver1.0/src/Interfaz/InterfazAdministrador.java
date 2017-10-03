@@ -45,7 +45,7 @@ public class InterfazAdministrador extends javax.swing.JInternalFrame implements
     public void setControl(Control.ControlIntrfzAdmin control) {
         this.control = control;
         this.jTable1.addMouseListener(control);
-        
+        this.addNewButton.addActionListener(control);
     }    
     /**
      * @return the defaultTableModel
@@ -79,6 +79,7 @@ public class InterfazAdministrador extends javax.swing.JInternalFrame implements
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        addNewButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,6 +90,9 @@ public class InterfazAdministrador extends javax.swing.JInternalFrame implements
         jTable1.setRowHeight(26);
         jScrollPane1.setViewportView(jTable1);
 
+        addNewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/Images/Add_1.png"))); // NOI18N
+        addNewButton.setActionCommand("Add");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,14 +100,18 @@ public class InterfazAdministrador extends javax.swing.JInternalFrame implements
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addNewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addNewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,6 +122,7 @@ public class InterfazAdministrador extends javax.swing.JInternalFrame implements
      */    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addNewButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     public  javax.swing.JTable getJTable1(){

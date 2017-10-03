@@ -211,7 +211,7 @@ private ActionListener control;
 		fireEditingStopped();
 
 		//  Invoke the Action
-                control.actionPerformed(new ActionEvent(this, e.getID(), e.getActionCommand()));
+              //  control.actionPerformed(new ActionEvent(this, e.getID(), e.getActionCommand()));
 		/*ActionEvent event = new ActionEvent(
 			table,
 			ActionEvent.ACTION_PERFORMED,

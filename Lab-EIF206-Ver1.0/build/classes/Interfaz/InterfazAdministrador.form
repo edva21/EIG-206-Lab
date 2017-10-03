@@ -25,7 +25,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="671" max="-2" attributes="0"/>
-              <EmptySpace pref="131" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="addNewButton" min="-2" pref="81" max="-2" attributes="0"/>
+              <EmptySpace pref="86" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -33,8 +35,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
+                  <Component id="addNewButton" min="-2" pref="79" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,5 +74,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="addNewButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Interfaz/Images/Add_1.png"/>
+        </Property>
+        <Property name="actionCommand" type="java.lang.String" value="Add"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

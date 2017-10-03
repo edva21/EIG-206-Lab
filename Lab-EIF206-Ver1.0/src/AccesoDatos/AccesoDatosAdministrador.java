@@ -51,7 +51,11 @@ public class AccesoDatosAdministrador {
     }
     
     public void eliminar(Object o) {
-        listaAdministradores.remove(get(o));
+        if (o instanceof Administrador) 
+            listaAdministradores.remove((Administrador)o);
+        else if (o instanceof String) {
+            listaAdministradores.remove(get(o));
+        }            
     }    
     public Administrador get(Object o) {                        
         return listaAdministradores.get(buscar(o));
@@ -59,7 +63,10 @@ public class AccesoDatosAdministrador {
     private int buscar(Object o) {                        
         return Collections.binarySearch(listaAdministradores, new Administrador(o.toString(), null, null, null, null, null, null, null), COMPARATOR);
     }
-    public List<Administrador> getAll() {
+    public ArrayList<Administrador> getAll() {
         return listaAdministradores;
-    }                         
+    }
+    public void setAdministradores(ArrayList<Administrador> list) {
+        listaAdministradores=list;
+    }
 }

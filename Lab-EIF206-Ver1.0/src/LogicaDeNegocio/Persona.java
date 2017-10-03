@@ -5,6 +5,7 @@
  */
 package LogicaDeNegocio;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Vector;
@@ -13,7 +14,7 @@ import java.util.Vector;
  *
  * @author edva5
  */
-public abstract class Persona {
+public abstract class Persona implements Serializable {
 
     /**
      * @return the fechaNacimiento

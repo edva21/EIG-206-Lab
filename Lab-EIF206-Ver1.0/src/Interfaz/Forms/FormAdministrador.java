@@ -5,6 +5,7 @@
  */
 package Interfaz.Forms;
 
+import Control.IDImputVerifier;
 import LogicaDeNegocio.Administrador;
 import java.time.LocalDate;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class FormAdministrador extends javax.swing.JPanel {
      */
     public FormAdministrador() {
         initComponents();        
+        this.idTxtFld.setInputVerifier(new IDImputVerifier());
     }    
     public void fillForm(Administrador a){
         this.idTxtFld.setText(a.getCedulaOPassaporte());
@@ -41,6 +43,16 @@ public class FormAdministrador extends javax.swing.JPanel {
         this.telefonoTxtFld.setText("");
         this.emailTxtFld.setText("");
         this.jCalendarCombo1.setDate(new Date(LocalDate.now().getYear(), LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth()));        
+    }
+    public void setEditable(boolean p){
+        claveTxtFld.setEditable(p);
+        this.idTxtFld.setEditable(p);
+        this.nombreTxtFld.setEditable(p);
+        this.apellido1TxtFld.setEditable(p);
+        this.apellido2TxtFld.setEditable(p);
+        this.telefonoTxtFld.setEditable(p);
+        this.emailTxtFld.setEditable(p);
+        this.jCalendarCombo1.setEditable(p);
     }
     public Administrador getAdministador(){
         Administrador auxAdmi= new Administrador();
@@ -63,7 +75,7 @@ public class FormAdministrador extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        idTxtFld = new javax.swing.JTextField();
+        idTxtFld = new javax.swing.JTextField(9);
         nombreTxtFld = new javax.swing.JTextField();
         apellido1TxtFld = new javax.swing.JTextField();
         apellido2TxtFld = new javax.swing.JTextField();
