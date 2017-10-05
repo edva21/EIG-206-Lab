@@ -41,7 +41,25 @@ public class Datos {
     FileInputStream ficheroEntrada;
     ObjectInputStream objetoEntrada;
     public Datos() {            
-        
+            ArrayList<File> files= new ArrayList<>();
+            files.add(new File(FICHERO_ADMINISTRADOR));
+            files.add(new File(FICHERO_CARRERA));
+            files.add(new File(FICHERO_CICLO));
+            files.add(new File(FICHERO_CURSO));
+            files.add(new File(FICHERO_ESTUDIANTE));
+            files.add(new File(FICHERO_GRUPO));
+            files.add(new File(FICHERO_MATRICULADOR));
+            files.add(new File(FICHERO_NOTA));
+            files.add(new File(FICHERO_PROFESOR));
+            files.stream().forEach(x->{
+                try {
+                    x.createNewFile();
+                } catch (IOException ex) {
+                    Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+        //yourFile.createNewFile(); // if file already exists will do nothing 
+        //FileOutputStream oFile = new FileOutputStream(yourFile, false); 
     }
     public ArrayList getLista(String fichero) throws IOException, ClassNotFoundException{
         ArrayList aux= new ArrayList<>();
@@ -50,10 +68,16 @@ public class Datos {
             while(true){
                 aux.add(objetoEntrada.readObject());
             }
-        }catch(EOFException ex){
-            objetoEntrada.close();
-            return aux;
         }
+        catch(EOFException ex){
+            if (objetoEntrada==null)            
+                return aux;
+            else
+            {
+                objetoEntrada.close();
+                return aux;
+            }
+        }        
         
     }
                 

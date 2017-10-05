@@ -12,6 +12,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import sun.security.jca.GetInstance;
 
 /**
@@ -20,10 +23,10 @@ import sun.security.jca.GetInstance;
  */
 public class AccesoDatosAdministrador {
     private Comparator<Administrador> COMPARATOR;
-    private ArrayList<Administrador> listaAdministradores;   
+    private ObservableList<Administrador> listaAdministradores;   
     private static AccesoDatosAdministrador INSTANCE;
      private AccesoDatosAdministrador(){         
-         listaAdministradores= new ArrayList<Administrador>();
+         listaAdministradores= FXCollections.observableArrayList();
          COMPARATOR= new Comparator<Administrador>() {
              @Override
              public int compare(Administrador o1, Administrador o2) {
@@ -57,16 +60,31 @@ public class AccesoDatosAdministrador {
             listaAdministradores.remove(get(o));
         }            
     }    
-    public Administrador get(Object o) {                        
-        return listaAdministradores.get(buscar(o));
+    public Administrador get(Object o) {    
+    int pisition=buscar(o);
+        if (listaAdministradores.isEmpty()||pisition<0) 
+            return null;
+        else          
+            return listaAdministradores.get(pisition);
     }
     private int buscar(Object o) {                        
         return Collections.binarySearch(listaAdministradores, new Administrador(o.toString(), null, null, null, null, null, null, null), COMPARATOR);
     }
-    public ArrayList<Administrador> getAll() {
+    private List<Administrador> buscar(Object nombre,Object cedula) {                        
+        if (nombre==null&&cedula==null)
+            return listaAdministradores;        
+        else if (nombre!=null&&cedula==null)
+            return listaAdministradores.stream().filter(x->x.getNombre().equals(nombre.toString())).collect(Collectors.toList());
+        else if (nombre==null&&cedula!=null)
+            return listaAdministradores.stream().filter(x->x.getCedulaOPassaporte().equals(cedula)).collect(Collectors.toList());
+        else if (nombre!=null&&cedula!=null)
+            return listaAdministradores.stream().filter(x->x.getCedulaOPassaporte().equals(cedula)&&x.getNombre().equals(nombre.toString())).collect(Collectors.toList());
+        else return listaAdministradores;
+    }
+    public ObservableList<Administrador> getAll() {
         return listaAdministradores;
     }
     public void setAdministradores(ArrayList<Administrador> list) {
-        listaAdministradores=list;
+        listaAdministradores.addAll(list);
     }
 }

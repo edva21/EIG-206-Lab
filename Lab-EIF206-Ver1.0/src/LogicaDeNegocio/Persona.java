@@ -15,7 +15,13 @@ import java.util.Vector;
  * @author edva5
  */
 public abstract class Persona implements Serializable {
-
+public static final String CEDULAPASAPORTE="Cedula_Pasaporte",//using protected attributes can be accessed directly by sons, otherwise, just by gets and sets
+    NOMBRE="Nombre",
+    APELLIDO1="Apellido Uno",
+    APELLIDO2="Apellido Dos",
+    TELEFONO="Telefono",
+    EMAIL="Email",
+    CLAVE="Clave";    
     /**
      * @return the fechaNacimiento
      */
@@ -165,7 +171,7 @@ public abstract class Persona implements Serializable {
         return aux;
     }
     public static final String[] getClassNames(){        
-         final String[] aux = {"Cedula/Pasaporte","Nombre","Apellido Uno","Apellido Dos","Telefono","Email","Clave"};   
+         final String[] aux = {"Cedula_Pasaporte","Nombre","Apellido Uno","Apellido Dos","Telefono","Email"};   
          return aux;
         //return "s";
     }

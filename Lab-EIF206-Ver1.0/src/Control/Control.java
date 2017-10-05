@@ -5,21 +5,27 @@
  */
 package Control;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import Datos.Datos;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.stage.Stage;
 
 /**
  *
  * @author edva5
  */
-public class Control implements ActionListener{
-
-    public Control() {
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class Control {
+    Datos datos;
+    ControlAdministrador controlAdministrador;
+    public Control(Stage stage) throws IOException {
+        datos = new Datos();
+        try {
+            AccesoDatos.AccesoDatosAdministrador.getInstance().setAdministradores(datos.getLista(Datos.FICHERO_ADMINISTRADOR));
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //controlAdministrador = new ControlAdministrador(stage);
     }
     
 }

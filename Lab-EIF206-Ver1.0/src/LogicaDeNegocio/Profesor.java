@@ -5,6 +5,7 @@
  */
 package LogicaDeNegocio;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.Date;
  *
  * @author edva5
  */
-public class Profesor extends Persona{
+public class Profesor extends Persona implements Serializable{
     private ArrayList<Grupo> grupos;
     public Profesor() {        
         super();
