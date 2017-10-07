@@ -6,6 +6,7 @@
 package Control;
 
 import Datos.Datos;
+import Dto.AdministradorDto;
 import LogicaDeNegocio.Administrador;
 import Modelo.Modelos.ModeloAdministrador;
 import Vista.Forms.AdministradorFormVista;
@@ -58,12 +59,14 @@ public class ControlAdministrador implements EventHandler{
         this.vista.setControl(this);
         
         try {
-            AccesoDatos.AccesoDatosAdministrador.getInstance().setAdministradores(datos.getLista(Datos.FICHERO_ADMINISTRADOR));
+            ArrayList<AdministradorDto> administradoresDto= new ArrayList<>(datos.getLista(Datos.FICHERO_ADMINISTRADOR));
+            AccesoDatos.AccesoDatosAdministrador.getInstance().setAdministradoresDto(administradoresDto);
+            
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
                                                   
         for (int i = 0; i < Administrador.getClassNames().length; i++) {
             vista.getPrincipal().getAdmiTableColumns().add(new TableColumn<Administrador, String>(Administrador.getClassNames()[i]));   //Add names to Columns' headers
@@ -99,10 +102,16 @@ public class ControlAdministrador implements EventHandler{
                         else
                             this.vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, modelo.getValidateTableSelectionMessage(this.vista.getPrincipal().getTable()), ButtonType.OK);
                         break;
-                    case"Eliminar":
-                        this.vista.getAlertDispatcher().setAlert(Alert.AlertType.WARNING, "Desea Eliminar a "+vista.getPrincipal().getTable().getSelectionModel().getSelectedItem(), ButtonType.YES,ButtonType.NO);                        
-                        if (!modelo.eliminar(vista.getPrincipal().getTable().getSelectionModel().getSelectedItem()))
-                            this.vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, modelo.eliminarResponse(vista.getPrincipal().getTable().getSelectionModel().getSelectedItem()), ButtonType.OK);                        
+                    case"Remover":
+                        if (modelo.validateTableSelection(this.vista.getPrincipal().getTable())) {
+                        this.vista.getPrincipal().getStage().close();
+                        this.vista.getForm().getYesBtn().setText("Eliminar");
+                        this.vista.getForm().clearForm();                        
+                        this.vista.getForm().fillFormDiabled(this.vista.getPrincipal().getTable().getSelectionModel().getSelectedItem());
+                        this.vista.getForm().getStage().show();
+                        }
+                        else
+                            this.vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, modelo.getValidateTableSelectionMessage(this.vista.getPrincipal().getTable()), ButtonType.OK);
                         break;
                     case "Guardar":           
                         if (!modelo.agregar(vista.getForm().getForm()))
@@ -121,6 +130,15 @@ public class ControlAdministrador implements EventHandler{
                             vista.getPrincipal().getStage().show();
                         }                        
                         break;
+                    case "Eliminar":                        
+                        if (!modelo.eliminar(vista.getForm().getForm()))
+                            this.vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, modelo.eliminarResponse(vista.getForm().getForm()), ButtonType.OK);                        
+                        else
+                        {
+                            vista.getForm().getStage().close();
+                            vista.getPrincipal().getStage().show();
+                        }                        
+                        break;
                     case "Cancelar":  
                         vista.getForm().getStage().close();
                         vista.getPrincipal().getStage().show();
@@ -131,7 +149,9 @@ public class ControlAdministrador implements EventHandler{
         else if (event instanceof WindowEvent) {           
             
                 if (((WindowEvent)event).getEventType().equals(WindowEvent.WINDOW_CLOSE_REQUEST)) {                        
-                        datos.guardarDatos(new ArrayList<Administrador>(AccesoDatos.AccesoDatosAdministrador.getInstance().getAll()));
+                    ArrayList<AdministradorDto> administradorDtos = new ArrayList<AdministradorDto>();
+                    AccesoDatos.AccesoDatosAdministrador.getInstance().getAll().stream().forEach(x->administradorDtos.add(new AdministradorDto(x)));
+                    datos.guardarDatos(administradorDtos);
                 }            
         }
     }

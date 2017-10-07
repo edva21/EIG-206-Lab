@@ -3,9 +3,9 @@
  * Version - 1.0
  * Last Modification: 14/08/17 19:00;
  */
-package LogicaDeNegocio;
+package Dto;
 
-import Dto.PersonaDto;
+import LogicaDeNegocio.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -15,15 +15,15 @@ import java.util.Vector;
  *
  * @author edva5
  */
-public abstract class Persona implements Serializable {
+public abstract class PersonaDto implements Serializable {
 public static final String ATRIBUTO_CEDULAPASAPORTE="Cedula_Pasaporte",//using protected attributes can be accessed directly by sons, otherwise, just by gets and sets
-    ATRIBUTO_NOMBRE="Nombre",
-    ATRIBUTO_APELLIDO1="Apellido Uno",
-    ATRIBUTO_APELLIDO2="Apellido Dos",
-    ATRIBUTO_TELEFONO="Telefono",
-    ATRIBUTO_EMAIL="Email",
-    ATRIBUTO_CLAVE="Clave",    
-    ATRIBUTO_FECHA_DE_NACIMMIENTO="Fecha De Nacimiento";
+                            ATRIBUTO_NOMBRE="Nombre",
+                            ATRIBUTO_APELLIDO1="Apellido Uno",
+                            ATRIBUTO_APELLIDO2="Apellido Dos",
+                            ATRIBUTO_TELEFONO="Telefono",
+                            ATRIBUTO_EMAIL="Email",
+                            ATRIBUTO_CLAVE="Clave",    
+                            ATRIBUTO_FECHA_DE_NACIMMIENTO="Fecha De Nacimiento";
     protected String cedulaOPassaporte;//using protected attributes can be accessed directly by sons, otherwise, just by gets and sets
     protected String nombre;
     protected String Apellido1;
@@ -31,11 +31,11 @@ public static final String ATRIBUTO_CEDULAPASAPORTE="Cedula_Pasaporte",//using p
     protected String telefono;
     protected String email;
     protected String clave;
-    protected LocalDate fechaNacimiento;
+    protected String fechaNacimiento;
     
-    public Persona() {
+    public PersonaDto() {
     }
-    public Persona(PersonaDto p) {
+    public PersonaDto(Persona p) {
         this.cedulaOPassaporte = p.getCedulaOPassaporte();
         this.nombre = p.getNombre();
         this.Apellido1 = p.getApellido1();
@@ -43,29 +43,19 @@ public static final String ATRIBUTO_CEDULAPASAPORTE="Cedula_Pasaporte",//using p
         this.telefono = p.getTelefono();
         this.email = p.getEmail();
         this.clave = p.getClave();        
-        this.fechaNacimiento=LocalDate.parse(p.getFechaNacimiento());
-    }    
-    public Persona(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
-        this.cedulaOPassaporte = cedula_o_passaporte;
-        this.nombre = nombre;
-        this.Apellido1 = Apellido1;
-        this.Apellido2 = Apellido2;
-        this.telefono = telefono;
-        this.email = email;
-        this.clave = clave;        
-        setFechaNacimiento(fechaNacimiento);
+        this.fechaNacimiento=p.getFechaNacimiento().toString();
     }
     /**
      * @return the fechaNacimiento
      */
-    public LocalDate getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
     /**
      * @param fechaNacimiento the fechaNacimiento to set
      */
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;        
     }    
 
@@ -96,12 +86,6 @@ public static final String ATRIBUTO_CEDULAPASAPORTE="Cedula_Pasaporte",//using p
     public void setApellido2(String Apellido2) {
         this.Apellido2 = Apellido2;
     }
-
-
-    
-
-    
-
     /**
      * @return the cedulaOPassaporte
      */
@@ -174,18 +158,6 @@ public static final String ATRIBUTO_CEDULAPASAPORTE="Cedula_Pasaporte",//using p
 
     /**
      *
-     */
-    public String toString(){        
-        return "Cedula/Pasaporte:"+cedulaOPassaporte+" Nombre:"+nombre+" Apellido1:"+Apellido1+" Apellido2:"+Apellido2+" Telefono:"+telefono+" Email:"+email;
-    }
-    public String[] toVectorOfString(){        
-        String[] aux = {cedulaOPassaporte,nombre,Apellido1,Apellido2,telefono,email,clave};        
-        return aux;
-    }
-    public static final String[] getClassNames(){        
-         final String[] aux = {ATRIBUTO_CEDULAPASAPORTE,ATRIBUTO_NOMBRE,ATRIBUTO_APELLIDO1,ATRIBUTO_APELLIDO2,ATRIBUTO_TELEFONO,ATRIBUTO_EMAIL,ATRIBUTO_FECHA_DE_NACIMMIENTO};   
-         return aux;
-        //return "s";
-    }
+     */    
    
 }

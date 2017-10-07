@@ -19,12 +19,12 @@ public class Control {
     Datos datos;
     ControlAdministrador controlAdministrador;
     public Control(Stage stage) throws IOException {
-        datos = new Datos();
+        /*datos = new Datos();
         try {
             AccesoDatos.AccesoDatosAdministrador.getInstance().setAdministradores(datos.getLista(Datos.FICHERO_ADMINISTRADOR));
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         //controlAdministrador = new ControlAdministrador(stage);
     }
     

@@ -5,6 +5,7 @@
  */
 package LogicaDeNegocio;
 
+import Dto.AdministradorDto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -16,6 +17,9 @@ import java.time.LocalDate;
 public class Administrador extends Persona implements Serializable{    
     public Administrador() {        
         super();
+    }
+    public Administrador(AdministradorDto a) {        
+        super(a);
     }
     public Administrador(Administrador a) {        
         super(a.getCedulaOPassaporte(),a.getNombre(),a.getApellido1(),a.getApellido2(),a.getTelefono(),a.getEmail(),a.getClave(),a.getFechaNacimiento());

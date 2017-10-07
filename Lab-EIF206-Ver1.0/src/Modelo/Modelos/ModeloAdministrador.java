@@ -7,6 +7,9 @@ package Modelo.Modelos;
 
 import LogicaDeNegocio.Administrador;
 import Vista.AlertDispatcher;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Observable;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -14,6 +17,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+import javafx.util.converter.LocalDateStringConverter;
 
 /**
  *
@@ -131,7 +135,7 @@ public class ModeloAdministrador {
     }
     public void OrderTableViewInfo(TableColumn<Administrador, String> tablecolumn,String columnName){
         switch(columnName){//Depending on the Header's Name, it assings a specific value of the object to a specific column
-                case Administrador.APELLIDO1:                        
+                case Administrador.ATRIBUTO_APELLIDO1:                        
                 tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
@@ -139,7 +143,7 @@ public class ModeloAdministrador {
                     }
                 });            
                     break;
-                case Administrador.APELLIDO2:
+                case Administrador.ATRIBUTO_APELLIDO2:
                 tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
@@ -147,7 +151,7 @@ public class ModeloAdministrador {
                     }
                 });
                     break;
-                case Administrador.CEDULAPASAPORTE:
+                case Administrador.ATRIBUTO_CEDULAPASAPORTE:
                     tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
@@ -155,7 +159,7 @@ public class ModeloAdministrador {
                     }
                 });
                     break;            
-                case Administrador.EMAIL:
+                case Administrador.ATRIBUTO_EMAIL:
                     tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
@@ -163,7 +167,7 @@ public class ModeloAdministrador {
                     }
                 });
                     break;
-                case Administrador.NOMBRE:
+                case Administrador.ATRIBUTO_NOMBRE:
                     tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
@@ -171,11 +175,21 @@ public class ModeloAdministrador {
                     }
                 });
                     break;
-                case Administrador.TELEFONO:
+                case Administrador.ATRIBUTO_TELEFONO:
                     tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
                         return new ReadOnlyObjectWrapper<>(p.getValue().getTelefono());
+                    }
+                });
+                    break;
+                case Administrador.ATRIBUTO_FECHA_DE_NACIMMIENTO:
+                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
+                        if (p.getValue().getFechaNacimiento()!=null) {
+                            return new ReadOnlyObjectWrapper<>(p.getValue().getFechaNacimiento().toString());
+                        }    
+                        else return null;
                     }
                 });
                     break;

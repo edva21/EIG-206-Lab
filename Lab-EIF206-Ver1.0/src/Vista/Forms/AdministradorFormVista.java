@@ -21,6 +21,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.converter.LocalDateStringConverter;
 import javax.swing.JOptionPane;
 
 /**
@@ -61,7 +62,7 @@ public class AdministradorFormVista {
          stage.setScene(scene);
     }
     public void clearForm(){        
-        idTxtFld.setEditable(true);
+        setAllTextIeldsEnable(true);        
         idTxtFld.setText("");
          claveTxtFld.setText("");
          emailTxtFld.setText("");
@@ -77,6 +78,7 @@ public class AdministradorFormVista {
          });
     }
     public void fillForm(Administrador a){    
+        setAllTextIeldsEnable(true);
         idTxtFld.setEditable(false);
         idTxtFld.setText(a.getCedulaOPassaporte());
          claveTxtFld.setText(a.getClave().toString());
@@ -86,6 +88,30 @@ public class AdministradorFormVista {
          apellido1TxtFld.setText(a.getApellido1());
          nombreTxtFld.setText(a.getNombre());
          //datePicker.set
+    }
+    public void fillFormDiabled(Administrador a){            
+        idTxtFld.setText(a.getCedulaOPassaporte());
+         claveTxtFld.setText(a.getClave().toString());
+         emailTxtFld.setText(a.getEmail());
+         telefonoTxtFld.setText(a.getTelefono());
+         apellido2TxtFld.setText(a.getApellido2());
+         apellido1TxtFld.setText(a.getApellido1());
+         nombreTxtFld.setText(a.getNombre());
+         if (a.getFechaNacimiento()!=null)
+             datePicker = new DatePicker(a.getFechaNacimiento());
+         setAllTextIeldsEnable(false);
+         //datePicker.set
+    }
+    void setAllTextIeldsEnable(boolean b){
+        idTxtFld.setEditable(b);
+        idTxtFld.setEditable(b);
+         claveTxtFld.setEditable(b);
+         emailTxtFld.setEditable(b);
+         telefonoTxtFld.setEditable(b);
+         apellido2TxtFld.setEditable(b);
+         apellido1TxtFld.setEditable(b);
+         nombreTxtFld.setEditable(b);
+         datePicker.setEditable(b);
     }
     /**
      * @return the control
@@ -110,7 +136,9 @@ public class AdministradorFormVista {
     
    
     public Administrador getForm(){                         
-         return new Administrador(idTxtFld.getText(), nombreTxtFld.getText(), apellido1TxtFld.getText(), apellido2TxtFld.getText(), telefonoTxtFld.getText(), emailTxtFld.getText(), claveTxtFld.getText(), LocalDate.now());
+         Administrador aux= new Administrador(idTxtFld.getText(), nombreTxtFld.getText(), apellido1TxtFld.getText(), apellido2TxtFld.getText(), telefonoTxtFld.getText(), emailTxtFld.getText(), claveTxtFld.getText(), LocalDate.now());
+         aux.setFechaNacimiento(datePicker.getValue());
+         return aux;
     }
     
     /**

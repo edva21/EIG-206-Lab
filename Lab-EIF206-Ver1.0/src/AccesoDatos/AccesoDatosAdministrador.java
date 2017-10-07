@@ -5,6 +5,7 @@
  */
 package AccesoDatos;
 
+import Dto.AdministradorDto;
 import LogicaDeNegocio.Administrador;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,9 +23,9 @@ import sun.security.jca.GetInstance;
  * @author edva5
  */
 public class AccesoDatosAdministrador {
-    private Comparator<Administrador> COMPARATOR;
-    private ObservableList<Administrador> listaAdministradores;   
     private static AccesoDatosAdministrador INSTANCE;
+    private Comparator<Administrador> COMPARATOR;
+    private ObservableList<Administrador> listaAdministradores;       
      private AccesoDatosAdministrador(){         
          listaAdministradores= FXCollections.observableArrayList();
          COMPARATOR= new Comparator<Administrador>() {
@@ -69,22 +70,23 @@ public class AccesoDatosAdministrador {
     }
     private int buscar(Object o) {                        
         return Collections.binarySearch(listaAdministradores, new Administrador(o.toString(), null, null, null, null, null, null, null), COMPARATOR);
-    }
-    private List<Administrador> buscar(Object nombre,Object cedula) {                        
-        if (nombre==null&&cedula==null)
-            return listaAdministradores;        
-        else if (nombre!=null&&cedula==null)
-            return listaAdministradores.stream().filter(x->x.getNombre().equals(nombre.toString())).collect(Collectors.toList());
-        else if (nombre==null&&cedula!=null)
-            return listaAdministradores.stream().filter(x->x.getCedulaOPassaporte().equals(cedula)).collect(Collectors.toList());
-        else if (nombre!=null&&cedula!=null)
-            return listaAdministradores.stream().filter(x->x.getCedulaOPassaporte().equals(cedula)&&x.getNombre().equals(nombre.toString())).collect(Collectors.toList());
-        else return listaAdministradores;
-    }
+    }    
     public ObservableList<Administrador> getAll() {
         return listaAdministradores;
     }
-    public void setAdministradores(ArrayList<Administrador> list) {
+    /*public void setAdministradores(ArrayList<Administrador> list) {
         listaAdministradores.addAll(list);
+    }*/
+
+    /**
+     *
+     * @param list
+     */
+    public void setAdministradoresDto(ArrayList<AdministradorDto> list) {
+        listaAdministradores.clear();
+        if (!list.isEmpty()) {
+            list.stream().forEach(x->insertar(new Administrador(x)));
+        }
+        
     }
 }

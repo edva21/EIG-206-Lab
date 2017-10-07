@@ -9,6 +9,7 @@ import Control.ControlAdministrador;
 import Datos.Datos;
 import Modelo.Modelos.ModeloAdministrador;
 import Vista.VistaAdministrador;
+import Vista.VistaCarrera;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,9 +29,14 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {        
+        //Funciona
         ModeloAdministrador modelo = new ModeloAdministrador();
         Vista.VistaAdministrador vista = new VistaAdministrador();
         ControlAdministrador control = new ControlAdministrador(modelo,vista);
+        
+        
+        /*VistaCarrera vistaCarrera = new Vista.VistaCarrera();
+        vistaCarrera.getForm().getStage().show();*/
     }
 
     /**

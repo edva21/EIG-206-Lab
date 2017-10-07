@@ -5,15 +5,16 @@
  */
 package Datos;
 
-import LogicaDeNegocio.Administrador;
-import LogicaDeNegocio.Carrera;
-import LogicaDeNegocio.Ciclo;
-import LogicaDeNegocio.Curso;
-import LogicaDeNegocio.Estudiante;
-import LogicaDeNegocio.Grupo;
-import LogicaDeNegocio.Matriculador;
-import LogicaDeNegocio.Nota;
-import LogicaDeNegocio.Profesor;
+import Dto.AdministradorDto;
+import Dto.CarreraDto;
+import Dto.CicloDto;
+import Dto.CursoDto;
+import Dto.EstudianteDto;
+import Dto.GrupoDto;
+import Dto.MatriculadorDto;
+import Dto.NotaDto;
+import Dto.ProfesorDto;
+
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -84,44 +85,44 @@ public class Datos {
     public void guardarDatos(ArrayList list){
         try{
             if (!list.isEmpty()) {
-                if (list.get(0) instanceof Administrador)                
+                if (list.get(0) instanceof AdministradorDto)                
                 {
-                    ArrayList<Administrador> admiList = list;
+                    ArrayList<AdministradorDto> admiList = list;
                     loadArchivesToWrite(FICHERO_ADMINISTRADOR);                          
-                    for (Administrador a:admiList) {                        
-                        objetoSalida.writeObject(new Administrador(a));                                                
+                    for (AdministradorDto a:admiList) {                        
+                        objetoSalida.writeObject(a);                                                
                     }                     
                     objetoSalida.close();
                 }                        
-                else if (list.get(0) instanceof Carrera)                
+                else if (list.get(0) instanceof CarreraDto)                
                 {
                     loadArchivesToWrite(FICHERO_CARRERA);          
                 }                      
-                else if (list.get(0) instanceof Ciclo)                
+                else if (list.get(0) instanceof CicloDto)                
                 {
                     loadArchivesToWrite(FICHERO_CICLO);        
                 }                        
-                else if (list.get(0) instanceof Curso)                
+                else if (list.get(0) instanceof CursoDto)                
                 {
                     loadArchivesToWrite(FICHERO_CURSO);    
                 }                            
-                else if (list.get(0) instanceof Estudiante)                
+                else if (list.get(0) instanceof EstudianteDto)                
                 {
                     loadArchivesToWrite(FICHERO_ESTUDIANTE);                                
                 }
-                else if (list.get(0) instanceof Grupo)                
+                else if (list.get(0) instanceof GrupoDto)                
                 {
                     loadArchivesToWrite(FICHERO_GRUPO);                                
                 }
-                else if (list.get(0) instanceof Matriculador)                
+                else if (list.get(0) instanceof MatriculadorDto)                
                 {
                     loadArchivesToWrite(FICHERO_MATRICULADOR);                                
                 }
-                else if (list.get(0) instanceof Nota)                
+                else if (list.get(0) instanceof NotaDto)                
                 {
                     loadArchivesToWrite(FICHERO_NOTA);                                
                 }
-                else if (list.get(0) instanceof Profesor)                
+                else if (list.get(0) instanceof ProfesorDto)                
                 {
                     loadArchivesToWrite(FICHERO_PROFESOR);                                
                 }               

@@ -209,8 +209,8 @@ public class Modelo extends Observable{
     public List<Ciclo> getCiclos(Object o){
         return AccesoDatos.AccesoDatosCiclo.getInstance().getAll(o);
     }
-    public List<Carrera> getCarreras(Object o){
+    /*public List<Carrera> getCarreras(Object o){
         return AccesoDatos.AccesoDatosCarrera.getInstance().getAll(o);
-    }
+    }*/
     
 }
