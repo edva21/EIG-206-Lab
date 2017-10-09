@@ -5,6 +5,7 @@
  */
 package LogicaDeNegocio;
 
+import Dto.CicloDto;
 import java.time.LocalDate;
 
 /**
@@ -20,7 +21,16 @@ public class Ciclo {
 
     public Ciclo() {
     }
-
+    public Ciclo(String codigo) {
+        this.codigo=codigo;
+    }
+    public Ciclo(CicloDto c) {
+        this.codigo = c.getCodigo();
+        this.Anho = c.getAnho();
+        this.numero = c.getNumero();
+        this.fechaIni = LocalDate.parse(c.getFechaIni());
+        this.fechaFin = LocalDate.parse(c.getFechaIni());
+    }
     public Ciclo(String codigo, int Anho, int numero, LocalDate fechaIni, LocalDate fechaFin) {
         this.codigo = codigo;
         this.Anho = Anho;

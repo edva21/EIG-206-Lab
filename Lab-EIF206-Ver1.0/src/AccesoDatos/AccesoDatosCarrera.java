@@ -6,6 +6,7 @@
 package AccesoDatos;
 
 
+import Dto.CarreraDto;
 import LogicaDeNegocio.Carrera;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,11 +20,11 @@ import javafx.collections.ObservableList;
  * @author edva5
  */
 public class AccesoDatosCarrera {
-    private static AccesoDatosCarrera INSTANCE;
+private static AccesoDatosCarrera INSTANCE;
     private Comparator<Carrera> COMPARATOR;
-    private ObservableList<Carrera> listaCarreras;       
+    private ObservableList<Carrera> listaCarreraes;       
      private AccesoDatosCarrera(){         
-         listaCarreras= FXCollections.observableArrayList();
+         listaCarreraes= FXCollections.observableArrayList();
          COMPARATOR= new Comparator<Carrera>() {
              @Override
              public int compare(Carrera o1, Carrera o2) {
@@ -39,39 +40,50 @@ public class AccesoDatosCarrera {
      }
        
     public void insertar(Carrera c) {
-        listaCarreras.add(c);
-        listaCarreras.sort(COMPARATOR);
+        listaCarreraes.add(c);
+        listaCarreraes.sort(COMPARATOR);
         
     }
     public void modificar(Carrera c) {
-        int aux=listaCarreras.indexOf(get(c.getCodigo()));
-        listaCarreras.remove(aux);
-        listaCarreras.add(aux, c);
+        int aux=listaCarreraes.indexOf(get(c.getCodigo()));
+        listaCarreraes.remove(aux);
+        listaCarreraes.add(aux, c);
         
     }
     
     public void eliminar(Object o) {
         if (o instanceof Carrera) 
-            listaCarreras.remove((Carrera)o);
+            listaCarreraes.remove((Carrera)o);
         else if (o instanceof String) {
-            listaCarreras.remove(get(o));
+            listaCarreraes.remove(get(o));
         }            
     }    
     public Carrera get(Object o) {    
     int pisition=buscar(o);
-        if (listaCarreras.isEmpty()||pisition<0) 
+        if (listaCarreraes.isEmpty()||pisition<0) 
             return null;
         else          
-            return listaCarreras.get(pisition);
+            return listaCarreraes.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaCarreras, new Carrera(o.toString(), null, null), COMPARATOR);
+        return Collections.binarySearch(listaCarreraes, new Carrera(o.toString()), COMPARATOR);
     }    
     public ObservableList<Carrera> getAll() {
-        return listaCarreras;
+        return listaCarreraes;
     }
-    public void setCarreraes(ArrayList<Carrera> list) {
-        listaCarreras.addAll(list);
-    }
+    /*public void setCarreraes(ArrayList<Carrera> list) {
+        listaCarreraes.addAll(list);
+    }*/
 
+    /**
+     *
+     * @param list
+     */
+    public void setCarreraDto(ArrayList<CarreraDto> list) {
+        listaCarreraes.clear();
+        if (!list.isEmpty()) {
+            list.stream().forEach(x->insertar(new Carrera(x)));
+        }
+        
+    }
 }

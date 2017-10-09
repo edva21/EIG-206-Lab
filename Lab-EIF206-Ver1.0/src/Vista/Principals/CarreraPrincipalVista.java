@@ -7,12 +7,14 @@ package Vista.Principals;
 
 import LogicaDeNegocio.Carrera;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
@@ -20,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author edva5
  */
-public class CarreraPrincipalVista {
+public class CarreraPrincipalVista {   
     private Stage stage;
     private Parent root;
     private Scene scene;
@@ -28,7 +30,9 @@ public class CarreraPrincipalVista {
     private Button eliminarBtn;
     private Button editarBtn;
     private TableView<Carrera> table;
+    private ArrayList<TableColumn<Carrera,String>> admiTableColumns;
     public CarreraPrincipalVista() {
+        admiTableColumns= new ArrayList<TableColumn<Carrera,String>>();
         stage = new Stage();
         try {
             this.root = FXMLLoader.load(getClass().getResource("/Vista/XFMLDocuments/AdministradorVista.fxml"));
@@ -138,7 +142,18 @@ public class CarreraPrincipalVista {
      */
     public void setTable(TableView<Carrera> table) {
         this.table = table;
+    }    
+     /**
+     * @return the admiTableColumns
+     */
+    public ArrayList<TableColumn<Carrera,String>> getAdmiTableColumns() {
+        return admiTableColumns;
     }
-    
-    
+
+    /**
+     * @param admiTableColumns the admiTableColumns to set
+     */
+    public void setAdmiTableColumns(ArrayList<TableColumn<Carrera,String>> admiTableColumns) {
+        this.admiTableColumns = admiTableColumns;
+    }
 }

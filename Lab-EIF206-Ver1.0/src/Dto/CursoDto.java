@@ -6,14 +6,36 @@
 package Dto;
 
 import LogicaDeNegocio.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author edva5
  */
-public class CursoDto {
+public class CursoDto implements Serializable{
+    private String codigo;
+    private String nombre;
+    private int creditos;
+    private int horasSemanales;
+    private ArrayList<GrupoDto> grupos;
 
+    public CursoDto() {
+    }
+    public CursoDto(Curso c) {
+        this.codigo = c.getCodigo();
+        this.nombre = c.getNombre();
+        this.creditos = c.getCreditos();
+        this.horasSemanales = c.getHorasSemanales();
+        grupos = new ArrayList<GrupoDto>();
+        c.getGrupos().forEach(x->grupos.add(new GrupoDto(x)));
+    }
+    public CursoDto(String codigo, String nombre, int creditos, int horasSemanales) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.creditos = creditos;
+        this.horasSemanales = horasSemanales;
+    }
     /**
      * @return the grupos
      */
@@ -26,22 +48,7 @@ public class CursoDto {
      */
     public void setGrupos(ArrayList<GrupoDto> grupos) {
         this.grupos = grupos;
-    }
-    private String codigo;
-    private String nombre;
-    private int creditos;
-    private int horasSemanales;
-    private ArrayList<GrupoDto> grupos;
-
-    public CursoDto() {
-    }
-
-    public CursoDto(String codigo, String nombre, int creditos, int horasSemanales) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.creditos = creditos;
-        this.horasSemanales = horasSemanales;
-    }
+    }    
 
     /**
      * @return the codigo

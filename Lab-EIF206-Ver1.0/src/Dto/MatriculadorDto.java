@@ -6,6 +6,7 @@
 package Dto;
 
 import LogicaDeNegocio.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import java.util.Date;
  *
  * @author edva5
  */
-public class MatriculadorDto extends PersonaDto {       
+public class MatriculadorDto extends PersonaDto implements Serializable{       
 
     public MatriculadorDto() {
     }

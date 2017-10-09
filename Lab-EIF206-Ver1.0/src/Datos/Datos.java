@@ -96,7 +96,12 @@ public class Datos {
                 }                        
                 else if (list.get(0) instanceof CarreraDto)                
                 {
+                    ArrayList<CarreraDto> listaCarrera = list;
                     loadArchivesToWrite(FICHERO_CARRERA);          
+                    for (CarreraDto a:listaCarrera) {                        
+                        objetoSalida.writeObject(a);                                                
+                    }                     
+                    objetoSalida.close();
                 }                      
                 else if (list.get(0) instanceof CicloDto)                
                 {

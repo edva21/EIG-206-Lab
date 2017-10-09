@@ -6,13 +6,28 @@
 package Dto;
 
 import LogicaDeNegocio.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author edva5
  */
-public class GrupoDto {
+public class GrupoDto implements Serializable{
+
+    /**
+     * @return the estudintes
+     */
+    public ArrayList<EstudianteDto> getEstudintes() {
+        return estudintes;
+    }
+
+    /**
+     * @param estudintes the estudintes to set
+     */
+    public void setEstudintes(ArrayList<EstudianteDto> estudintes) {
+        this.estudintes = estudintes;
+    }
     private String id; 
     private CursoDto curso;
     private CicloDto ciclo;
@@ -24,7 +39,14 @@ public class GrupoDto {
     public GrupoDto(String id) {
         this.id = id;
     }
-
+    public GrupoDto(Grupo g) {
+        this.id = g.getId();
+        this.curso = new CursoDto(g.getCurso());
+        this.ciclo = new CicloDto(g.getCiclo());
+        this.prof = new ProfesorDto(g.getProf());
+        this.estudintes = new ArrayList<EstudianteDto>();
+        g.getEstudintes().stream().forEach(x->estudintes.add(new EstudianteDto(x)));
+    }
     public GrupoDto(String id, CursoDto curso, CicloDto ciclo, ProfesorDto prof, ArrayList<EstudianteDto> estudintes) {
         this.id = id;
         this.curso = curso;

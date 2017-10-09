@@ -18,12 +18,13 @@ import java.util.Date;
 public class ProfesorDto extends PersonaDto implements Serializable{
     private ArrayList<GrupoDto> grupos;
     public ProfesorDto() {        
-        super();
+        super();        
     }
 
     public ProfesorDto(Profesor p) {
         super(p);
-        
+        grupos = new ArrayList<GrupoDto>();
+        p.getGrupos().forEach(x->grupos.add(new GrupoDto(x)));
     }
    
 

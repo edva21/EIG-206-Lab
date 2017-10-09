@@ -5,6 +5,7 @@
  */
 package Vista.Forms;
 
+import LogicaDeNegocio.Carrera;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +41,31 @@ public class CarreraFormVista {
         yesBtn = (Button) root.lookup("#yesBtn");
         noBtn = (Button) root.lookup("#noBtn");
     }
+        public void fillForm(Carrera a){    
+        setAllTextIeldsEnable(true);
+        codigoTxtFld.setText(a.getCodigo());
+        codigoTxtFld.setEditable(false);
+        tituloTxtFld.setText(a.getTitulo());
+        nombreTxtFld.setText(a.getNombre());
+    }    
+    public void setAllTextIeldsEnable(boolean b){
+        codigoTxtFld.setEditable(b);        
+        tituloTxtFld.setEditable(b);
+        nombreTxtFld.setEditable(b);
+    }
+    public void clearForm(){    
+        setAllTextIeldsEnable(true);
+        codigoTxtFld.setText("");        
+        tituloTxtFld.setText("");
+        nombreTxtFld.setText("");
+    }    
+    public Carrera getForm(){    
+        setAllTextIeldsEnable(true);
+        codigoTxtFld.setText("");        
+        tituloTxtFld.setText("");
+        nombreTxtFld.setText("");
+        return new Carrera(codigoTxtFld.getText(), tituloTxtFld.getText(),nombreTxtFld.getText());
+    }    
     /**
      * @return the stage
      */

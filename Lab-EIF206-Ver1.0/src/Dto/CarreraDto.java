@@ -13,30 +13,23 @@ import java.util.ArrayList;
  *
  * @author edva5
  */
-public class CarreraDto implements Serializable{
-    public static final String ATRIBUTO_CODIGO="Codigo",ATRIBUTO_NOMBRE="Nombre",ATRIBUTO_TITULO="Titulo";
-   
-    //atrbutos
-    private String[] cursos;    
-    private String codigo,nombre,titulo;    
-    //Constructores
-
+public class CarreraDto implements Serializable{           
+    private ArrayList<CursoDto> cursos;    
+    private String codigo,nombre,titulo;        
     public CarreraDto() {
     }
-
+    public CarreraDto(Carrera c) {
+        this.codigo = c.getCodigo();
+        this.nombre = c.getNombre();
+        this.titulo = c.getTitulo();     
+        cursos = new ArrayList<CursoDto>();
+        c.getCursos().stream().forEach(x->cursos.add(new CursoDto(x)));
+    }
     public CarreraDto(String codigo, String nombre, String titulo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.titulo = titulo;        
-    }
-    public String[] toVectorOfString(){        
-        String[] aux = {codigo,nombre,titulo};        
-        return aux;
-    }
-    public static final String[] getAtributesNames(){        
-         final String[] aux = {ATRIBUTO_CODIGO,ATRIBUTO_NOMBRE,ATRIBUTO_TITULO};   
-         return aux;        
-    }
+    }    
      /**
      * @return the codigo
      */
@@ -85,15 +78,14 @@ public class CarreraDto implements Serializable{
     /**
      * @return the cursos
      */
-    public String[] getCursos() {
+    public ArrayList<CursoDto> getCursos() {
         return cursos;        
     }
 
     /**
      * @param cursos the cursos to set
      */
-    public void setCursos(ArrayList<Curso> cursos) {        
-        this.cursos = new String[cursos.size()];
-        for (int i = 0; i < cursos.size(); i++) {this.cursos[i]=new String(cursos.get(i).getCodigo());}
+    public void setCursos(ArrayList<CursoDto> cursos) {        
+        this.cursos = cursos;       
     }
 }

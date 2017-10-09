@@ -15,7 +15,7 @@ import java.util.Vector;
  *
  * @author edva5
  */
-public abstract class PersonaDto implements Serializable {
+public abstract class PersonaDto implements Serializable{
 public static final String ATRIBUTO_CEDULAPASAPORTE="Cedula_Pasaporte",//using protected attributes can be accessed directly by sons, otherwise, just by gets and sets
                             ATRIBUTO_NOMBRE="Nombre",
                             ATRIBUTO_APELLIDO1="Apellido Uno",
@@ -42,8 +42,9 @@ public static final String ATRIBUTO_CEDULAPASAPORTE="Cedula_Pasaporte",//using p
         this.Apellido2 = p.getApellido2();
         this.telefono = p.getTelefono();
         this.email = p.getEmail();
-        this.clave = p.getClave();        
         this.fechaNacimiento=p.getFechaNacimiento().toString();
+        this.clave = p.getClave();        
+        
     }
     /**
      * @return the fechaNacimiento

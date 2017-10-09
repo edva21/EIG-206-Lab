@@ -5,6 +5,7 @@
  */
 package LogicaDeNegocio;
 
+import Dto.MatriculadorDto;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -15,6 +16,12 @@ import java.util.Date;
 public class Matriculador extends Persona {       
 
     public Matriculador() {
+    }
+    public Matriculador(String cedulaOPassaporte) {
+        super(cedulaOPassaporte);        
+    }
+    public Matriculador(MatriculadorDto m) {
+        super(m);
     }
     public Matriculador(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
         super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);

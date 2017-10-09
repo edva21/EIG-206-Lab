@@ -6,29 +6,27 @@
 package Dto;
 
 import LogicaDeNegocio.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author edva5
  */
-public class CicloDto {
-    private String codigo;
+public class CicloDto implements Serializable{
+    private String codigo,fechaIni,fechaFin;
     private int Anho;
-    private int numero;
-    private LocalDate fechaIni;
-    private LocalDate fechaFin;
+    private int numero;    
 
     public CicloDto() {
     }
-
-    public CicloDto(String codigo, int Anho, int numero, LocalDate fechaIni, LocalDate fechaFin) {
-        this.codigo = codigo;
-        this.Anho = Anho;
-        this.numero = numero;
-        this.fechaIni = fechaIni;
-        this.fechaFin = fechaFin;
-    }    
+    public CicloDto(Ciclo c) {
+        codigo=c.getCodigo();
+        fechaIni=c.getFechaIni().toString();
+        fechaFin=c.getFechaFin().toString();
+        Anho=c.getAnho();
+        numero=c.getNumero();
+    }
 
     /**
      * @return the Anho
@@ -61,28 +59,28 @@ public class CicloDto {
     /**
      * @return the fechaIni
      */
-    public LocalDate getFechaIni() {
+    public String getFechaIni() {
         return fechaIni;
     }
 
     /**
      * @param fechaIni the fechaIni to set
      */
-    public void setFechaIni(LocalDate fechaIni) {
+    public void setFechaIni(String fechaIni) {
         this.fechaIni = fechaIni;
     }
 
     /**
      * @return the fechaFin
      */
-    public LocalDate getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
     /**
      * @param fechaFin the fechaFin to set
      */
-    public void setFechaFin(LocalDate fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 

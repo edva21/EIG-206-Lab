@@ -5,6 +5,8 @@
  */
 package LogicaDeNegocio;
 
+import Dto.GrupoDto;
+import Dto.ProfesorDto;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +25,14 @@ public class Grupo {
     public Grupo(String id) {
         this.id = id;
     }
-
+    public Grupo(GrupoDto g) {
+        this.id = g.getId();
+        this.curso = new Curso(g.getCurso());
+        this.ciclo = new Ciclo(g.getCiclo());
+        this.prof = new Profesor(g.getProf());
+        this.estudintes = new ArrayList<Estudiante>();
+        g.getEstudintes().stream().forEach(x->estudintes.add(new Estudiante(x)));
+    }
     public Grupo(String id, Curso curso, Ciclo ciclo, Profesor prof, ArrayList<Estudiante> estudintes) {
         this.id = id;
         this.curso = curso;
@@ -31,6 +40,20 @@ public class Grupo {
         this.prof = prof;
         this.estudintes = estudintes;
     }
+    /**
+     * @return the estudintes
+     */
+    public ArrayList<Estudiante> getEstudintes() {
+        return estudintes;
+    }
+
+    /**
+     * @param estudintes the estudintes to set
+     */
+    public void setEstudintes(ArrayList<Estudiante> estudintes) {
+        this.estudintes = estudintes;
+    }
+    
     
     /**
      * @return the curso

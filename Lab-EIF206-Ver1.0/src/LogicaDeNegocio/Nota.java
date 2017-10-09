@@ -5,12 +5,32 @@
  */
 package LogicaDeNegocio;
 
+import Dto.NotaDto;
+
 /**
  *
  * @author edva5
  */
 public class Nota {
-
+    private String id;
+    private int anho;
+    private int semestre;
+    private int Nota;
+    public Nota(String id) {
+        this.id = id;
+    }
+    public Nota() {
+    }
+    public Nota(NotaDto n) {
+        this.id = n.getId();
+        this.Nota = n.getNota();
+        semestre=n.getSemestre();
+        anho=n.getAnho();
+    }   
+    public Nota(String id, int Nota) {
+        this.id = id;
+        this.Nota = Nota;
+    }   
     /**
      * @return the anho
      */
@@ -38,17 +58,7 @@ public class Nota {
     public void setSemestre(int semestre) {
         this.semestre = semestre;
     }
-    private String id;
-    private int anho;
-    private int semestre;
-    private int Nota;
-    public Nota() {
-    }
-
-    public Nota(String id, int Nota) {
-        this.id = id;
-        this.Nota = Nota;
-    }   
+    
     /**
      * @return the id
      */

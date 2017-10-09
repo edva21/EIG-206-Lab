@@ -5,20 +5,15 @@
  */
 package lab.eif206.ver1.pkg0;
 
+import Control.Control;
 import Control.ControlAdministrador;
-import Datos.Datos;
+import Modelo.Modelo;
 import Modelo.Modelos.ModeloAdministrador;
+import Vista.Inicio.LogInVista;
+import Vista.Inicio.PrimeraEscenaVista;
 import Vista.VistaAdministrador;
-import Vista.VistaCarrera;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import Vista.VistaInicio;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -29,14 +24,11 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {        
-        //Funciona
-        ModeloAdministrador modelo = new ModeloAdministrador();
-        Vista.VistaAdministrador vista = new VistaAdministrador();
-        ControlAdministrador control = new ControlAdministrador(modelo,vista);
         
+        Vista.VistaInicio vista = new VistaInicio();
+        Modelo modelo = new Modelo();
+        Control control = new Control(vista, modelo);
         
-        /*VistaCarrera vistaCarrera = new Vista.VistaCarrera();
-        vistaCarrera.getForm().getStage().show();*/
     }
 
     /**

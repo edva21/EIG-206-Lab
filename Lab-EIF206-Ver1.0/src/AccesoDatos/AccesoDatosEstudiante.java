@@ -5,7 +5,8 @@
  */
 package AccesoDatos;
 
-import LogicaDeNegocio.Carrera;
+import Dto.EstudianteDto;
+import LogicaDeNegocio.Estudiante;
 import LogicaDeNegocio.Estudiante;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,92 +16,78 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author edva5
  */
 public class AccesoDatosEstudiante {
-    private static AccesoDatosEstudiante instance;
-    private static Comparator<Estudiante> comparatorNombre,comparatoCarrera;
-    private HashMap<String, Estudiante> Cedula = new HashMap<String, Estudiante>();
-    private Predicate<Estudiante> nombrePrdct;
-    private List<Estudiante> listaEstudiantes;
-
-    private AccesoDatosEstudiante() {
-        comparatorNombre = new Comparator<Estudiante>() {
-            @Override
-            public int compare(Estudiante o1, Estudiante o2) {
-                if (o1.getApellido1().compareTo(o2.getApellido1())==0){
-                  if(o1.getApellido2().compareTo(o2.getApellido2())==0){
-                      return o1.getNombre().compareTo(o2.getNombre());
-                  }
-                  else return o1.getApellido2().compareTo(o2.getApellido2());
-                }
-                else return o1.getApellido1().compareTo(o2.getApellido1());
-            }
-                       
-        };
-        comparatoCarrera = new Comparator<Estudiante>() {
-            @Override
-            public int compare(Estudiante o1, Estudiante o2) {
-                return o1.getCarrera().getCodigo().compareTo(o2.getCarrera().getCodigo());
-            }
-        };        
-    }
-    public static AccesoDatosEstudiante getInstance(){
-        if (instance==null)
-            instance=new AccesoDatosEstudiante();
-        return instance;
-    }    
+private static AccesoDatosEstudiante INSTANCE;
+    private Comparator<Estudiante> COMPARATOR;
+    private ObservableList<Estudiante> listaEstudiantees;       
+     private AccesoDatosEstudiante(){         
+         listaEstudiantees= FXCollections.observableArrayList();
+         COMPARATOR= new Comparator<Estudiante>() {
+             @Override
+             public int compare(Estudiante o1, Estudiante o2) {
+                 return o1.getCedulaOPassaporte().compareTo(o2.getCedulaOPassaporte());
+             }
+         };
+     }
+     
+     public static AccesoDatosEstudiante getInstance(){
+         if (INSTANCE==null) 
+             INSTANCE=new AccesoDatosEstudiante();
+         return INSTANCE;
+     }
+       
     public void insertar(Estudiante c) {
-        listaEstudiantes.add(c);
-        Collections.sort(listaEstudiantes);
-    }
-    public void modificar(Estudiante c, int post) {
-       listaEstudiantes.add(post, c);
-       }
-    public void eliminar(Estudiante c) {
-        listaEstudiantes.remove(c);        
-    }
-    
-    public Estudiante get(int x) {
-        return listaEstudiantes.get(x);
-    }
-
-    
-   
-    public List<Estudiante> buscar(String nombre,Carrera carrera, String id){
-        if(nombre!= null && carrera== null && id== null){
-            return listaEstudiantes.stream().filter(x->x.getNombre().equals(nombre)).collect(Collectors.toList());
-        }
-        if(nombre!= null && carrera!= null && id== null){
-            return listaEstudiantes.stream().filter(x->x.getNombre().equals(nombre)&& x.getCarrera().getCodigo().equals(carrera.getCodigo())).collect(Collectors.toList());
-        }
-        if(nombre!= null && carrera!= null && id!= null){
-            return listaEstudiantes.stream().filter(
-            x->x.getNombre().equals(nombre)&& 
-            x.getCarrera().getCodigo().equals(carrera.getCodigo())
-            && x.getCedulaOPassaporte().equals(id)).collect(Collectors.toList());
-        }
-        if(nombre== null && carrera!= null && id== null){
-            return listaEstudiantes.stream().filter(x->x.getCarrera().equals(carrera.getCodigo())).collect(Collectors.toList());
-        }
-        if(nombre== null && carrera!= null && id!= null){
-           return listaEstudiantes.stream().filter(x->x.getCarrera().getCodigo().equals(carrera.getCodigo())
-            && x.getCedulaOPassaporte().equals(id)).collect(Collectors.toList());
-        }
-         if(nombre== null && carrera== null && id!= null){
-           return listaEstudiantes.stream().filter(x->x.getCedulaOPassaporte().equals(id)).collect(Collectors.toList());
-        }
-        return listaEstudiantes;  
-    }
-    public int buscar(Estudiante cedula){
-        return Collections.binarySearch(listaEstudiantes,cedula);
-        //Collections.
+        listaEstudiantees.add(c);
+        listaEstudiantees.sort(COMPARATOR);
         
     }
-    private static Predicate<Estudiante> nameEqualsTo(String name){
-        return x->x.getNombre().equals(name);
+    public void modificar(Estudiante c) {
+        int aux=listaEstudiantees.indexOf(get(c.getCedulaOPassaporte()));
+        listaEstudiantees.remove(aux);
+        listaEstudiantees.add(aux, c);
+        
+    }
+    
+    public void eliminar(Object o) {
+        if (o instanceof Estudiante) 
+            listaEstudiantees.remove((Estudiante)o);
+        else if (o instanceof String) {
+            listaEstudiantees.remove(get(o));
+        }            
+    }    
+    public Estudiante get(Object o) {    
+    int pisition=buscar(o);
+        if (listaEstudiantees.isEmpty()||pisition<0) 
+            return null;
+        else          
+            return listaEstudiantees.get(pisition);
+    }
+    private int buscar(Object o) {                        
+        return Collections.binarySearch(listaEstudiantees, new Estudiante(o.toString()), COMPARATOR);
+    }    
+    public ObservableList<Estudiante> getAll() {
+        return listaEstudiantees;
+    }
+    /*public void setEstudiantees(ArrayList<Estudiante> list) {
+        listaEstudiantees.addAll(list);
+    }*/
+
+    /**
+     *
+     * @param list
+     */
+    public void setEstudianteesDto(ArrayList<EstudianteDto> list) {
+        listaEstudiantees.clear();
+        if (!list.isEmpty()) {
+            list.stream().forEach(x->insertar(new Estudiante(x)));
+        }
+        
     }
 }

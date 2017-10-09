@@ -5,46 +5,84 @@
  */
 package AccesoDatos;
 
+import Dto.MatriculadorDto;
 import LogicaDeNegocio.Matriculador;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author edva5
  */
 public class AccesoDatosMatriculador {
-    private static AccesoDatosMatriculador instance;
-     private ArrayList<Matriculador> listaMatriculadores;    
-    static Comparator<Matriculador> MatriculadorCOMPARATOR;
-
-    private AccesoDatosMatriculador() {
-    }
-    public static AccesoDatosMatriculador getInstance(){
-        if (instance==null)
-            instance= new AccesoDatosMatriculador();
-        return instance;
-    }
+private static AccesoDatosMatriculador INSTANCE;
+    private Comparator<Matriculador> COMPARATOR;
+    private ObservableList<Matriculador> listaMatriculadores;       
+     private AccesoDatosMatriculador(){         
+         listaMatriculadores= FXCollections.observableArrayList();
+         COMPARATOR= new Comparator<Matriculador>() {
+             @Override
+             public int compare(Matriculador o1, Matriculador o2) {
+                 return o1.getCedulaOPassaporte().compareTo(o2.getCedulaOPassaporte());
+             }
+         };
+     }
+     
+     public static AccesoDatosMatriculador getInstance(){
+         if (INSTANCE==null) 
+             INSTANCE=new AccesoDatosMatriculador();
+         return INSTANCE;
+     }
+       
     public void insertar(Matriculador c) {
-        listaMatriculadores.add(c);        
+        listaMatriculadores.add(c);
+        listaMatriculadores.sort(COMPARATOR);
+        
     }
     public void modificar(Matriculador c) {
-        eliminar(c);
-        insertar(c);
-    }
-    
-    public void eliminar(Matriculador c) {
+        int aux=listaMatriculadores.indexOf(get(c.getCedulaOPassaporte()));
+        listaMatriculadores.remove(aux);
+        listaMatriculadores.add(aux, c);
         
-    }    
-    public Matriculador get(Object o) {
-        return null;
     }
     
-    public List<Matriculador> getAll() {
+    public void eliminar(Object o) {
+        if (o instanceof Matriculador) 
+            listaMatriculadores.remove((Matriculador)o);
+        else if (o instanceof String) {
+            listaMatriculadores.remove(get(o));
+        }            
+    }    
+    public Matriculador get(Object o) {    
+    int pisition=buscar(o);
+        if (listaMatriculadores.isEmpty()||pisition<0) 
+            return null;
+        else          
+            return listaMatriculadores.get(pisition);
+    }
+    private int buscar(Object o) {                        
+        return Collections.binarySearch(listaMatriculadores, new Matriculador(o.toString()), COMPARATOR);
+    }    
+    public ObservableList<Matriculador> getAll() {
         return listaMatriculadores;
     }
-    public List<Matriculador> getAll(Object o) {
-        return null;
+    /*public void setMatriculadores(ArrayList<Matriculador> list) {
+        listaMatriculadores.addAll(list);
+    }*/
+
+    /**
+     *
+     * @param list
+     */
+    public void setMatriculadoresDto(ArrayList<MatriculadorDto> list) {
+        listaMatriculadores.clear();
+        if (!list.isEmpty()) {
+            list.stream().forEach(x->insertar(new Matriculador(x)));
+        }
+        
     }
 }

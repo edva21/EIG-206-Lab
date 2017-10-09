@@ -6,19 +6,25 @@
 package Dto;
 
 import LogicaDeNegocio.*;
+import java.io.Serializable;
 
 /**
  *
  * @author edva5
  */
-public class NotaDto {
+public class NotaDto implements Serializable{
     private String id;
     private int anho;
     private int semestre;
     private int Nota;
     public NotaDto() {
     }
-
+    public NotaDto(Nota n) {
+        id=n.getId();
+        anho=n.getAnho();
+        semestre = n.getSemestre();
+        Nota = n.getNota();
+    }
     public NotaDto(String id, int Nota) {
         this.id = id;
         this.Nota = Nota;

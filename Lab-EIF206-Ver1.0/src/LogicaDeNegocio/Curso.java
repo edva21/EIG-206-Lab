@@ -5,6 +5,7 @@
  */
 package LogicaDeNegocio;
 
+import Dto.CursoDto;
 import java.util.ArrayList;
 
 /**
@@ -30,11 +31,21 @@ public class Curso {
     private String nombre;
     private int creditos;
     private int horasSemanales;
-    private ArrayList<Grupo> grupos;
+    private ArrayList<Grupo> grupos;//Manca
 
     public Curso() {
     }
-
+    public Curso(String codigo) {
+        this.codigo=codigo;
+    }
+    public Curso(CursoDto c) {
+        this.codigo = c.getCodigo();
+        this.nombre = c.getNombre();
+        this.creditos = c.getCreditos();
+        this.horasSemanales = c.getHorasSemanales();
+        grupos = new ArrayList<Grupo>();
+        c.getGrupos().stream().forEach(x->grupos.add(new Grupo(x)));
+    }
     public Curso(String codigo, String nombre, int creditos, int horasSemanales) {
         this.codigo = codigo;
         this.nombre = nombre;

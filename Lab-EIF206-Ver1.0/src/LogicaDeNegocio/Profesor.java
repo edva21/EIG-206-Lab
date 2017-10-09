@@ -5,6 +5,7 @@
  */
 package LogicaDeNegocio;
 
+import Dto.ProfesorDto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,7 +20,13 @@ public class Profesor extends Persona implements Serializable{
     public Profesor() {        
         super();
     }
-
+    public Profesor(String cedulaOPassaporte) {
+        super(cedulaOPassaporte);        
+    }
+    public Profesor(ProfesorDto p) {
+        super(p);
+        this.grupos = grupos;
+    }
     public Profesor(ArrayList<Grupo> grupos, String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
         super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);
         this.grupos = grupos;

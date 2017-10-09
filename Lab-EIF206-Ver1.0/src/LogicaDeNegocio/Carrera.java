@@ -5,6 +5,7 @@
  */
 package LogicaDeNegocio;
 
+import Dto.CarreraDto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -22,7 +23,16 @@ public class Carrera implements Serializable{
 
     public Carrera() {
     }
-
+    public Carrera(String codigo) {
+        this.codigo=codigo;
+    }
+    public Carrera(CarreraDto c) {
+        this.codigo = c.getCodigo();
+        this.nombre = c.getNombre();
+        this.titulo = c.getTitulo();
+        cursos = new ArrayList<Curso>();
+        c.getCursos().forEach(x->cursos.add(new Curso(x)));
+    }
     public Carrera(String codigo, String nombre, String titulo) {
         this.codigo = codigo;
         this.nombre = nombre;

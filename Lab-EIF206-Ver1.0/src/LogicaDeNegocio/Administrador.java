@@ -18,6 +18,9 @@ public class Administrador extends Persona implements Serializable{
     public Administrador() {        
         super();
     }
+    public Administrador(String cedulaOPassaporte) {        
+        super(cedulaOPassaporte);
+    }
     public Administrador(AdministradorDto a) {        
         super(a);
     }

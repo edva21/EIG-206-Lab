@@ -6,6 +6,7 @@
 package Dto;
 
 import LogicaDeNegocio.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,14 +16,18 @@ import java.util.HashMap;
  *
  * @author edva5
  */
-public class EstudianteDto extends PersonaDto implements Comparable<EstudianteDto>{
+public class EstudianteDto extends PersonaDto implements Comparable<EstudianteDto>, Serializable{
   private ArrayList<GrupoDto> grupos;
     private ArrayList<NotaDto> notas;
-    private CarreraDto carrera;
-    private HashMap<String, EstudianteDto> Cedula_o_passaporte = new HashMap<String, EstudianteDto>();
+    private CarreraDto carrera;    
 
     public EstudianteDto(Estudiante e) {
-        //super(e.getCedulaOPassaporte(), e.getNombre(), e.getApellido1(), e.g, telefono, email, clave, fecaNacimiento);
+        super(e);
+        carrera = new CarreraDto(e.getCarrera());
+        grupos = new ArrayList<GrupoDto>();
+        e.getGrupos().stream().forEach(x->grupos.add(new GrupoDto(x)));
+        notas= new ArrayList<NotaDto>();
+        e.getNotas().stream().forEach(x->notas.add(new NotaDto(x)));
      
     }    
    

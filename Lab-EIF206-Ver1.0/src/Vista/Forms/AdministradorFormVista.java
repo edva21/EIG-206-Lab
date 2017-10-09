@@ -57,6 +57,7 @@ public class AdministradorFormVista {
          nombreTxtFld=(TextField) root.lookup("#nombreTxtFld");
          datePicker = (DatePicker) root.lookup("#datePicker");
          datePicker.setEditable(false);
+         
          noBtn.setText("Cancelar");         
          
          stage.setScene(scene);

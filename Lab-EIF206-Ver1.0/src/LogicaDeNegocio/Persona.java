@@ -55,6 +55,9 @@ public static final String ATRIBUTO_CEDULAPASAPORTE="Cedula_Pasaporte",//using p
         this.clave = clave;        
         setFechaNacimiento(fechaNacimiento);
     }
+    public Persona(String cedula_o_passaporte) {
+        this.cedulaOPassaporte = cedula_o_passaporte;     
+    }
     /**
      * @return the fechaNacimiento
      */
