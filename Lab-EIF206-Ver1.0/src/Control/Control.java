@@ -65,7 +65,7 @@ public class Control implements EventHandler{
         this.modelo = modelo;
         vista.setControl(this);
         vista.getPrincipal().getStage().show();
-        validateMenuIems();
+        validateMenus();
     }
     
     
@@ -112,7 +112,7 @@ public class Control implements EventHandler{
                     modelo.setClave(vista.getLogInVista().getClaveTxtId().getText());
                     if (modelo.logIn()) {
                     vista.getAlertDispatcher().setAlert(Alert.AlertType.CONFIRMATION, "Bienvenido(a) "+modelo.getLogged().getNombre(), ButtonType.OK);                                            
-                    validateMenuIems();
+                    validateMenus();
                     this.vista.getPrincipal().getStage().show();
                     this.vista.getLogInVista().getStage().hide();   
                     
@@ -129,7 +129,8 @@ public class Control implements EventHandler{
             }
         }
     } 
-    private void validateMenuIems(){
+    private void validateMenus(){
+        validateMenuItems();
         vista.getPrincipal().getMenuBar().getMenus().stream().forEach(x->x.setDisable(false));
         String aux=modelo.getHandledTypeOfUser();
         if (aux.equals("null"))
@@ -142,5 +143,14 @@ public class Control implements EventHandler{
             vista.getPrincipal().getMenuBar().getMenus().filtered(x->!x.getText().equals("Matriculador")&&!x.getText().equals("Help")&&!x.getText().equals("LogIn")).forEach(x->x.setDisable(true));
         else if (aux.equals(LogicaDeNegocio.Profesor.class.toString()))
             vista.getPrincipal().getMenuBar().getMenus().filtered(x->!x.getText().equals("Profesor")&&!x.getText().equals("Help")&&!x.getText().equals("LogIn")).forEach(x->x.setDisable(true));
+    }
+    private void validateMenuItems(){
+        vista.getPrincipal().getMenuBar().getMenus().filtered(x->x.getText().equals("LogIn")).stream().forEach(x->x.getItems().stream().forEach(y->y.setDisable(false)));
+        String aux=modelo.getHandledTypeOfUser();
+        if (aux.equals("null"))
+            vista.getPrincipal().getMenuBar().getMenus().filtered(x->x.getText().equals("LogIn")).stream().forEach(x->x.getItems().stream().filter(y->y.getText().equals("LogOut")).forEach(y->y.setDisable(true)));
+        else 
+            vista.getPrincipal().getMenuBar().getMenus().filtered(x->x.getText().equals("LogIn")).stream().forEach(x->x.getItems().stream().filter(y->y.getText().equals("Como Administrador")||y.getText().equals("Como Estudiante")||y.getText().equals("Como Matriculador")||y.getText().equals("Como Profesor")).forEach(y->y.setDisable(true)));
+            
     }
 }
