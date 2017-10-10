@@ -66,7 +66,15 @@ private static AccesoDatosCurso INSTANCE;
             return listaCursos.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaCursos, new Curso(o.toString()), COMPARATOR);
+        if (listaCursos.size()>999)
+            return Collections.binarySearch(listaCursos, new Curso(o.toString()), COMPARATOR);
+        else{
+            for(Curso c:listaCursos){
+                if (c.getCodigo().equals(o.toString())) 
+                    return listaCursos.indexOf(c);
+            }
+            return -1;
+        }        
     }    
     public ObservableList<Curso> getAll() {
         return listaCursos;

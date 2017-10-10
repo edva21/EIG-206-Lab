@@ -24,11 +24,13 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {        
+    VistaInicio  inicio= new VistaInicio();
+    Modelo modelo = new Modelo();
+    Control control= new Control(inicio, modelo);
         
-        
-        VistaAdministrador vista= new VistaAdministrador();
+        /*VistaAdministrador vista= new VistaAdministrador();
         ModeloAdministrador modelo= new ModeloAdministrador();
-        ControlAdministrador control = new ControlAdministrador(modelo, vista);
+        ControlAdministrador control = new ControlAdministrador(modelo, vista);*/
         
     }
 

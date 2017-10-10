@@ -67,7 +67,16 @@ private static AccesoDatosCiclo INSTANCE;
             return listaCicloes.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaCicloes, new Ciclo(o.toString()), COMPARATOR);
+        if (listaCicloes.size()>999)
+            return Collections.binarySearch(listaCicloes, new Ciclo(o.toString()), COMPARATOR);
+        else{
+            for (Ciclo c:listaCicloes) {
+                if (c.getCodigo().equals(o.toString()))
+                    return listaCicloes.indexOf(o.toString());
+            }
+            return -1;
+        }
+        
     }    
     public ObservableList<Ciclo> getAll() {
         return listaCicloes;

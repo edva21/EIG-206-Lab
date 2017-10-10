@@ -65,7 +65,15 @@ private static AccesoDatosNota INSTANCE;
             return listaNotaes.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaNotaes, new Nota(o.toString()), COMPARATOR);
+          if (listaNotaes.size()>999)
+            return Collections.binarySearch(listaNotaes, new Nota(o.toString()), COMPARATOR);
+        else{
+            for(Nota n:listaNotaes){
+                if (n.getId().equals(o.toString())) 
+                    return listaNotaes.indexOf(n);
+            }
+            return -1;
+        }  
     }    
     public ObservableList<Nota> getAll() {
         return listaNotaes;

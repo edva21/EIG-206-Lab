@@ -67,7 +67,15 @@ private static AccesoDatosGrupo INSTANCE;
             return listaGrupoes.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaGrupoes, new Grupo(o.toString()), COMPARATOR);
+        if (listaGrupoes.size()>999)
+            return Collections.binarySearch(listaGrupoes, new Grupo(o.toString()), COMPARATOR);
+        else{
+            for(Grupo g:listaGrupoes){
+                if (g.getId().equals(o.toString())) 
+                    return listaGrupoes.indexOf(g);
+            }
+            return -1;
+        }        
     }    
     public ObservableList<Grupo> getAll() {
         return listaGrupoes;

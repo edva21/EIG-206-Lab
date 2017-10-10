@@ -66,7 +66,16 @@ private static AccesoDatosCarrera INSTANCE;
             return listaCarreraes.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaCarreraes, new Carrera(o.toString()), COMPARATOR);
+        if (listaCarreraes.size()>999)
+            return Collections.binarySearch(listaCarreraes, new Carrera(o.toString()), COMPARATOR);        
+        else
+        {
+            for (Carrera c:listaCarreraes) {
+                if (c.getCodigo().equals(o.toString()))
+                    return Collections.binarySearch(listaCarreraes, new Carrera(o.toString()), COMPARATOR);                
+            }
+            return -1;
+        }
     }    
     public ObservableList<Carrera> getAll() {
         return listaCarreraes;

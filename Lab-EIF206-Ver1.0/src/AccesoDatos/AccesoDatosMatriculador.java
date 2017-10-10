@@ -65,7 +65,15 @@ private static AccesoDatosMatriculador INSTANCE;
             return listaMatriculadores.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaMatriculadores, new Matriculador(o.toString()), COMPARATOR);
+         if (listaMatriculadores.size()>999)
+            return Collections.binarySearch(listaMatriculadores, new Matriculador(o.toString()), COMPARATOR);
+        else{
+            for(Matriculador m:listaMatriculadores){
+                if (m.getCedulaOPassaporte().equals(o.toString())) 
+                    return listaMatriculadores.indexOf(m);
+            }
+            return -1;
+        }        
     }    
     public ObservableList<Matriculador> getAll() {
         return listaMatriculadores;

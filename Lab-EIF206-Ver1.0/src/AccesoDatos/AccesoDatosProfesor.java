@@ -65,7 +65,15 @@ private static AccesoDatosProfesor INSTANCE;
             return listaProfesores.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaProfesores, new Profesor(o.toString()), COMPARATOR);
+        if (listaProfesores.size()>999)
+            return Collections.binarySearch(listaProfesores, new Profesor(o.toString()), COMPARATOR);
+        else{
+            for(Profesor p:listaProfesores){
+                if (p.getCedulaOPassaporte().equals(o.toString())) 
+                    return listaProfesores.indexOf(p);
+            }
+            return -1;
+        } 
     }    
     public ObservableList<Profesor> getAll() {
         return listaProfesores;

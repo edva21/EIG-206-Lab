@@ -70,7 +70,15 @@ private static AccesoDatosEstudiante INSTANCE;
             return listaEstudiantees.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaEstudiantees, new Estudiante(o.toString()), COMPARATOR);
+        if (listaEstudiantees.size()>999)
+            return Collections.binarySearch(listaEstudiantees, new Estudiante(o.toString()), COMPARATOR);
+        else{
+            for(Estudiante e:listaEstudiantees){
+                if (e.getCedulaOPassaporte().equals(o.toString())) 
+                    return listaEstudiantees.indexOf(e);
+            }
+            return -1;
+        } 
     }    
     public ObservableList<Estudiante> getAll() {
         return listaEstudiantees;

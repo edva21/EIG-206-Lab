@@ -69,7 +69,17 @@ public class AccesoDatosAdministrador {
             return listaAdministradores.get(pisition);
     }
     private int buscar(Object o) {                        
-        return Collections.binarySearch(listaAdministradores, new Administrador(o.toString(), null, null, null, null, null, null, null), COMPARATOR);
+        if (listaAdministradores.size()>999)
+            return Collections.binarySearch(listaAdministradores, new Administrador(o.toString(), null, null, null, null, null, null, null), COMPARATOR);
+        else
+        {
+            for (Administrador a:listaAdministradores) {
+                if (a.getCedulaOPassaporte().equals(o.toString())) {
+                    return listaAdministradores.indexOf(a);
+                }
+            }
+            return -1;
+        }
     }    
     public ObservableList<Administrador> getAll() {
         return listaAdministradores;
