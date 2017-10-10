@@ -7,12 +7,14 @@ package Control;
 
 import Datos.Datos;
 import Dto.AdministradorDto;
+import LogicaDeNegocio.Administrador;
 
 import Modelo.Modelo;
 import Modelo.Modelos.ModeloAdministrador;
 import Vista.VistaAdministrador;
 import Vista.VistaInicio;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.logging.Level;
@@ -58,6 +60,7 @@ public class Control implements EventHandler{
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }        
+         AccesoDatos.AccesoDatosAdministrador.getInstance().getAll().forEach(x->System.out.println(x.getClave()));
         this.vista = vista;
         this.modelo = modelo;
         vista.setControl(this);
@@ -108,10 +111,11 @@ public class Control implements EventHandler{
                     modelo.setIdentification(vista.getLogInVista().getIdentificacionTxtId().getText());
                     modelo.setClave(vista.getLogInVista().getClaveTxtId().getText());
                     if (modelo.logIn()) {
-                    vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, "Bienvenido(a) "+modelo.getLogged().getNombre(), ButtonType.OK);                                            
+                    vista.getAlertDispatcher().setAlert(Alert.AlertType.CONFIRMATION, "Bienvenido(a) "+modelo.getLogged().getNombre(), ButtonType.OK);                                            
+                    validateMenuIems();
                     this.vista.getPrincipal().getStage().show();
                     this.vista.getLogInVista().getStage().hide();   
-                    validateMenuIems();
+                    
                     }
                     else                    
                         vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, "Usuario o Contrasenha Incorrecta", ButtonType.OK);                                            
@@ -126,16 +130,17 @@ public class Control implements EventHandler{
         }
     } 
     private void validateMenuIems(){
+        vista.getPrincipal().getMenuBar().getMenus().stream().forEach(x->x.setDisable(false));
         String aux=modelo.getHandledTypeOfUser();
         if (aux.equals("null"))
             vista.getPrincipal().getMenuBar().getMenus().filtered(x->!x.getText().equals("LogIn")&&!x.getText().equals("Help")).forEach(x->x.setDisable(true));
-        if (aux.equals(LogicaDeNegocio.Administrador.class.toString())) 
+        else if (aux.equals(LogicaDeNegocio.Administrador.class.toString())) 
             vista.getPrincipal().getMenuBar().getMenus().filtered(x->!x.getText().equals("Administrador")&&!x.getText().equals("Help")&&!x.getText().equals("LogIn")).forEach(x->x.setDisable(true));
-        if (aux.equals(LogicaDeNegocio.Estudiante.class.toString()))
+        else if (aux.equals(LogicaDeNegocio.Estudiante.class.toString()))
             vista.getPrincipal().getMenuBar().getMenus().filtered(x->!x.getText().equals("Estudiante")&&!x.getText().equals("Help")&&!x.getText().equals("LogIn")).forEach(x->x.setDisable(true));
-        if (aux.equals(LogicaDeNegocio.Matriculador.class.toString()))
+        else if (aux.equals(LogicaDeNegocio.Matriculador.class.toString()))
             vista.getPrincipal().getMenuBar().getMenus().filtered(x->!x.getText().equals("Matriculador")&&!x.getText().equals("Help")&&!x.getText().equals("LogIn")).forEach(x->x.setDisable(true));
-        if (aux.equals(LogicaDeNegocio.Profesor.class.toString()))
+        else if (aux.equals(LogicaDeNegocio.Profesor.class.toString()))
             vista.getPrincipal().getMenuBar().getMenus().filtered(x->!x.getText().equals("Profesor")&&!x.getText().equals("Help")&&!x.getText().equals("LogIn")).forEach(x->x.setDisable(true));
     }
 }

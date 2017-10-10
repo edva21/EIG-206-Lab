@@ -7,12 +7,14 @@ package lab.eif206.ver1.pkg0;
 
 import Control.Control;
 import Control.ControlAdministrador;
+import LogicaDeNegocio.Administrador;
 import Modelo.Modelo;
 import Modelo.Modelos.ModeloAdministrador;
 import Vista.Inicio.LogInVista;
 import Vista.Inicio.PrimeraEscenaVista;
 import Vista.VistaAdministrador;
 import Vista.VistaInicio;
+import java.time.LocalDate;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -23,15 +25,11 @@ import javafx.stage.Stage;
 public class NewFXMain extends Application {
     
     @Override
-    public void start(Stage primaryStage) {        
+    public void start(Stage primaryStage) {                
     VistaInicio  inicio= new VistaInicio();
     Modelo modelo = new Modelo();
     Control control= new Control(inicio, modelo);
-        
-        /*VistaAdministrador vista= new VistaAdministrador();
-        ModeloAdministrador modelo= new ModeloAdministrador();
-        ControlAdministrador control = new ControlAdministrador(modelo, vista);*/
-        
+                        
     }
 
     /**
