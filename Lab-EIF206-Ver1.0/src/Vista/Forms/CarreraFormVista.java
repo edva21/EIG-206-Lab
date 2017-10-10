@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -40,6 +41,7 @@ public class CarreraFormVista {
         tituloTxtFld = (TextField) root.lookup("#tituloTxtFld");
         yesBtn = (Button) root.lookup("#yesBtn");
         noBtn = (Button) root.lookup("#noBtn");
+        stage.initStyle(StageStyle.UNDECORATED);
     }
         public void fillForm(Carrera a){    
         setAllTextIeldsEnable(true);

@@ -30,16 +30,11 @@ import javafx.stage.Stage;
  */
 public class AdministradorPrincipalVista {
 
-   
-
-    
-
-    
     private ControlAdministrador control;
     private Stage stage;
     private Parent root;
     private Scene scene;
-    private Button agregarBtn,eliminarBtn,editarBtn;
+    private Button agregarBtn;
     private TableView<Administrador> table;
     private ListView<Administrador> administradoresListView;
     private ArrayList<TableColumn<Administrador,String>> admiTableColumns;
@@ -56,9 +51,7 @@ public class AdministradorPrincipalVista {
         stage = new Stage();
         stage.setScene(scene);
         
-        agregarBtn=(Button) root.lookup("#agregarBtn");
-        eliminarBtn=(Button) root.lookup("#eliminarBtn");
-        editarBtn=(Button) root.lookup("#editarBtn");
+        agregarBtn=(Button) root.lookup("#agregarBtn");        
         table=(TableView<Administrador>) root.lookup("#table");
         
         
@@ -108,30 +101,7 @@ public class AdministradorPrincipalVista {
     /**
      * @return the eliminarBtn
      */
-    public Button getEliminarBtn() {
-        return eliminarBtn;
-    }
-
-    /**
-     * @param eliminarBtn the eliminarBtn to set
-     */
-    public void setEliminarBtn(Button eliminarBtn) {
-        this.eliminarBtn = eliminarBtn;
-    }
-
-    /**
-     * @return the editarBtn
-     */
-    public Button getEditarBtn() {
-        return editarBtn;
-    }
-
-    /**
-     * @param editarBtn the editarBtn to set
-     */
-    public void setEditarBtn(Button editarBtn) {
-        this.editarBtn = editarBtn;
-    }
+ 
 
     /**
      * @return the table
@@ -184,12 +154,11 @@ public class AdministradorPrincipalVista {
      * @param control the control to set
      */
     public void setControl(ControlAdministrador control) {
-        this.control = control;
-        eliminarBtn.setOnAction(control);
-        agregarBtn.setOnAction(control);
-        editarBtn.setOnAction(control);   
+        this.control = control;        
+        agregarBtn.setOnAction(control);        
         stage.setOnCloseRequest(control);
-        //this.table.setOnMouseClicked(control);
+        this.table.setOnMouseClicked(control);
+        
     }
     /**
      * @return the stage

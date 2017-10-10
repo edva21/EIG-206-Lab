@@ -29,8 +29,7 @@ public class ControlCarrera implements EventHandler{
     private Modelo.Modelos.ModeloCarrera modelo;    
     private Vista.VistaCarrera vista;  
     private Datos datos;
-    public ControlCarrera(ModeloCarrera modelo, VistaCarrera vista) {
-        datos = new Datos();
+    public ControlCarrera(ModeloCarrera modelo, VistaCarrera vista) {        
         this.modelo= modelo;
         this.vista = vista;
         for (int i = 0; i < Carrera.getAtributesNames().length; i++) {
@@ -41,7 +40,20 @@ public class ControlCarrera implements EventHandler{
         vista.getPrincipal().getTable().setItems(AccesoDatos.AccesoDatosCarrera.getInstance().getAll());
         vista.getPrincipal().getStage().show();
     }    
+    
+    /**
+     * @return the datos
+     */
+    public Datos getDatos() {
+        return datos;
+    }
 
+    /**
+     * @param datos the datos to set
+     */
+    public void setDatos(Datos datos) {
+        this.datos = datos;
+    }
     @Override
     public void handle(Event event) {
       if (event instanceof ActionEvent) {
@@ -114,7 +126,7 @@ public class ControlCarrera implements EventHandler{
                 if (((WindowEvent)event).getEventType().equals(WindowEvent.WINDOW_CLOSE_REQUEST)) {                        
                     ArrayList<CarreraDto> carrerasDtos = new ArrayList<CarreraDto>();
                     AccesoDatos.AccesoDatosCarrera.getInstance().getAll().stream().forEach(x->carrerasDtos.add(new CarreraDto(x)));
-                    datos.guardarDatos(carrerasDtos);
+                    getDatos().guardarDatos(carrerasDtos);
                 }            
         }
     }

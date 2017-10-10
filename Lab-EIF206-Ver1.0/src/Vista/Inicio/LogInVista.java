@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -29,7 +30,8 @@ public class LogInVista {
     private Parent root;
     private Scene scene;
     private Button logInBtn,cancelarBtn;
-    private TextField identificacionTxtId,claveTxtId;
+    private TextField identificacionTxtId;
+    private PasswordField claveTxtId;
 
     public LogInVista() {
           
@@ -40,7 +42,7 @@ public class LogInVista {
         }
         scene = new Scene(getRoot());
         identificacionTxtId=(TextField) root.lookup("#identificacionTxtId");
-        claveTxtId=(TextField) root.lookup("#claveTxtId");
+        claveTxtId= (PasswordField) root.lookup("#claveTxtFld");
         logInBtn= (Button) root.lookup("#logInBtn");
         cancelarBtn= (Button) root.lookup("#cancelarBtn");
         stage = new Stage();
@@ -158,9 +160,8 @@ public class LogInVista {
     /**
      * @param claveTxtId the claveTxtId to set
      */
-    public void setClaveTxtId(TextField claveTxtId) {
+    public void setClaveTxtId(PasswordField claveTxtId) {
         this.claveTxtId = claveTxtId;
-    }
-    
+    }    
     
 }

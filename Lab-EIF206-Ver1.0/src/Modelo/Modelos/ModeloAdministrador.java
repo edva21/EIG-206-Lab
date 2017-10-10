@@ -7,17 +7,14 @@ package Modelo.Modelos;
 
 import LogicaDeNegocio.Administrador;
 import Vista.AlertDispatcher;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Observable;
+import java.util.ArrayList;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-import javafx.util.converter.LocalDateStringConverter;
+
 
 /**
  *
@@ -29,9 +26,9 @@ public class ModeloAdministrador {
     public boolean validateTableSelection(TableView<Administrador> table){
         if (table.getSelectionModel().isEmpty())
             return false;       
-         if (table.getSelectionModel().getSelectedItem()==null)
+        if (table.getSelectionModel().selectedItemProperty().getValue()==null)
             return false;      
-         else   return true;
+        else   return true;
     }
     public String getValidateTableSelectionMessage(TableView<Administrador> table){
         if (table.getSelectionModel().isEmpty())
@@ -62,7 +59,7 @@ public class ModeloAdministrador {
             return false;        
         else if (AccesoDatos.AccesoDatosAdministrador.getInstance().get(a.getCedulaOPassaporte())!=null) 
             return false;
-        else if (a.getApellido1().length()==0||a.getCedulaOPassaporte().length()==0||a.getClave().length()==0||a.getNombre().length()==0) 
+        else if (!validateAdministrador(a)) 
             return false;            
         else
         {
@@ -75,7 +72,7 @@ public class ModeloAdministrador {
             return false;        
         else if (AccesoDatos.AccesoDatosAdministrador.getInstance().get(a.getCedulaOPassaporte())==null) 
             return false;
-        else if (a.getApellido1().length()==0||a.getCedulaOPassaporte().length()==0||a.getClave().length()==0||a.getNombre().length()==0) 
+        else if (!validateAdministrador(a)) 
             return false;            
         else
         {
@@ -133,7 +130,13 @@ public class ModeloAdministrador {
         else
             return "No hay Problema";
     }
-    public void OrderTableViewInfo(TableColumn<Administrador, String> tablecolumn,String columnName){
+    public void setTableColumnsNames(ArrayList<TableColumn<Administrador,String>> columns){
+        for (int i = 0; i < Administrador.getClassNames().length; i++) {
+            columns.add(new TableColumn<Administrador, String>(Administrador.getClassNames()[i]));   //Add names to Columns' headers
+            OrderTableViewInfo(columns.get(i),Administrador.getClassNames()[i]);            
+        }
+    }
+    private void OrderTableViewInfo(TableColumn<Administrador, String> tablecolumn,String columnName){
         switch(columnName){//Depending on the Header's Name, it assings a specific value of the object to a specific column
                 case Administrador.ATRIBUTO_APELLIDO1:                        
                 tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
@@ -194,5 +197,26 @@ public class ModeloAdministrador {
                 });
                     break;
             }
+    }
+    private boolean validateAdministrador(Administrador a){
+        if (a==null)
+            return false;
+        else if (a.getFechaNacimiento()==null)
+            return false;
+        else if (a.getApellido1().equals(""))
+            return false;
+        else if (a.getApellido2().equals(""))
+            return false;
+        else if (a.getCedulaOPassaporte().equals(""))
+            return false;
+        else if (a.getClave().equals(""))
+            return false;
+        else if (a.getEmail().equals(""))
+            return false;
+        else if (a.getNombre().equals(""))
+            return false;
+        else if (a.getTelefono().equals(""))
+            return false;
+        else return true;
     }
 }

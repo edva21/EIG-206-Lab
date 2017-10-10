@@ -20,6 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.util.converter.LocalDateStringConverter;
 import javax.swing.JOptionPane;
@@ -29,6 +30,7 @@ import javax.swing.JOptionPane;
  * @author edva5
  */
 public class AdministradorFormVista {   
+
     private ControlAdministrador control;
     private Parent root;
     private Stage stage;
@@ -36,7 +38,7 @@ public class AdministradorFormVista {
     private TextField emailTxtFld,telefonoTxtFld,apellido2TxtFld,apellido1TxtFld,nombreTxtFld,idTxtFld;
     private PasswordField claveTxtFld;
     private DatePicker datePicker;
-    private Button yesBtn,noBtn;
+    private Button yesBtn,noBtn,eliminarBtn;
     public AdministradorFormVista() {
          try {
             this.root = FXMLLoader.load(getClass().getResource("/Vista/XFMLDocuments/AdministradorForm.fxml"));
@@ -45,7 +47,7 @@ public class AdministradorFormVista {
         }         
          scene= new Scene(root);
          stage = new Stage();         
-         
+         eliminarBtn=(Button) root.lookup("#eliminarBtn");
          yesBtn= (Button) root.lookup("#yesBtn");
          noBtn= (Button) root.lookup("#noBtn");
          claveTxtFld = (PasswordField) root.lookup("#claveTxtFld");
@@ -58,9 +60,9 @@ public class AdministradorFormVista {
          datePicker = (DatePicker) root.lookup("#datePicker");
          datePicker.setEditable(false);
          
-         noBtn.setText("Cancelar");         
-         
+         noBtn.setText("Cancelar");                  
          stage.setScene(scene);
+         stage.initStyle(StageStyle.UNDECORATED);
     }
     public void clearForm(){        
         setAllTextIeldsEnable(true);        
@@ -88,7 +90,7 @@ public class AdministradorFormVista {
          apellido2TxtFld.setText(a.getApellido2());
          apellido1TxtFld.setText(a.getApellido1());
          nombreTxtFld.setText(a.getNombre());
-         //datePicker.set
+         datePicker.setValue(a.getFechaNacimiento());
     }
     public void fillFormDiabled(Administrador a){            
         idTxtFld.setText(a.getCedulaOPassaporte());
@@ -129,6 +131,7 @@ public class AdministradorFormVista {
         
         yesBtn.setOnAction(control);
         noBtn.setOnAction(control);
+        getEliminarBtn().setOnAction(control);
         stage.setOnCloseRequest(control);
     }
 
@@ -290,5 +293,19 @@ public class AdministradorFormVista {
      */
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+    
+    /**
+     * @return the eliminarBtn
+     */
+    public Button getEliminarBtn() {
+        return eliminarBtn;
+    }
+
+    /**
+     * @param eliminarBtn the eliminarBtn to set
+     */
+    public void setEliminarBtn(Button eliminarBtn) {
+        this.eliminarBtn = eliminarBtn;
     }
 }

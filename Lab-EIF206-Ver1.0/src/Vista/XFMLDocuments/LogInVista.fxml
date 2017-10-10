@@ -20,6 +20,6 @@
       <PasswordField fx:id="claveTxtFld" layoutX="121.0" layoutY="108.0" prefHeight="26.0" prefWidth="152.0" />
       <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clave" />
       <Button fx:id="logInBtn" layoutX="69.0" layoutY="170.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="84.0" text="LogIn" />
-      <Button fx:id="cancelarBtn" layoutX="159.0" layoutY="170.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #db1859; -fx-border-color: #f2a998;" text="Cancelar" />
+      <Button fx:id="cancelarBtn" layoutX="169.0" layoutY="170.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="84.0" text="Cancelar" />
    </children>
 </Pane>

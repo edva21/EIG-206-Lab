@@ -14,13 +14,16 @@ import Vista.Inicio.PrimeraEscenaVista;
  * @author edva5
  */
 public class VistaInicio {
+
     private Control control;
     private LogInVista logInVista;
     private PrimeraEscenaVista principal; 
+    private AlertDispatcher alertDispatcher;
 
     public VistaInicio() {
         logInVista=new LogInVista();
         principal = new PrimeraEscenaVista();
+        alertDispatcher = new AlertDispatcher();
     }
     
     /**
@@ -66,4 +69,18 @@ public class VistaInicio {
     public void setPrincipal(PrimeraEscenaVista principal) {
         this.principal = principal;
     }    
+    
+    /**
+     * @return the alertDispatcher
+     */
+    public AlertDispatcher getAlertDispatcher() {
+        return alertDispatcher;
+    }
+
+    /**
+     * @param alertDispatcher the alertDispatcher to set
+     */
+    public void setAlertDispatcher(AlertDispatcher alertDispatcher) {
+        this.alertDispatcher = alertDispatcher;
+    }
 }

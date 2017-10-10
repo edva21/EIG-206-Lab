@@ -12,11 +12,39 @@
       <menus>
             <Menu fx:id="logInMnu" mnemonicParsing="false" text="LogIn">
               <items>
-                  <MenuItem fx:id="adnimistradorMnuItm" mnemonicParsing="false" text="Como Administrador" />
+                  <MenuItem fx:id="administradorMnuItm" mnemonicParsing="false" text="Como Administrador" />
                 <MenuItem fx:id="estudianteMnuItm" mnemonicParsing="false" text="Como Estudiante" />
                   <MenuItem fx:id="profesorMnuItm" mnemonicParsing="false" text="Como Profesor" />
                   <MenuItem fx:id="matriculadorMnuItm" mnemonicParsing="false" text="Como Matriculador" />
+                  <MenuItem fx:id="matriculadorMnuItm1" mnemonicParsing="false" text="LogOut" />
               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Administrador">
+              <items>
+                <MenuItem fx:id="mantenimientoCarreraMnuItm" mnemonicParsing="false" text="Mantenimiento Carrera" />
+                  <MenuItem fx:id="mantenimientoCursoMnuItm" mnemonicParsing="false" text="Mantenimiento Curso" />
+                  <MenuItem fx:id="mantenimientoProfesorMnuItm" mnemonicParsing="false" text="Mantenimiento Profesor" />
+                  <MenuItem fx:id="mantenimientoAlumnoMnuItm" mnemonicParsing="false" text="Mantenimiento Alumno" />
+                  <MenuItem fx:id="mantenimientoCicloMnuItm" mnemonicParsing="false" text="Mantenimiento Ciclo" />
+                  <MenuItem fx:id="ofertaAcademicaMnuItm" mnemonicParsing="false" text="Oferta Academica" />
+                  <MenuItem fx:id="mantenimientoAdministradorMnuItm" mnemonicParsing="false" text="Mantenimiento Administradores" />
+                  <MenuItem fx:id="mantenimientoMatriculadorMnuItm" mnemonicParsing="false" text="Mantenimiento Matriculadores" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Estudiante">
+               <items>
+                  <MenuItem fx:id="consultaDeHistorialMnuItm" mnemonicParsing="false" text="Consulta de Historial" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Matriculador">
+               <items>
+                  <MenuItem fx:id="matricularMnuItm" mnemonicParsing="false" text="Matricular" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Profesor">
+               <items>
+                  <MenuItem fx:id="registrarNotasMnuItm" mnemonicParsing="false" text="Registrar Notas" />
+               </items>
             </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
