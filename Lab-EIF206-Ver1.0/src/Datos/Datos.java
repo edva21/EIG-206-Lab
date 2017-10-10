@@ -51,7 +51,7 @@ public class Datos {
             files.add(new File(FICHERO_GRUPO));
             files.add(new File(FICHERO_MATRICULADOR));
             files.add(new File(FICHERO_NOTA));
-            files.add(new File(FICHERO_PROFESOR));
+            files.add(new File(FICHERO_PROFESOR));            
             files.stream().forEach(x->{
                 try {
                     x.createNewFile();

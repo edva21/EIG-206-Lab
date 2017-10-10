@@ -153,7 +153,7 @@ public class ControlAdministrador implements EventHandler{
                     AccesoDatos.AccesoDatosAdministrador.getInstance().getAll().stream().forEach(x->administradorDtos.add(new AdministradorDto(x)));
                     datos.guardarDatos(administradorDtos);
                 }            
-        }
+        }        
     }
 
    

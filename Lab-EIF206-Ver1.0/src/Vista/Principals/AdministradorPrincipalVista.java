@@ -189,6 +189,7 @@ public class AdministradorPrincipalVista {
         agregarBtn.setOnAction(control);
         editarBtn.setOnAction(control);   
         stage.setOnCloseRequest(control);
+        //this.table.setOnMouseClicked(control);
     }
     /**
      * @return the stage

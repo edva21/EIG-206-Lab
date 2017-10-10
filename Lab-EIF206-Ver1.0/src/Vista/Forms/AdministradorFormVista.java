@@ -126,6 +126,7 @@ public class AdministradorFormVista {
      */
     public void setControl(ControlAdministrador control) {
         this.control = control;
+        
         yesBtn.setOnAction(control);
         noBtn.setOnAction(control);
         stage.setOnCloseRequest(control);
