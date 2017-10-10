@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.SubScene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="306.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SubScene fill="#d05d5d" height="200.0" layoutX="50.0" layoutY="8.0" width="218.0">
+        <root>
+          <Region />
+        </root>
+      </SubScene>
+      <TextField fx:id="identificacionTxtId" layoutX="121.0" layoutY="52.0" />
+      <Text layoutX="14.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Identificacion:" />
+      <PasswordField fx:id="claveTxtFld" layoutX="121.0" layoutY="108.0" prefHeight="26.0" prefWidth="152.0" />
+      <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clave" />
+      <Button fx:id="logInBtn" layoutX="69.0" layoutY="170.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="84.0" text="LogIn" />
+      <Button fx:id="cancelarBtn" layoutX="169.0" layoutY="170.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="84.0" text="Cancelar" />
+   </children>
+</Pane>
