@@ -19,6 +19,7 @@ public class ProfesorDto extends PersonaDto implements Serializable{
     private ArrayList<GrupoDto> grupos;
     public ProfesorDto() {        
         super();        
+        grupos= new ArrayList<GrupoDto>();
     }
 
     public ProfesorDto(Profesor p) {

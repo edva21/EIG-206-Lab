@@ -5,53 +5,49 @@
  */
 package Vista.Principals;
 
-import Control.ControlProfesor;
-import LogicaDeNegocio.Profesor;
+import Control.ControlMatriculador;
+import LogicaDeNegocio.Matriculador;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
-import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+
 /**
  *
  * @author edva5
  */
-public class ProfesorPrincipalVista {
-    
-    private Control.ControlProfesor control;
+public class MatriculadorPrincipalVista {
+     private Control.ControlMatriculador control;
     private Stage stage;
     private Parent root;
     private Scene scene;
     private Button agregarBtn;
-    private TableView<Profesor> table;
+    private TableView<Matriculador> table;
     
-    private ArrayList<TableColumn<Profesor,String>> admiTableColumns;
+    private ArrayList<TableColumn<Matriculador,String>> admiTableColumns;
     private Alert alert;
-    public ProfesorPrincipalVista() {
+    public MatriculadorPrincipalVista() {
         
         admiTableColumns= new ArrayList<>();
         try {
             this.root = FXMLLoader.load(getClass().getResource("/Vista/XFMLDocuments/AdministradorVista.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(ControlProfesor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlMatriculador.class.getName()).log(Level.SEVERE, null, ex);
         }
         scene = new Scene(getRoot());
         stage = new Stage();
         stage.setScene(scene);
         
         agregarBtn=(Button) root.lookup("#agregarBtn");        
-        table=(TableView<Profesor>) root.lookup("#table");
+        table=(TableView<Matriculador>) root.lookup("#table");
         
         
     }
@@ -105,27 +101,27 @@ public class ProfesorPrincipalVista {
     /**
      * @return the table
      */
-    public TableView<Profesor> getTable() {
+    public TableView<Matriculador> getTable() {
         return table;
     }
 
     /**
      * @param table the table to set
      */
-    public void setTable(TableView<Profesor> table) {
+    public void setTable(TableView<Matriculador> table) {
         this.table = table;
     }
     /**
      * @return the admiTableColumns
      */
-    public ArrayList<TableColumn<Profesor,String>> getAdmiTableColumns() {
+    public ArrayList<TableColumn<Matriculador,String>> getAdmiTableColumns() {
         return admiTableColumns;
     }
 
     /**
      * @param admiTableColumns the admiTableColumns to set
      */
-    public void setAdmiTableColumns(ArrayList<TableColumn<Profesor,String>> admiTableColumns) {
+    public void setAdmiTableColumns(ArrayList<TableColumn<Matriculador,String>> admiTableColumns) {
         this.admiTableColumns = admiTableColumns;        
     }
     /**
@@ -138,7 +134,7 @@ public class ProfesorPrincipalVista {
     /**
      * @param control the control to set
      */
-    public void setControl(Control.ControlProfesor control) {
+    public void setControl(Control.ControlMatriculador control) {
         this.control = control;        
         agregarBtn.setOnAction(control);        
         stage.setOnCloseRequest(control);
@@ -169,5 +165,4 @@ public class ProfesorPrincipalVista {
      * @param <error>
      * @param alet the alet to set
      */
-    
 }

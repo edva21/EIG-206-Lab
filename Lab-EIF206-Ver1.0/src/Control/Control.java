@@ -13,9 +13,11 @@ import LogicaDeNegocio.Administrador;
 import Modelo.Modelo;
 import Modelo.Modelos.ModeloAdministrador;
 import Modelo.Modelos.ModeloCarrera;
+import Modelo.Modelos.ModeloProfesor;
 import Vista.VistaAdministrador;
 import Vista.VistaCarrera;
 import Vista.VistaInicio;
+import Vista.VistaProfesor;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -43,12 +45,16 @@ public class Control implements EventHandler{
     Modelo modelo;
     //Modelos
     ModeloAdministrador modeloAdministrador;
+    ModeloProfesor modeloProfesor;
     ModeloCarrera modeloCarrera;
+    
     //Vistas
     Vista.VistaAdministrador vistaAdministrador;
+    Vista.VistaProfesor vistaProfesor;
     VistaCarrera vistaCarrera;
     //Controles
     ControlAdministrador controlAdministrador;
+    ControlProfesor controlProfesor;
     ControlCarrera controlCarrera;
     
     public Control() {
@@ -82,8 +88,7 @@ public class Control implements EventHandler{
         if (event.getSource() instanceof MenuItem) {            
             MenuItem menuItem= (MenuItem) event.getSource();               
             switch(((MenuItem)event.getSource()).getId()){
-                case "logOutMnuItm":  
-                    
+                case "logOutMnuItm":                      
                     vista.getAlertDispatcher().setAlert(Alert.AlertType.WARNING, "Quiere desloguearse "+modelo.getLogged().getNombre()+"?", ButtonType.YES, ButtonType.CANCEL);
                     if (vista.getAlertDispatcher().getResult().get().equals(ButtonType.YES)) {                                                
                         modelo.LogOut();
@@ -127,6 +132,13 @@ public class Control implements EventHandler{
                     controlCarrera.setDatos(datos);
                     controlCarrera.setSuperControl(this);
                     break;
+                case "mantenimientoProfesorMnuItm":
+                    modeloProfesor = new ModeloProfesor();
+                    vistaProfesor = new VistaProfesor();
+                    controlProfesor = new ControlProfesor(modeloProfesor, vistaProfesor);
+                    controlProfesor.setDatos(datos);
+                    controlProfesor.setSuperControl(this);
+                    break;
             }
         }
         else if (event.getSource() instanceof Button) {            
@@ -138,8 +150,7 @@ public class Control implements EventHandler{
                     vista.getAlertDispatcher().setAlert(Alert.AlertType.CONFIRMATION, "Bienvenido(a) "+modelo.getLogged().getNombre(), ButtonType.OK);                                            
                     validateMenus();
                     this.vista.getPrincipal().getStage().show();
-                    this.vista.getLogInVista().getStage().hide();   
-                    
+                    this.vista.getLogInVista().getStage().hide();                       
                     }
                     else                    
                         vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, "Usuario o Contrasenha Incorrecta", ButtonType.OK);                                            

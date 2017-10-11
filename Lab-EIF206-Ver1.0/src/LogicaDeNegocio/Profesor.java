@@ -19,20 +19,24 @@ public class Profesor extends Persona implements Serializable{
     private ArrayList<Grupo> grupos;
     public Profesor() {        
         super();
+        grupos = new ArrayList<Grupo>();
     }
     public Profesor(String cedulaOPassaporte) {
-        super(cedulaOPassaporte);        
+        super(cedulaOPassaporte);       
+        grupos = new ArrayList<Grupo>();
     }
     public Profesor(ProfesorDto p) {
         super(p);
-        this.grupos = grupos;
+        grupos = new ArrayList<Grupo>();
+        p.getGrupos().stream().forEach(x->grupos.add(new Grupo(x)));
     }
     public Profesor(ArrayList<Grupo> grupos, String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
         super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);
-        this.grupos = grupos;
+        grupos = new ArrayList<Grupo>();
     }
    public Profesor(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
         super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);
+        grupos = new ArrayList<Grupo>();
     }
 
     /**
