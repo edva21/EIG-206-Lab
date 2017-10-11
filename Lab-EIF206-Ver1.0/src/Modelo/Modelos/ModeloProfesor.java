@@ -5,7 +5,7 @@
  */
 package Modelo.Modelos;
 
-import LogicaDeNegocio.Administrador;
+import LogicaDeNegocio.Profesor;
 import Vista.AlertDispatcher;
 import java.util.ArrayList;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -15,26 +15,25 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
-
 /**
  *
  * @author edva5
  */
-public class ModeloAdministrador {    
-    public ModeloAdministrador() {
+public class ModeloProfesor {
+        public ModeloProfesor() {
     }
-    public boolean validateTableSelection(TableView<Administrador> table){
+    public boolean validateTableSelection(TableView<Profesor> table){
         if (table.getSelectionModel().isEmpty())
             return false;       
         if (table.getSelectionModel().selectedItemProperty().getValue()==null)
             return false;      
         else   return true;
     }
-    public String getValidateTableSelectionMessage(TableView<Administrador> table){
+    public String getValidateTableSelectionMessage(TableView<Profesor> table){
         if (table.getSelectionModel().isEmpty())
             return "Tabla Vacia";
         if (table.getSelectionModel().getSelectedItem()==null)
-            return "Ningun Administrador Seleccionado";
+            return "Ningun Profesor Seleccionado";
         else return "Something Went Wrong" ;
     }
     public boolean AlertResponse(AlertDispatcher alertDispatcher){
@@ -43,55 +42,55 @@ public class ModeloAdministrador {
         else
             return false;
     }
-    public boolean eliminar(Administrador a){
+    public boolean eliminar(Profesor a){
         if (a==null)
             return false;        
-        else if (AccesoDatos.AccesoDatosAdministrador.getInstance().get(a.getCedulaOPassaporte())==null) 
+        else if (AccesoDatos.AccesoDatosProfesor.getInstance().get(a.getCedulaOPassaporte())==null) 
             return false;
         else
         {
-            AccesoDatos.AccesoDatosAdministrador.getInstance().eliminar(a.getCedulaOPassaporte());
+            AccesoDatos.AccesoDatosProfesor.getInstance().eliminar(a.getCedulaOPassaporte());
             return true;
         }
     }
-    public boolean agregar(Administrador a){
+    public boolean agregar(Profesor a){
         if (a==null)
             return false;        
-        else if (AccesoDatos.AccesoDatosAdministrador.getInstance().get(a.getCedulaOPassaporte())!=null) 
+        else if (AccesoDatos.AccesoDatosProfesor.getInstance().get(a.getCedulaOPassaporte())!=null) 
             return false;
-        else if (!validateAdministrador(a)) 
+        else if (!validateProfesor(a)) 
             return false;            
         else
         {
-            AccesoDatos.AccesoDatosAdministrador.getInstance().insertar(a);
+            AccesoDatos.AccesoDatosProfesor.getInstance().insertar(a);
             return true;
         }
     }
-    public boolean modificar(Administrador a){
+    public boolean modificar(Profesor a){
         if (a==null)
             return false;        
-        else if (AccesoDatos.AccesoDatosAdministrador.getInstance().get(a.getCedulaOPassaporte())==null) 
+        else if (AccesoDatos.AccesoDatosProfesor.getInstance().get(a.getCedulaOPassaporte())==null) 
             return false;
-        else if (!validateAdministrador(a)) 
+        else if (!validateProfesor(a)) 
             return false;            
         else
         {
-            AccesoDatos.AccesoDatosAdministrador.getInstance().modificar(a);
+            AccesoDatos.AccesoDatosProfesor.getInstance().modificar(a);
             return true;
         }
     }
-    public String eliminarResponse(Administrador a){
+    public String eliminarResponse(Profesor a){
         if (a==null)
             return "Objeto a Eliminar esta Vacio";        
-        else if (AccesoDatos.AccesoDatosAdministrador.getInstance().get(a.getCedulaOPassaporte())==null) 
+        else if (AccesoDatos.AccesoDatosProfesor.getInstance().get(a.getCedulaOPassaporte())==null) 
             return "Objeto a Eliminar no esta en base de Datos";        
         else
             return "No hay Problema";
     }
-    public String agregarResponse(Administrador a){
+    public String agregarResponse(Profesor a){
         if (a==null)
             return "Se esta Intentando Ingresar un dato vacio";
-        else if (AccesoDatos.AccesoDatosAdministrador.getInstance().get(a.getCedulaOPassaporte())!=null) 
+        else if (AccesoDatos.AccesoDatosProfesor.getInstance().get(a.getCedulaOPassaporte())!=null) 
             return "Existe un Usuario en base de datos con la misma identificacion";
         else if (a.getApellido1().length()==0||a.getCedulaOPassaporte().length()==0||a.getClave().length()==0||a.getNombre().length()==0) 
         {
@@ -110,7 +109,7 @@ public class ModeloAdministrador {
         else
             return "No hay Problema";
     }
-    public String modificarResponse(Administrador a){
+    public String modificarResponse(Profesor a){
         if (a==null)
             return "Se esta Intentando Ingresar un dato vacio";        
         else if (a.getApellido1().length()==0||a.getCedulaOPassaporte().length()==0||a.getClave().length()==0||a.getNombre().length()==0) 
@@ -130,65 +129,65 @@ public class ModeloAdministrador {
         else
             return "No hay Problema";
     }
-    public void setTableColumnsNames(ArrayList<TableColumn<Administrador,String>> columns){
-        for (int i = 0; i < Administrador.getClassNames().length; i++) {
-            columns.add(new TableColumn<Administrador, String>(Administrador.getClassNames()[i]));   //Add names to Columns' headers
-            OrderTableViewInfo(columns.get(i),Administrador.getClassNames()[i]);            
+    public void setTableColumnsNames(ArrayList<TableColumn<Profesor,String>> columns){
+        for (int i = 0; i < Profesor.getClassNames().length; i++) {
+            columns.add(new TableColumn<Profesor, String>(Profesor.getClassNames()[i]));   //Add names to Columns' headers
+            OrderTableViewInfo(columns.get(i),Profesor.getClassNames()[i]);            
         }
     }
-    private void OrderTableViewInfo(TableColumn<Administrador, String> tablecolumn,String columnName){
+    private void OrderTableViewInfo(TableColumn<Profesor, String> tablecolumn,String columnName){
         switch(columnName){//Depending on the Header's Name, it assings a specific value of the object to a specific column
-                case Administrador.ATRIBUTO_APELLIDO1:                        
-                tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
+                case Profesor.ATRIBUTO_APELLIDO1:                        
+                tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Profesor, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Profesor, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
                         return new ReadOnlyObjectWrapper<>(p.getValue().getApellido1());
                     }
                 });            
                     break;
-                case Administrador.ATRIBUTO_APELLIDO2:
-                tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
+                case Profesor.ATRIBUTO_APELLIDO2:
+                tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Profesor, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Profesor, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
                         return new ReadOnlyObjectWrapper<>(p.getValue().getApellido2());
                     }
                 });
                     break;
-                case Administrador.ATRIBUTO_CEDULAPASAPORTE:
-                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
+                case Profesor.ATRIBUTO_CEDULAPASAPORTE:
+                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Profesor, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Profesor, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
                         return new ReadOnlyObjectWrapper<>(p.getValue().getCedulaOPassaporte());
                     }
                 });
                     break;            
-                case Administrador.ATRIBUTO_EMAIL:
-                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
+                case Profesor.ATRIBUTO_EMAIL:
+                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Profesor, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Profesor, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
                         return new ReadOnlyObjectWrapper<>(p.getValue().getEmail());
                     }
                 });
                     break;
-                case Administrador.ATRIBUTO_NOMBRE:
-                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
+                case Profesor.ATRIBUTO_NOMBRE:
+                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Profesor, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Profesor, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
                         return new ReadOnlyObjectWrapper<>(p.getValue().getNombre());
                     }
                 });
                     break;
-                case Administrador.ATRIBUTO_TELEFONO:
-                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
+                case Profesor.ATRIBUTO_TELEFONO:
+                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Profesor, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Profesor, String> p) {
                         // p.getValue() returns the Person instance for a particular TableView row
                         return new ReadOnlyObjectWrapper<>(p.getValue().getTelefono());
                     }
                 });
                     break;
-                case Administrador.ATRIBUTO_FECHA_DE_NACIMMIENTO:
-                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Administrador, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Administrador, String> p) {
+                case Profesor.ATRIBUTO_FECHA_DE_NACIMMIENTO:
+                    tablecolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Profesor, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Profesor, String> p) {
                         if (p.getValue().getFechaNacimiento()!=null) {
                             return new ReadOnlyObjectWrapper<>(p.getValue().getFechaNacimiento().toString());
                         }    
@@ -198,7 +197,7 @@ public class ModeloAdministrador {
                     break;
             }
     }
-    private boolean validateAdministrador(Administrador a){
+    private boolean validateProfesor(Profesor a){
         if (a==null)
             return false;
         else if (a.getFechaNacimiento()==null)
@@ -219,5 +218,4 @@ public class ModeloAdministrador {
             return false;
         else return true;
     }
-    
 }

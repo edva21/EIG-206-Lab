@@ -16,7 +16,7 @@
                 <MenuItem fx:id="estudianteMnuItm" mnemonicParsing="false" text="Como Estudiante" />
                   <MenuItem fx:id="profesorMnuItm" mnemonicParsing="false" text="Como Profesor" />
                   <MenuItem fx:id="matriculadorMnuItm" mnemonicParsing="false" text="Como Matriculador" />
-                  <MenuItem fx:id="matriculadorMnuItm1" mnemonicParsing="false" text="LogOut" />
+                  <MenuItem fx:id="logOutMnuItm" mnemonicParsing="false" text="LogOut" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Administrador">

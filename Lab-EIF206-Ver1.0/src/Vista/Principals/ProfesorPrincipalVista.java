@@ -5,8 +5,8 @@
  */
 package Vista.Principals;
 
-import Control.ControlAdministrador;
-import LogicaDeNegocio.Administrador;
+import Control.ControlProfesor;
+import LogicaDeNegocio.Profesor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -23,36 +23,35 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-
 /**
  *
  * @author edva5
  */
-public class AdministradorPrincipalVista {
-
-    private Control.ControlAdministrador control;
+public class ProfesorPrincipalVista {
+    
+    private Control.ControlProfesor control;
     private Stage stage;
     private Parent root;
     private Scene scene;
     private Button agregarBtn;
-    private TableView<Administrador> table;
+    private TableView<Profesor> table;
     
-    private ArrayList<TableColumn<Administrador,String>> admiTableColumns;
+    private ArrayList<TableColumn<Profesor,String>> admiTableColumns;
     private Alert alert;
-    public AdministradorPrincipalVista() {
+    public ProfesorPrincipalVista() {
         
         admiTableColumns= new ArrayList<>();
         try {
-            this.root = FXMLLoader.load(getClass().getResource("/Vista/XFMLDocuments/AdministradorVista.fxml"));
+            this.root = FXMLLoader.load(getClass().getResource("/Vista/XFMLDocuments/ProfesorVista.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(ControlAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlProfesor.class.getName()).log(Level.SEVERE, null, ex);
         }
         scene = new Scene(getRoot());
         stage = new Stage();
         stage.setScene(scene);
         
         agregarBtn=(Button) root.lookup("#agregarBtn");        
-        table=(TableView<Administrador>) root.lookup("#table");
+        table=(TableView<Profesor>) root.lookup("#table");
         
         
     }
@@ -106,27 +105,27 @@ public class AdministradorPrincipalVista {
     /**
      * @return the table
      */
-    public TableView<Administrador> getTable() {
+    public TableView<Profesor> getTable() {
         return table;
     }
 
     /**
      * @param table the table to set
      */
-    public void setTable(TableView<Administrador> table) {
+    public void setTable(TableView<Profesor> table) {
         this.table = table;
     }
     /**
      * @return the admiTableColumns
      */
-    public ArrayList<TableColumn<Administrador,String>> getAdmiTableColumns() {
+    public ArrayList<TableColumn<Profesor,String>> getAdmiTableColumns() {
         return admiTableColumns;
     }
 
     /**
      * @param admiTableColumns the admiTableColumns to set
      */
-    public void setAdmiTableColumns(ArrayList<TableColumn<Administrador,String>> admiTableColumns) {
+    public void setAdmiTableColumns(ArrayList<TableColumn<Profesor,String>> admiTableColumns) {
         this.admiTableColumns = admiTableColumns;        
     }
     /**
@@ -139,7 +138,7 @@ public class AdministradorPrincipalVista {
     /**
      * @param control the control to set
      */
-    public void setControl(Control.ControlAdministrador control) {
+    public void setControl(Control.ControlProfesor control) {
         this.control = control;        
         agregarBtn.setOnAction(control);        
         stage.setOnCloseRequest(control);

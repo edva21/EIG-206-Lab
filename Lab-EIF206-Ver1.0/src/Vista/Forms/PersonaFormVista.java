@@ -7,6 +7,9 @@ package Vista.Forms;
 
 import Control.ControlAdministrador;
 import LogicaDeNegocio.Administrador;
+import LogicaDeNegocio.Estudiante;
+import LogicaDeNegocio.Matriculador;
+import LogicaDeNegocio.Profesor;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.logging.Level;
@@ -29,9 +32,9 @@ import javax.swing.JOptionPane;
  *
  * @author edva5
  */
-public class AdministradorFormVista {   
+public class PersonaFormVista {   
 
-    private ControlAdministrador control;
+    private Control.ControlPadre control;
     private Parent root;
     private Stage stage;
     private Scene scene;
@@ -39,7 +42,7 @@ public class AdministradorFormVista {
     private PasswordField claveTxtFld;
     private DatePicker datePicker;
     private Button yesBtn,noBtn,eliminarBtn;
-    public AdministradorFormVista() {
+    public PersonaFormVista() {
          try {
             this.root = FXMLLoader.load(getClass().getResource("/Vista/XFMLDocuments/AdministradorForm.fxml"));
         } catch (IOException ex) {
@@ -64,69 +67,18 @@ public class AdministradorFormVista {
          stage.setScene(scene);
          stage.initStyle(StageStyle.UNDECORATED);
     }
-    public void clearForm(){        
-        setAllTextIeldsEnable(true);        
-        idTxtFld.setText("");
-         claveTxtFld.setText("");
-         emailTxtFld.setText("");
-         telefonoTxtFld.setText("");
-         apellido2TxtFld.setText("");
-         apellido1TxtFld.setText("");
-         nombreTxtFld.setText("");
-         datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>(){
-             @Override
-             public DateCell call(DatePicker param) {
-                 return new DateCell();
-             }
-         });
-    }
-    public void fillForm(Administrador a){    
-        setAllTextIeldsEnable(true);
-        idTxtFld.setEditable(false);
-        idTxtFld.setText(a.getCedulaOPassaporte());
-         claveTxtFld.setText(a.getClave().toString());
-         emailTxtFld.setText(a.getEmail());
-         telefonoTxtFld.setText(a.getTelefono());
-         apellido2TxtFld.setText(a.getApellido2());
-         apellido1TxtFld.setText(a.getApellido1());
-         nombreTxtFld.setText(a.getNombre());
-         datePicker.setValue(a.getFechaNacimiento());
-    }
-    public void fillFormDiabled(Administrador a){            
-        idTxtFld.setText(a.getCedulaOPassaporte());
-         claveTxtFld.setText(a.getClave().toString());
-         emailTxtFld.setText(a.getEmail());
-         telefonoTxtFld.setText(a.getTelefono());
-         apellido2TxtFld.setText(a.getApellido2());
-         apellido1TxtFld.setText(a.getApellido1());
-         nombreTxtFld.setText(a.getNombre());
-         if (a.getFechaNacimiento()!=null)
-             datePicker = new DatePicker(a.getFechaNacimiento());
-         setAllTextIeldsEnable(false);
-         //datePicker.set
-    }
-    void setAllTextIeldsEnable(boolean b){
-        idTxtFld.setEditable(b);
-        idTxtFld.setEditable(b);
-         claveTxtFld.setEditable(b);
-         emailTxtFld.setEditable(b);
-         telefonoTxtFld.setEditable(b);
-         apellido2TxtFld.setEditable(b);
-         apellido1TxtFld.setEditable(b);
-         nombreTxtFld.setEditable(b);
-         datePicker.setEditable(b);
-    }
+    
     /**
      * @return the control
      */
     public ControlAdministrador getControl() {
-        return control;
+        return (ControlAdministrador) control;
     }
 
     /**
      * @param control the control to set
      */
-    public void setControl(ControlAdministrador control) {
+    public void setControl(Control.ControlPadre control) {
         this.control = control;
         
         yesBtn.setOnAction(control);
@@ -140,10 +92,43 @@ public class AdministradorFormVista {
      */
     
    
-    public Administrador getForm(){                         
-         Administrador aux= new Administrador(idTxtFld.getText(), nombreTxtFld.getText(), apellido1TxtFld.getText(), apellido2TxtFld.getText(), telefonoTxtFld.getText(), emailTxtFld.getText(), claveTxtFld.getText(), LocalDate.now());
-         aux.setFechaNacimiento(datePicker.getValue());
-         return aux;
+    public void clearForm(){        
+        setAllTextIeldsEnable(true);        
+         getIdTxtFld().setText("");
+         getClaveTxtFld().setText("");
+         getEmailTxtFld().setText("");         
+         getTelefonoTxtFld().setText("");
+         getApellido1TxtFld().setText("");
+         getApellido2TxtFld().setText("");         
+         getNombreTxtFld().setText("");
+         getDatePicker().setDayCellFactory(new Callback<DatePicker, DateCell>(){
+             @Override
+             public DateCell call(DatePicker param) {
+                 return new DateCell();
+             }
+         });
+    }
+    public void fillForm(Administrador a){    
+        getIdTxtFld().setEditable(false);
+        getIdTxtFld().setText(a.getCedulaOPassaporte());
+        getClaveTxtFld().setText(a.getClave());
+        getEmailTxtFld().setText(a.getEmail());         
+        getTelefonoTxtFld().setText(a.getTelefono());
+        getApellido1TxtFld().setText(a.getApellido1());
+        getApellido2TxtFld().setText(a.getApellido2());         
+        getNombreTxtFld().setText(a.getNombre());
+        getDatePicker().setValue(a.getFechaNacimiento());
+    }
+
+    public void setAllTextIeldsEnable(boolean b){
+        getIdTxtFld().setEditable(b);
+        getClaveTxtFld().setEditable(b);
+        getEmailTxtFld().setEditable(b);
+        getTelefonoTxtFld().setEditable(b);
+         getApellido1TxtFld().setEditable(b);
+         getApellido2TxtFld().setEditable(b);
+         getNombreTxtFld().setEditable(b);
+         getDatePicker().setEditable(b);
     }
     
     /**
@@ -308,4 +293,19 @@ public class AdministradorFormVista {
     public void setEliminarBtn(Button eliminarBtn) {
         this.eliminarBtn = eliminarBtn;
     }
+    
+    /**
+     * @return the idTxtFld
+     */
+    public TextField getIdTxtFld() {
+        return idTxtFld;
+    }
+
+    /**
+     * @param idTxtFld the idTxtFld to set
+     */
+    public void setIdTxtFld(TextField idTxtFld) {
+        this.idTxtFld = idTxtFld;
+    }
+
 }

@@ -46,6 +46,7 @@ public class Estudiante extends Persona{
         grupos = new ArrayList<Grupo>();
         notas = new ArrayList<Nota>();
     }
+     
 
    
  

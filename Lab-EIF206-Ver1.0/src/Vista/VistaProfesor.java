@@ -6,20 +6,20 @@
 package Vista;
 
 import Vista.Forms.PersonaFormVista;
-import Vista.Principals.AdministradorPrincipalVista;
+import Vista.Principals.ProfesorPrincipalVista;
 
 /**
  *
  * @author edva5
  */
-public class VistaAdministrador {
+public class VistaProfesor {
     private PersonaFormVista form;
-    private AdministradorPrincipalVista principal;
+    private ProfesorPrincipalVista principal;
     private AlertDispatcher alertDispatcher;
-    private Control.ControlAdministrador control;
-    public VistaAdministrador() {
+    private Control.ControlProfesor control;
+    public VistaProfesor() {
         form = new PersonaFormVista();
-        principal = new AdministradorPrincipalVista();
+        principal = new ProfesorPrincipalVista();
         alertDispatcher = new AlertDispatcher();
     }
     /**
@@ -39,14 +39,14 @@ public class VistaAdministrador {
     /**
      * @return the principal
      */
-    public AdministradorPrincipalVista getPrincipal() {
+    public ProfesorPrincipalVista getPrincipal() {
         return principal;
     }
 
     /**
      * @param principal the principal to set
      */
-    public void setPrincipal(AdministradorPrincipalVista principal) {
+    public void setPrincipal(ProfesorPrincipalVista principal) {
         this.principal = principal;
     }
 
@@ -74,7 +74,7 @@ public class VistaAdministrador {
     /**
      * @param control the control to set
      */
-    public void setControl(Control.ControlAdministrador control) {
+    public void setControl(Control.ControlProfesor control) {
         this.control = control;
         getForm().setControl(control);
         getPrincipal().setControl(control);
@@ -82,5 +82,5 @@ public class VistaAdministrador {
     }
     
     
-    
+ 
 }

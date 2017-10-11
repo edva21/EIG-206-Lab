@@ -135,5 +135,7 @@ public class Modelo{
     public void setClave(String clave) {
         this.clave = clave;
     }
-
+    public void LogOut(){
+        logged=null;        
+    }
 }

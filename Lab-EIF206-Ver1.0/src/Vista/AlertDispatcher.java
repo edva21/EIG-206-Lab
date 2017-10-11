@@ -8,6 +8,7 @@ package Vista;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,6 +32,7 @@ public class AlertDispatcher {
      * @return the result
      */
     public Optional<ButtonType> getResult() {
+        JOptionPane.showConfirmDialog(null, result);
         return result;
     }
 

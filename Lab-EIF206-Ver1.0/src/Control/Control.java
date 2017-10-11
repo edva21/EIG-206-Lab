@@ -7,6 +7,7 @@ package Control;
 
 import Datos.Datos;
 import Dto.AdministradorDto;
+import Dto.CarreraDto;
 import LogicaDeNegocio.Administrador;
 
 import Modelo.Modelo;
@@ -55,9 +56,12 @@ public class Control implements EventHandler{
 
     public Control(VistaInicio vista, Modelo modelo) {        
         datos = new Datos();
-         try {
+         try {             
             ArrayList<AdministradorDto> administradoresDto= new ArrayList<>(datos.getLista(Datos.FICHERO_ADMINISTRADOR));
+            ArrayList<CarreraDto> carrerasDto= new ArrayList<>(datos.getLista(Datos.FICHERO_CARRERA));
+            
             AccesoDatos.AccesoDatosAdministrador.getInstance().setAdministradoresDto(administradoresDto);
+            AccesoDatos.AccesoDatosCarrera.getInstance().setCarreraDto(carrerasDto);
             
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,13 +75,22 @@ public class Control implements EventHandler{
         vista.getPrincipal().getStage().show();
         validateMenus();
     }
-    
-    
-
+       
     @Override
     public void handle(Event event) {
-        if (event.getSource() instanceof MenuItem) {
+        
+        if (event.getSource() instanceof MenuItem) {            
+            MenuItem menuItem= (MenuItem) event.getSource();               
             switch(((MenuItem)event.getSource()).getId()){
+                case "logOutMnuItm":  
+                    
+                    vista.getAlertDispatcher().setAlert(Alert.AlertType.WARNING, "Quiere desloguearse "+modelo.getLogged().getNombre()+"?", ButtonType.YES, ButtonType.CANCEL);
+                    if (vista.getAlertDispatcher().getResult().get().equals(ButtonType.YES)) {                                                
+                        modelo.LogOut();
+                        modelo.setHandledTypeOfUser("null");
+                        validateMenus();
+                    }                    
+                    break;
                 case "administradorMnuItm":  
                     this.vista.getPrincipal().getStage().hide();
                     this.vista.getLogInVista().getStage().show();                    
@@ -116,7 +129,7 @@ public class Control implements EventHandler{
                     break;
             }
         }
-        else if (event.getSource() instanceof Button) {
+        else if (event.getSource() instanceof Button) {            
             switch(((Button)event.getSource()).getText()){
                 case "LogIn":
                     modelo.setIdentification(vista.getLogInVista().getIdentificacionTxtId().getText());

@@ -31,7 +31,9 @@ public class Profesor extends Persona implements Serializable{
         super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);
         this.grupos = grupos;
     }
-   
+   public Profesor(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
+        super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);
+    }
 
     /**
      * @return the grupos
