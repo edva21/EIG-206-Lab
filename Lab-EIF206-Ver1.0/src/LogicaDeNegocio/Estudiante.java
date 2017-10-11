@@ -16,9 +16,10 @@ import java.util.HashMap;
  * @author edva5
  */
 public class Estudiante extends Persona{
+
   private ArrayList<Grupo> grupos;
     private ArrayList<Nota> notas;
-    private Carrera carrera;    
+    private ArrayList<Carrera> carreras;    
 
     public Estudiante(String cedulaOPassaporte) {
         this.cedulaOPassaporte=cedulaOPassaporte;
@@ -30,7 +31,8 @@ public class Estudiante extends Persona{
         e.getGrupos().forEach(x->grupos.add(new Grupo(x)));
         notas = new ArrayList<Nota>();
         e.getNotas().stream().forEach(x->notas.add(new Nota(x)));
-        carrera = new Carrera(e.getCarrera());
+        carreras = new ArrayList<Carrera>();
+        e.getCarreras().stream().forEach(x->carreras.add(new Carrera(x)));
     }
     public Estudiante(String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
         super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);
@@ -38,17 +40,13 @@ public class Estudiante extends Persona{
     }
     
     public Estudiante(Carrera carrera, String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
-        super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);
-        this.grupos = grupos;
-        this.notas = notas;
-        this.carrera = carrera;
+        super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);        
+        carreras = new ArrayList<Carrera>();
+        carreras.add(carrera);
+        grupos = new ArrayList<Grupo>();
+        notas = new ArrayList<Nota>();
     }
 
-    public Estudiante(ArrayList<Grupo> grupos, ArrayList<Nota> notas, Carrera carrera) {
-        this.grupos = grupos;
-        this.notas = notas;
-        this.carrera = carrera;
-    }
    
  
  
@@ -66,20 +64,6 @@ public class Estudiante extends Persona{
         this.notas = notas;
     }
 
-    /**
-     * @return the carrera
-     */
-    public Carrera getCarrera() {
-        return carrera;
-    }
-
-    /**
-     * @param carrera the carrera to set
-     */
-    public void setCarrera(Carrera carrera) {
-        this.carrera = carrera;
-    }
-  
 
     /**
      * @return the grupos
@@ -95,4 +79,17 @@ public class Estudiante extends Persona{
         this.grupos = grupos;
     }       
     
+    /**
+     * @return the carreras
+     */
+    public ArrayList<Carrera> getCarreras() {
+        return carreras;
+    }
+
+    /**
+     * @param carreras the carreras to set
+     */
+    public void setCarreras(ArrayList<Carrera> carreras) {
+        this.carreras = carreras;
+    }
 }

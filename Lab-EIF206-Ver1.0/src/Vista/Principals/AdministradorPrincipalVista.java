@@ -36,7 +36,7 @@ public class AdministradorPrincipalVista {
     private Scene scene;
     private Button agregarBtn;
     private TableView<Administrador> table;
-    private ListView<Administrador> administradoresListView;
+    
     private ArrayList<TableColumn<Administrador,String>> admiTableColumns;
     private Alert alert;
     public AdministradorPrincipalVista() {
@@ -115,20 +115,6 @@ public class AdministradorPrincipalVista {
      */
     public void setTable(TableView<Administrador> table) {
         this.table = table;
-    }
-
-    /**
-     * @return the administradoresListView
-     */
-    public ListView<Administrador> getAdministradoresListView() {
-        return administradoresListView;
-    }
-
-    /**
-     * @param administradoresListView the administradoresListView to set
-     */
-    public void setAdministradoresListView(ObservableList<Administrador> administradoresListView) {
-        this.administradoresListView = new ListView<>(administradoresListView);
     }
     /**
      * @return the admiTableColumns

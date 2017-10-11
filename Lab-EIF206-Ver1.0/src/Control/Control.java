@@ -11,7 +11,9 @@ import LogicaDeNegocio.Administrador;
 
 import Modelo.Modelo;
 import Modelo.Modelos.ModeloAdministrador;
+import Modelo.Modelos.ModeloCarrera;
 import Vista.VistaAdministrador;
+import Vista.VistaCarrera;
 import Vista.VistaInicio;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -40,8 +42,10 @@ public class Control implements EventHandler{
     Modelo modelo;
     //Modelos
     ModeloAdministrador modeloAdministrador;
+    ModeloCarrera modeloCarrera;
     //Vistas
     Vista.VistaAdministrador vistaAdministrador;
+    VistaCarrera vistaCarrera;
     //Controles
     ControlAdministrador controlAdministrador;
     ControlCarrera controlCarrera;
@@ -102,6 +106,13 @@ public class Control implements EventHandler{
                     controlAdministrador.setDatos(datos);
                     controlAdministrador.setSuperControl(this);
                     System.out.println("Control.Control.handle() profesorMnuItm");
+                    break;
+                case "mantenimientoCarreraMnuItm":
+                    modeloCarrera = new ModeloCarrera();
+                    vistaCarrera = new VistaCarrera();
+                    controlCarrera = new ControlCarrera(modeloCarrera, vistaCarrera);
+                    controlCarrera.setDatos(datos);
+                    controlCarrera.setSuperControl(this);
                     break;
             }
         }

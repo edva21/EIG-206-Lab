@@ -22,7 +22,7 @@ public class CarreraDto implements Serializable{
         this.codigo = c.getCodigo();
         this.nombre = c.getNombre();
         this.titulo = c.getTitulo();     
-        cursos = new ArrayList<CursoDto>();
+        cursos = new ArrayList<CursoDto>();        
         c.getCursos().stream().forEach(x->cursos.add(new CursoDto(x)));
     }
     public CarreraDto(String codigo, String nombre, String titulo) {

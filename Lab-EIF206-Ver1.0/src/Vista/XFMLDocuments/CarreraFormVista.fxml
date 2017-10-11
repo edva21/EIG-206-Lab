@@ -13,7 +13,8 @@
       <Label layoutX="23.0" layoutY="33.0" text="Codigo:" />
       <Label layoutX="22.0" layoutY="74.0" text="Nombre" />
       <Label layoutX="29.0" layoutY="121.0" text="Titulo" />
-      <Button fx:id="yesBtn" layoutX="38.0" layoutY="180.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="noBtn" layoutX="172.0" layoutY="180.0" mnemonicParsing="false" text="Cancelar" />
+      <Button fx:id="yesBtn" layoutX="33.0" layoutY="180.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="noBtn" layoutX="184.0" layoutY="180.0" mnemonicParsing="false" text="Cancelar" />
+      <Button fx:id="eliminarBtn" layoutX="112.0" layoutY="180.0" mnemonicParsing="false" text="Eliminar" />
    </children>
 </Pane>

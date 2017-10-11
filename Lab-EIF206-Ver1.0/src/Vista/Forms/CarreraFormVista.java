@@ -22,10 +22,14 @@ import javafx.stage.StageStyle;
  * @author edva5
  */
 public class CarreraFormVista {
+
+    
+ 
+    private Control.ControlCarrera control;
     private Stage stage;
     private Parent root;
     private Scene scene;
-    private Button yesBtn,noBtn;
+    private Button yesBtn,eliminarBtn,noBtn;
     private TextField codigoTxtFld,nombreTxtFld,tituloTxtFld;
     public CarreraFormVista() {
         try {
@@ -41,6 +45,7 @@ public class CarreraFormVista {
         tituloTxtFld = (TextField) root.lookup("#tituloTxtFld");
         yesBtn = (Button) root.lookup("#yesBtn");
         noBtn = (Button) root.lookup("#noBtn");
+        eliminarBtn=(Button) root.lookup("#eliminarBtn");
         stage.initStyle(StageStyle.UNDECORATED);
     }
         public void fillForm(Carrera a){    
@@ -62,12 +67,25 @@ public class CarreraFormVista {
         nombreTxtFld.setText("");
     }    
     public Carrera getForm(){    
-        setAllTextIeldsEnable(true);
-        codigoTxtFld.setText("");        
-        tituloTxtFld.setText("");
-        nombreTxtFld.setText("");
+        setAllTextIeldsEnable(true);        
         return new Carrera(codigoTxtFld.getText(), tituloTxtFld.getText(),nombreTxtFld.getText());
     }    
+      /**
+     * @return the control
+     */
+    public Control.ControlCarrera getControl() {
+        return control;
+    }
+
+    /**
+     * @param control the control to set
+     */
+    public void setControl(Control.ControlCarrera control) {
+        this.control = control;
+        yesBtn.setOnAction(control);
+        noBtn.setOnAction(control);
+        getEliminarBtn().setOnAction(control);
+    }
     /**
      * @return the stage
      */
@@ -179,6 +197,18 @@ public class CarreraFormVista {
     public void setTituloTxtFld(TextField tituloTxtFld) {
         this.tituloTxtFld = tituloTxtFld;
     }
-    
+    /**
+     * @return the eliminarBtn
+     */
+    public Button getEliminarBtn() {
+        return eliminarBtn;
+    }
+
+    /**
+     * @param eliminarBtn the eliminarBtn to set
+     */
+    public void setEliminarBtn(Button eliminarBtn) {
+        this.eliminarBtn = eliminarBtn;
+    }
     
 }

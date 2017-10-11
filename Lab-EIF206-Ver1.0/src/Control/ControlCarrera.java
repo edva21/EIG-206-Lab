@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 
 /**
@@ -26,21 +27,40 @@ import javafx.stage.WindowEvent;
  * @author edva5
  */
 public class ControlCarrera implements EventHandler{    
-    private Modelo.Modelos.ModeloCarrera modelo;    
-    private Vista.VistaCarrera vista;  
+    private Control superControl;
     private Datos datos;
-    public ControlCarrera(ModeloCarrera modelo, VistaCarrera vista) {        
-        this.modelo= modelo;
+    private ModeloCarrera modelo;    
+    private VistaCarrera vista;  
+    //private ChangeListener<Carrera> changeListener;
+    /**
+     *
+     * @param stage
+     */
+    public ControlCarrera(ModeloCarrera modelo,VistaCarrera vista){
+        
+        this.modelo = modelo;
         this.vista = vista;
-        for (int i = 0; i < Carrera.getAtributesNames().length; i++) {
-            vista.getPrincipal().getAdmiTableColumns().add(new TableColumn<Carrera, String>(Carrera.getAtributesNames()[i]));
-            modelo.OrderTableViewInfo(vista.getPrincipal().getAdmiTableColumns().get(i), Carrera.getAtributesNames()[i]);
-        }
-        vista.getPrincipal().getTable().getColumns().addAll(vista.getPrincipal().getAdmiTableColumns());
-        vista.getPrincipal().getTable().setItems(AccesoDatos.AccesoDatosCarrera.getInstance().getAll());
-        vista.getPrincipal().getStage().show();
-    }    
+        this.vista.setControl(this);        
+        modelo.setTableColumnsNames(vista.getPrincipal().getAdmiTableColumns());
+        vista.getPrincipal().getAdmiTableColumns().stream().forEach(x->this.vista.getPrincipal().getTable().getColumns().add(x));                                                                 
+        this.vista.getPrincipal().getTable().setItems(AccesoDatos.AccesoDatosCarrera.getInstance().getAll());        
+        this.vista.getPrincipal().getStage().show();                                
+        
+    } 
     
+    /**
+     * @return the superControl
+     */
+    public Control getSuperControl() {
+        return superControl;
+    }
+
+    /**
+     * @param superControl the superControl to set
+     */
+    public void setSuperControl(Control superControl) {
+        this.superControl = superControl;
+    }
     /**
      * @return the datos
      */
@@ -54,81 +74,102 @@ public class ControlCarrera implements EventHandler{
     public void setDatos(Datos datos) {
         this.datos = datos;
     }
+
+    /**
+     * @return the modelo
+     */
+    public ModeloCarrera getModelo() {
+        return modelo;
+    }
+
+    /**
+     * @param modelo the modelo to set
+     */
+    public void setModelo(ModeloCarrera modelo) {
+        this.modelo = modelo;
+    }
+
+    /**
+     * @return the vista
+     */
+    public VistaCarrera getVista() {
+        return vista;
+    }
+
+    /**
+     * @param vista the vista to set
+     */
+    public void setVista(VistaCarrera vista) {
+        this.vista = vista;
+    }            
     @Override
     public void handle(Event event) {
-      if (event instanceof ActionEvent) {
+        if (event instanceof ActionEvent) {
             if (event.getSource() instanceof Button) {
                 switch(((Button)event.getSource()).getText()){                    
                     case "Agregar":                        
-                        this.vista.getPrincipal().getStage().hide();
-                        this.vista.getForm().getYesBtn().setText("Guardar");
-                        this.vista.getForm().clearForm();
-                        this.vista.getForm().getStage().show();
-                        break;
-                    case "Editar":
-                        if (modelo.validateTableSelection(this.vista.getPrincipal().getTable())) {
-                        this.vista.getPrincipal().getStage().close();
-                        this.vista.getForm().getYesBtn().setText("Modificar");
-                        this.vista.getForm().clearForm();
-                        this.vista.getForm().fillForm(this.vista.getPrincipal().getTable().getSelectionModel().getSelectedItem());
-                        this.vista.getForm().getStage().show();
-                        }
-                        else
-                            this.vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, modelo.getValidateTableSelectionMessage(this.vista.getPrincipal().getTable()), ButtonType.OK);
-                        break;
-                    case"Remover":
-                        if (modelo.validateTableSelection(this.vista.getPrincipal().getTable())) {
-                        this.vista.getPrincipal().getStage().close();
-                        this.vista.getForm().getYesBtn().setText("Eliminar");
-                        this.vista.getForm().clearForm();                        
-                        this.vista.getForm().fillForm(this.vista.getPrincipal().getTable().getSelectionModel().getSelectedItem());
-                        this.vista.getForm().setAllTextIeldsEnable(false);
-                        this.vista.getForm().getStage().show();
-                        }
-                        else
-                            this.vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, modelo.getValidateTableSelectionMessage(this.vista.getPrincipal().getTable()), ButtonType.OK);
-                        break;
+                        this.getVista().getPrincipal().getStage().hide();
+                        this.getVista().getForm().getEliminarBtn().setVisible(false);
+                        this.getVista().getForm().getYesBtn().setText("Guardar");
+                        this.getVista().getForm().clearForm();
+                        this.getVista().getForm().getStage().show();
+                        break;                                        
                     case "Guardar":           
                         if (!modelo.agregar(vista.getForm().getForm()))
-                            this.vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, modelo.agregarResponse(vista.getForm().getForm()), ButtonType.OK);                                                
+                            this.getVista().getAlertDispatcher().setAlert(Alert.AlertType.ERROR, getModelo().agregarResponse(getVista().getForm().getForm()), ButtonType.OK);                                                
                         else{
-                            vista.getForm().getStage().close();
-                            vista.getPrincipal().getStage().show();
+                            getVista().getForm().getStage().close();
+                            getVista().getPrincipal().getStage().show();                            
                             }
                         break;
                     case "Modificar":                        
                         if (!modelo.modificar(vista.getForm().getForm()))
-                            this.vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, modelo.modificarResponse(vista.getForm().getForm()), ButtonType.OK);                        
+                            this.getVista().getAlertDispatcher().setAlert(Alert.AlertType.ERROR, getModelo().modificarResponse(getVista().getForm().getForm()), ButtonType.OK);                        
                         else
                         {
-                            vista.getForm().getStage().close();
-                            vista.getPrincipal().getStage().show();
+                            getVista().getForm().getStage().close();
+                            getVista().getPrincipal().getStage().show();
                         }                        
                         break;
                     case "Eliminar":                        
                         if (!modelo.eliminar(vista.getForm().getForm()))
-                            this.vista.getAlertDispatcher().setAlert(Alert.AlertType.ERROR, modelo.eliminarResponse(vista.getForm().getForm()), ButtonType.OK);                        
+                            this.getVista().getAlertDispatcher().setAlert(Alert.AlertType.ERROR, getModelo().eliminarResponse(getVista().getForm().getForm()), ButtonType.OK);                        
                         else
                         {
-                            vista.getForm().getStage().close();
-                            vista.getPrincipal().getStage().show();
+                            getVista().getForm().getStage().close();
+                            getVista().getPrincipal().getStage().show();
                         }                        
                         break;
                     case "Cancelar":  
-                        vista.getForm().getStage().close();
-                        vista.getPrincipal().getStage().show();
+                        getVista().getForm().getStage().close();
+                        getVista().getPrincipal().getStage().show();
                         break;
                 }
             }
         }
-        else if (event instanceof WindowEvent) {           
-            
-                if (((WindowEvent)event).getEventType().equals(WindowEvent.WINDOW_CLOSE_REQUEST)) {                        
-                    ArrayList<CarreraDto> carrerasDtos = new ArrayList<CarreraDto>();
-                    AccesoDatos.AccesoDatosCarrera.getInstance().getAll().stream().forEach(x->carrerasDtos.add(new CarreraDto(x)));
-                    getDatos().guardarDatos(carrerasDtos);
-                }            
+        else if (event instanceof MouseEvent) {
+            if (vista.getPrincipal().getTable().getSelectionModel().getSelectedItem()!=null&&((MouseEvent)event).getClickCount()==1) {                
+                            this.getVista().getPrincipal().getStage().close();
+                            this.getVista().getForm().getYesBtn().setText("Modificar");
+                            this.getVista().getForm().getEliminarBtn().setVisible(true);
+                            this.getVista().getForm().clearForm();
+                            this.getVista().getForm().fillForm(this.getVista().getPrincipal().getTable().getSelectionModel().getSelectedItem());
+                            this.getVista().getForm().getStage().show();
+                            vista.getPrincipal().getTable().getSelectionModel().clearSelection();                            
+                        }                                                       
         }
+        else if (event instanceof WindowEvent) {                           
+                        
+            if (((WindowEvent)event).getEventType().equals(WindowEvent.WINDOW_CLOSE_REQUEST)) {                        
+            ArrayList<CarreraDto> carrerasDtos = new ArrayList<CarreraDto>();
+            AccesoDatos.AccesoDatosCarrera.getInstance().getAll().stream().forEach(x->carrerasDtos.add(new CarreraDto(x)));
+            datos.guardarDatos(carrerasDtos);
+            vista.getPrincipal().getStage().hide();
+            superControl.vista.getPrincipal().getStage().show();
+            }
+                        
+                         
+        }       
     }
     
 }

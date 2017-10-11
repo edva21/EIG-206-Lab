@@ -16,10 +16,11 @@ public class VistaCarrera {
     private CarreraFormVista form;
     private CarreraPrincipalVista principal;
     private AlertDispatcher alertDispatcher;
+    private Control.ControlCarrera control;
     public VistaCarrera() {
         form = new CarreraFormVista();
         principal = new CarreraPrincipalVista();
-        AlertDispatcher alertDispatcher = new AlertDispatcher();
+        alertDispatcher = new AlertDispatcher();
     }
     /**
      * @return the form
@@ -63,5 +64,21 @@ public class VistaCarrera {
         this.alertDispatcher = alertDispatcher;
     }
     
+    /**
+     * @return the control
+     */
+    public Control.ControlCarrera getControl() {
+        return control;
+    }
+
+    /**
+     * @param control the control to set
+     */
+    public void setControl(Control.ControlCarrera control) {
+        this.control = control;
+        getForm().setControl(control);
+        getPrincipal().setControl(control);
+        
+    }
     
 }

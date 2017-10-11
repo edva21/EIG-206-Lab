@@ -5,6 +5,7 @@
  */
 package Vista.Principals;
 
+import Control.ControlCarrera;
 import LogicaDeNegocio.Carrera;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,43 +24,31 @@ import javafx.stage.Stage;
  * @author edva5
  */
 public class CarreraPrincipalVista {   
+  private Control.ControlCarrera control;
     private Stage stage;
     private Parent root;
     private Scene scene;
     private Button agregarBtn;
-    private Button eliminarBtn;
-    private Button editarBtn;
     private TableView<Carrera> table;
-    private ArrayList<TableColumn<Carrera,String>> admiTableColumns;
+    
+    private ArrayList<TableColumn<Carrera,String>> admiTableColumns;    
     public CarreraPrincipalVista() {
-        admiTableColumns= new ArrayList<TableColumn<Carrera,String>>();
-        stage = new Stage();
+        
+        admiTableColumns= new ArrayList<>();
         try {
-            this.root = FXMLLoader.load(getClass().getResource("/Vista/XFMLDocuments/AdministradorVista.fxml"));
+            this.root = FXMLLoader.load(getClass().getResource("/Vista/XFMLDocuments/CarreraPrincipalVista.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(CarreraPrincipalVista.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlCarrera.class.getName()).log(Level.SEVERE, null, ex);
         }
-        scene = new Scene(root);
+        scene = new Scene(getRoot());
+        stage = new Stage();
         stage.setScene(scene);
-        agregarBtn = (Button) root.lookup("#agregarBtn");
-        eliminarBtn = (Button) root.lookup("#eliminarBtn");
-        editarBtn = (Button) root.lookup("#editarBtn");
-        table = (TableView<Carrera>) root.lookup("#table");               
+        
+        agregarBtn=(Button) root.lookup("#agregarBtn");        
+        table=(TableView<Carrera>) root.lookup("#table");
+        
+        
     }
-    /**
-     * @return the stage
-     */
-    public Stage getStage() {
-        return stage;
-    }
-
-    /**
-     * @param stage the stage to set
-     */
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     /**
      * @return the root
      */
@@ -105,30 +94,7 @@ public class CarreraPrincipalVista {
     /**
      * @return the eliminarBtn
      */
-    public Button getEliminarBtn() {
-        return eliminarBtn;
-    }
-
-    /**
-     * @param eliminarBtn the eliminarBtn to set
-     */
-    public void setEliminarBtn(Button eliminarBtn) {
-        this.eliminarBtn = eliminarBtn;
-    }
-
-    /**
-     * @return the editarBtn
-     */
-    public Button getEditarBtn() {
-        return editarBtn;
-    }
-
-    /**
-     * @param editarBtn the editarBtn to set
-     */
-    public void setEditarBtn(Button editarBtn) {
-        this.editarBtn = editarBtn;
-    }
+ 
 
     /**
      * @return the table
@@ -142,8 +108,8 @@ public class CarreraPrincipalVista {
      */
     public void setTable(TableView<Carrera> table) {
         this.table = table;
-    }    
-     /**
+    }
+    /**
      * @return the admiTableColumns
      */
     public ArrayList<TableColumn<Carrera,String>> getAdmiTableColumns() {
@@ -154,6 +120,36 @@ public class CarreraPrincipalVista {
      * @param admiTableColumns the admiTableColumns to set
      */
     public void setAdmiTableColumns(ArrayList<TableColumn<Carrera,String>> admiTableColumns) {
-        this.admiTableColumns = admiTableColumns;
+        this.admiTableColumns = admiTableColumns;        
+    }
+    /**
+     * @return the control
+     */
+    public ControlCarrera getControl() {
+        return control;
+    }
+
+    /**
+     * @param control the control to set
+     */
+    public void setControl(ControlCarrera control) {
+        this.control = control;        
+        agregarBtn.setOnAction(control);        
+        stage.setOnCloseRequest(control);
+        this.table.setOnMouseClicked(control);
+        
+    }
+    /**
+     * @return the stage
+     */
+    public Stage getStage() {
+        return stage;
+    }
+
+    /**
+     * @param stage the stage to set
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

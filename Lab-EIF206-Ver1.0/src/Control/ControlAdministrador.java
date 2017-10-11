@@ -37,7 +37,6 @@ import javax.swing.JOptionPane;
  * @author edva5
  */
 public class ControlAdministrador implements EventHandler{
-
     private Control superControl;
     private Datos datos;
     private ModeloAdministrador modelo;    

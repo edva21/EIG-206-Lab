@@ -51,6 +51,7 @@ public class Curso {
         this.nombre = nombre;
         this.creditos = creditos;
         this.horasSemanales = horasSemanales;
+        grupos = new ArrayList<Grupo>();
     }
 
     /**

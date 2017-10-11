@@ -18,7 +18,12 @@ public class Carrera implements Serializable{
    
     //atrbutos
     private ArrayList<Curso> cursos;    
-    private String codigo,nombre,titulo;    
+    private String codigo,nombre,titulo;
+    
+    public static String[] getClassNames(){
+        String[] aux ={ATRIBUTO_CODIGO,ATRIBUTO_NOMBRE,ATRIBUTO_TITULO};
+        return aux;
+    }
     //Constructores
 
     public Carrera() {
@@ -37,6 +42,7 @@ public class Carrera implements Serializable{
         this.codigo = codigo;
         this.nombre = nombre;
         this.titulo = titulo;
+        cursos = new ArrayList<Curso>();
     }
     public String[] toVectorOfString(){        
         String[] aux = {codigo,nombre,titulo};        

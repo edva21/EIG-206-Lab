@@ -17,13 +17,15 @@ import java.util.HashMap;
  * @author edva5
  */
 public class EstudianteDto extends PersonaDto implements Comparable<EstudianteDto>, Serializable{
+
   private ArrayList<GrupoDto> grupos;
     private ArrayList<NotaDto> notas;
-    private CarreraDto carrera;    
+    private ArrayList<CarreraDto> carreras;    
 
     public EstudianteDto(Estudiante e) {
         super(e);
-        carrera = new CarreraDto(e.getCarrera());
+        carreras = new ArrayList<CarreraDto>();
+        e.getCarreras().stream().forEach(x->carreras.add(new CarreraDto(x)));
         grupos = new ArrayList<GrupoDto>();
         e.getGrupos().stream().forEach(x->grupos.add(new GrupoDto(x)));
         notas= new ArrayList<NotaDto>();
@@ -47,20 +49,7 @@ public class EstudianteDto extends PersonaDto implements Comparable<EstudianteDt
         this.notas = notas;
     }
 
-    /**
-     * @return the carrera
-     */
-    public CarreraDto getCarrera() {
-        return carrera;
-    }
-
-    /**
-     * @param carrera the carrera to set
-     */
-    public void setCarrera(CarreraDto carrera) {
-        this.carrera = carrera;
-    }
-  
+    
 
     /**
      * @return the grupos
@@ -87,4 +76,17 @@ public class EstudianteDto extends PersonaDto implements Comparable<EstudianteDt
         
     }
     
+    /**
+     * @return the carreras
+     */
+    public ArrayList<CarreraDto> getCarreras() {
+        return carreras;
+    }
+
+    /**
+     * @param carreras the carreras to set
+     */
+    public void setCarreras(ArrayList<CarreraDto> carreras) {
+        this.carreras = carreras;
+    }
 }
