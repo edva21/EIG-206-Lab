@@ -10,6 +10,7 @@ import Control.ControlAdministrador;
 import LogicaDeNegocio.Administrador;
 import Modelo.Modelo;
 import Modelo.Modelos.ModeloAdministrador;
+import Vista.Forms.CicloFormVista;
 import Vista.Inicio.LogInVista;
 import Vista.Inicio.PrimeraEscenaVista;
 import Vista.VistaAdministrador;
@@ -26,10 +27,11 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {                
-    VistaInicio  inicio= new VistaInicio();
+    /*VistaInicio  inicio= new VistaInicio();
     Modelo modelo = new Modelo();
-    Control control= new Control(inicio, modelo);
-                        
+    Control control= new Control(inicio, modelo);*/
+        CicloFormVista cicloFormVista = new CicloFormVista();
+        cicloFormVista.getStage().show();
     }
 
     /**

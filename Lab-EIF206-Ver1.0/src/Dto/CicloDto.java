@@ -14,8 +14,7 @@ import java.time.LocalDate;
  * @author edva5
  */
 public class CicloDto implements Serializable{
-    private String codigo,fechaIni,fechaFin;
-    private int Anho;
+    private String codigo,fechaIni,fechaFin;    
     private int numero;    
 
     public CicloDto() {
@@ -24,23 +23,10 @@ public class CicloDto implements Serializable{
         codigo=c.getCodigo();
         fechaIni=c.getFechaIni().toString();
         fechaFin=c.getFechaFin().toString();
-        Anho=c.getAnho();
+        
         numero=c.getNumero();
     }
 
-    /**
-     * @return the Anho
-     */
-    public int getAnho() {
-        return Anho;
-    }
-
-    /**
-     * @param Anho the Anho to set
-     */
-    public void setAnho(int Anho) {
-        this.Anho = Anho;
-    }
 
     /**
      * @return the numero

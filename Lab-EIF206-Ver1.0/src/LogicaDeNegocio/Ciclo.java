@@ -13,8 +13,7 @@ import java.time.LocalDate;
  * @author edva5
  */
 public class Ciclo {
-    private String codigo;
-    private int Anho;
+    private String codigo;    
     private int numero;
     private LocalDate fechaIni;
     private LocalDate fechaFin;
@@ -26,32 +25,19 @@ public class Ciclo {
     }
     public Ciclo(CicloDto c) {
         this.codigo = c.getCodigo();
-        this.Anho = c.getAnho();
+        
         this.numero = c.getNumero();
         this.fechaIni = LocalDate.parse(c.getFechaIni());
         this.fechaFin = LocalDate.parse(c.getFechaIni());
     }
     public Ciclo(String codigo, int Anho, int numero, LocalDate fechaIni, LocalDate fechaFin) {
         this.codigo = codigo;
-        this.Anho = Anho;
+        
         this.numero = numero;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
     }    
-
-    /**
-     * @return the Anho
-     */
-    public int getAnho() {
-        return Anho;
-    }
-
-    /**
-     * @param Anho the Anho to set
-     */
-    public void setAnho(int Anho) {
-        this.Anho = Anho;
-    }
+    
 
     /**
      * @return the numero
