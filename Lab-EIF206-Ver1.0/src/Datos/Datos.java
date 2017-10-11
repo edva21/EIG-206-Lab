@@ -28,7 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Datos {
-    public static String FICHERO_ADMINISTRADOR="TABLE_ADMINISTRADOR.tmp",
+    public static final String FICHERO_ADMINISTRADOR="TABLE_ADMINISTRADOR.tmp",
         FICHERO_CARRERA="TABLE_CARRERA.tmp",
         FICHERO_CICLO="TABLE_CICLO.tmp",
         FICHERO_CURSO="TABLE_CURSO.tmp",
@@ -82,61 +82,76 @@ public class Datos {
         
     }
                 
-    public void guardarDatos(ArrayList list){
+    public void guardarDatos(ArrayList list,String Fichero){
         try{
-            if (!list.isEmpty()) {
-                if (list.get(0) instanceof AdministradorDto)                
-                {
-                    ArrayList<AdministradorDto> admiList = list;
-                    loadArchivesToWrite(FICHERO_ADMINISTRADOR);                          
-                    for (AdministradorDto a:admiList) {                        
-                        objetoSalida.writeObject(a);                                                
-                    }                     
-                    objetoSalida.close();
-                }                        
-                else if (list.get(0) instanceof CarreraDto)                
-                {
-                    ArrayList<CarreraDto> listaCarrera = list;
-                    loadArchivesToWrite(FICHERO_CARRERA);          
-                    for (CarreraDto a:listaCarrera) {                        
-                        objetoSalida.writeObject(a);                                                
-                    }                     
-                    objetoSalida.close();
-                }                      
-                else if (list.get(0) instanceof CicloDto)                
-                {
-                    loadArchivesToWrite(FICHERO_CICLO);        
-                }                        
-                else if (list.get(0) instanceof CursoDto)                
-                {
-                    loadArchivesToWrite(FICHERO_CURSO);    
-                }                            
-                else if (list.get(0) instanceof EstudianteDto)                
-                {
-                    loadArchivesToWrite(FICHERO_ESTUDIANTE);                                
-                }
-                else if (list.get(0) instanceof GrupoDto)                
-                {
-                    loadArchivesToWrite(FICHERO_GRUPO);                                
-                }
-                else if (list.get(0) instanceof MatriculadorDto)                
-                {
-                    loadArchivesToWrite(FICHERO_MATRICULADOR);                                
-                }
-                else if (list.get(0) instanceof NotaDto)                
-                {
-                    loadArchivesToWrite(FICHERO_NOTA);                                
-                }
-                else if (list.get(0) instanceof ProfesorDto)                
-                {
-                    loadArchivesToWrite(FICHERO_PROFESOR);                                
-                }               
+            switch(Fichero){
+            case FICHERO_ADMINISTRADOR:
+                ArrayList<AdministradorDto> admiList = list;
+                loadArchivesToWrite(FICHERO_ADMINISTRADOR);
+                for (AdministradorDto a:admiList)
+                    objetoSalida.writeObject(a);        
+                objetoSalida.close();
+                break;
+            case FICHERO_CARRERA:
+                ArrayList<CarreraDto> listaCarrera = list;
+                loadArchivesToWrite(FICHERO_CARRERA);
+                for (CarreraDto a:listaCarrera)
+                    objetoSalida.writeObject(a);                
+                objetoSalida.close();        
+                break;
+            case FICHERO_CICLO:
+                ArrayList<CicloDto> listaCiclo = list;
+                loadArchivesToWrite(FICHERO_CARRERA);
+                for (CicloDto c:listaCiclo)
+                    objetoSalida.writeObject(c);                
+                objetoSalida.close();        
+                break;
+            case FICHERO_CURSO:
+                ArrayList<CursoDto> listaCurso = list;
+                loadArchivesToWrite(FICHERO_CURSO);
+                for (CursoDto c:listaCurso)
+                    objetoSalida.writeObject(c);                
+                objetoSalida.close();        
+                break;
+            case FICHERO_ESTUDIANTE:
+                ArrayList<EstudianteDto> listaEstudiante = list;
+                loadArchivesToWrite(FICHERO_ESTUDIANTE);
+                for (EstudianteDto e:listaEstudiante)
+                    objetoSalida.writeObject(e);                
+                objetoSalida.close();     
+                break;
+            case FICHERO_GRUPO:
+                ArrayList<GrupoDto> listaGrupo = list;
+                loadArchivesToWrite(FICHERO_GRUPO);
+                for (GrupoDto g:listaGrupo)
+                    objetoSalida.writeObject(g);                
+                objetoSalida.close();  
+                break;
+            case FICHERO_MATRICULADOR:
+                ArrayList<MatriculadorDto> listaMatriculador = list;
+                loadArchivesToWrite(FICHERO_MATRICULADOR);
+                for (MatriculadorDto m:listaMatriculador)
+                    objetoSalida.writeObject(m);                
+                objetoSalida.close(); 
+                break;
+            case FICHERO_NOTA:
+                ArrayList<NotaDto> listaNota = list;
+                loadArchivesToWrite(FICHERO_NOTA);
+                for (NotaDto n:listaNota)
+                    objetoSalida.writeObject(n);                
+                objetoSalida.close();                 
+                break;
+            case FICHERO_PROFESOR:
+                ArrayList<ProfesorDto> listaProfesor = list;
+                loadArchivesToWrite(FICHERO_PROFESOR);
+                for (ProfesorDto p:listaProfesor)
+                    objetoSalida.writeObject(p);                
+                objetoSalida.close();                 
+                break;                
             }
+        }catch(Exception ex){
             
-            
-        }  catch(IOException ex){
-            
-        }
+        }        
     }
     private void loadArchivesToWrite(String fichero) throws IOException{
         try {   

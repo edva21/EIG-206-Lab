@@ -21,6 +21,12 @@ public class Estudiante extends Persona{
     private ArrayList<Nota> notas;
     private ArrayList<Carrera> carreras;    
 
+    public Estudiante() {
+        carreras = new ArrayList<Carrera>();        
+        grupos = new ArrayList<Grupo>();
+        notas = new ArrayList<Nota>();
+    }
+    
     public Estudiante(String cedulaOPassaporte) {
         this.cedulaOPassaporte=cedulaOPassaporte;
     }

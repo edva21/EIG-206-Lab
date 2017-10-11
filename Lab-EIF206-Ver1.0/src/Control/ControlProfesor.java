@@ -161,7 +161,7 @@ public class ControlProfesor extends ControlPadre{
             if (((WindowEvent)event).getEventType().equals(WindowEvent.WINDOW_CLOSE_REQUEST)) {                        
             ArrayList<ProfesorDto> administradorDtos = new ArrayList<ProfesorDto>();
             AccesoDatos.AccesoDatosProfesor.getInstance().getAll().stream().forEach(x->administradorDtos.add(new ProfesorDto(x)));
-            datos.guardarDatos(administradorDtos);
+            datos.guardarDatos(administradorDtos,Datos.FICHERO_PROFESOR);
             vista.getPrincipal().getStage().hide();
             superControl.vista.getPrincipal().getStage().show();
             }                                                 

@@ -163,7 +163,7 @@ public class ControlCarrera extends ControlPadre{
             if (((WindowEvent)event).getEventType().equals(WindowEvent.WINDOW_CLOSE_REQUEST)) {                        
             ArrayList<CarreraDto> carrerasDtos = new ArrayList<CarreraDto>();
             AccesoDatos.AccesoDatosCarrera.getInstance().getAll().stream().forEach(x->carrerasDtos.add(new CarreraDto(x)));
-            datos.guardarDatos(carrerasDtos);
+            datos.guardarDatos(carrerasDtos,Datos.FICHERO_CARRERA);
             vista.getPrincipal().getStage().hide();
             superControl.vista.getPrincipal().getStage().show();
             }

@@ -24,7 +24,7 @@
                 <MenuItem fx:id="mantenimientoCarreraMnuItm" mnemonicParsing="false" text="Mantenimiento Carrera" />
                   <MenuItem fx:id="mantenimientoCursoMnuItm" mnemonicParsing="false" text="Mantenimiento Curso" />
                   <MenuItem fx:id="mantenimientoProfesorMnuItm" mnemonicParsing="false" text="Mantenimiento Profesor" />
-                  <MenuItem fx:id="mantenimientoAlumnoMnuItm" mnemonicParsing="false" text="Mantenimiento Alumno" />
+                  <MenuItem fx:id="mantenimientoEstudianteMnuItm" mnemonicParsing="false" text="Mantenimiento Estudiante" />
                   <MenuItem fx:id="mantenimientoCicloMnuItm" mnemonicParsing="false" text="Mantenimiento Ciclo" />
                   <MenuItem fx:id="ofertaAcademicaMnuItm" mnemonicParsing="false" text="Oferta Academica" />
                   <MenuItem fx:id="mantenimientoAdministradorMnuItm" mnemonicParsing="false" text="Mantenimiento Administradores" />
