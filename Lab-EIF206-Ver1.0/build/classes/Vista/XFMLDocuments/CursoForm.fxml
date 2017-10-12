@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="codigoTxtFld" layoutX="153.0" layoutY="77.0" />
+      <Label layoutX="73.0" layoutY="81.0" text="Codigo:" />
+      <Label layoutX="73.0" layoutY="123.0" text="Nombre:" />
+      <TextField fx:id="nombreTxtFld" layoutX="153.0" layoutY="119.0" />
+      <Spinner fx:id="creditosSpnnr" layoutX="153.0" layoutY="163.0" />
+      <Spinner fx:id="horasSpnnr" layoutX="153.0" layoutY="213.0" />
+      <Label layoutX="73.0" layoutY="167.0" text="Creditos:" />
+      <Label layoutX="73.0" layoutY="217.0" text="Creditos:" />
+      <ComboBox fx:id="carreraCmbBx" layoutX="152.0" layoutY="265.0" prefWidth="150.0" />
+      <Label layoutX="75.0" layoutY="269.0" text="Carrera:" />
+      <Button fx:id="yesBtn" layoutX="33.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Button" />
+      <Button fx:id="eliminarBtn" layoutX="147.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Eliminar" />
+      <Button fx:id="noBtn" layoutX="262.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Cancelar" />
+   </children>
+</Pane>
