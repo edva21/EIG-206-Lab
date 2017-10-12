@@ -20,6 +20,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
@@ -48,13 +50,36 @@ public class ControlCurso extends ControlPadre {
         vista.getPrincipal().getAdmiTableColumns().stream().forEach(x->this.vista.getPrincipal().getTable().getColumns().add(x));                                                                 
         this.vista.getPrincipal().getTable().setItems(AccesoDatos.AccesoDatosCurso.getInstance().getAll());        
         this.vista.getPrincipal().getStage().show();   
-        this.vista.getForm().getCarreraCmbBx().setCellFactory(new Callback<ComboBox<Carrera>,ObservableValue<String>>(){
+        this.vista.getForm().getCarreraCmbBx().setCellFactory(new Callback<ListView<Carrera>,ListCell<Carrera>>() {
+            @Override
+            public ListCell<Carrera> call(ListView<Carrera> param) {
+                return new ListCell<Carrera>(){
+                    @Override
+                    protected void updateItem(Carrera item, boolean empty) {
+                        super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
+                        
+                        if (!empty)
+                            setText(item.getNombre());                        
+                        else
+                            setText("");                        
+                    }
+
+                    
+
+                   
+                    
+                };
+                
+            }
+        });
+        /*this.vista.getForm().getCarreraCmbBx().setCellFactory(new Callback<ComboBox<Carrera>,ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(ComboBox<Carrera> param) {
                 return new ReadOnlyObjectWrapper<>(param.getValue().getNombre());
             }
             
-        });
+        });*/
+        
         this.vista.getForm().getCarreraCmbBx().setItems(AccesoDatos.AccesoDatosCarrera.getInstance().getAll());
         
     } 
