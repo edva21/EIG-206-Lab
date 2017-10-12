@@ -6,19 +6,9 @@
 package lab.eif206.ver1.pkg0;
 
 import Control.Control;
-import Control.ControlAdministrador;
-import LogicaDeNegocio.Administrador;
 import Modelo.Modelo;
-import Modelo.Modelos.ModeloAdministrador;
-import Vista.Forms.CicloFormVista;
-import Vista.Forms.CursoForm;
-import Vista.Inicio.LogInVista;
-import Vista.Inicio.PrimeraEscenaVista;
-import Vista.VistaAdministrador;
 import Vista.VistaInicio;
-import java.time.LocalDate;
 import javafx.application.Application;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
 
 /**
