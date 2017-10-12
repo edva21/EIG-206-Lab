@@ -13,20 +13,38 @@ import java.util.ArrayList;
  *
  * @author edva5
  */
-public class CursoDto implements Serializable{
+public class CursoDto implements Serializable{   
+
+    /**
+     * @return the carrera
+     */
+    public CarreraDto getCarrera() {
+        return carrera;
+    }
+
+    /**
+     * @param carrera the carrera to set
+     */
+    public void setCarrera(CarreraDto carrera) {
+        this.carrera = carrera;
+    }
     private String codigo;
     private String nombre;
     private int creditos;
     private int horasSemanales;
     private ArrayList<GrupoDto> grupos;
+    private CarreraDto carrera;
 
     public CursoDto() {
+        grupos = new ArrayList<GrupoDto>();
+        carrera = new CarreraDto();
     }
     public CursoDto(Curso c) {
         this.codigo = c.getCodigo();
         this.nombre = c.getNombre();
         this.creditos = c.getCreditos();
         this.horasSemanales = c.getHorasSemanales();
+        carrera = new CarreraDto(c.getCarreras());
         grupos = new ArrayList<GrupoDto>();
         c.getGrupos().forEach(x->grupos.add(new GrupoDto(x)));
     }
@@ -35,6 +53,8 @@ public class CursoDto implements Serializable{
         this.nombre = nombre;
         this.creditos = creditos;
         this.horasSemanales = horasSemanales;
+        grupos = new ArrayList<GrupoDto>();
+        carrera = new CarreraDto();
     }
     /**
      * @return the grupos
@@ -105,5 +125,8 @@ public class CursoDto implements Serializable{
     public void setHorasSemanales(int horasSemanales) {
         this.horasSemanales = horasSemanales;
     }
-    
+     /**
+     * @return the carreras
+     */
+  
 }

@@ -6,36 +6,44 @@
 package LogicaDeNegocio;
 
 import Dto.CicloDto;
+import Dto.GrupoDto;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
  * @author edva5
  */
 public class Ciclo {
+
+    public static final String ATRIBUTTE_CODIGO="Codigo",ATRIBUTTE_NUMERO="Numero",ATRIBUTTE_FECHA_INI="Fecha Inicio",ATRIBUTTE_FECHA_FIN="Fecha Fin";
     private String codigo;    
     private int numero;
     private LocalDate fechaIni;
     private LocalDate fechaFin;
+    private ArrayList<Grupo> grupos;
 
     public Ciclo() {
+        grupos=new ArrayList<Grupo>();
     }
     public Ciclo(String codigo) {
         this.codigo=codigo;
+        grupos=new ArrayList<Grupo>();
     }
     public Ciclo(CicloDto c) {
-        this.codigo = c.getCodigo();
-        
+        this.codigo = c.getCodigo();        
         this.numero = c.getNumero();
         this.fechaIni = LocalDate.parse(c.getFechaIni());
         this.fechaFin = LocalDate.parse(c.getFechaIni());
+        grupos=new ArrayList<Grupo>();
+        c.getGrupos().stream().forEach(x->grupos.add(new Grupo(x)));
     }
     public Ciclo(String codigo, int Anho, int numero, LocalDate fechaIni, LocalDate fechaFin) {
-        this.codigo = codigo;
-        
+        this.codigo = codigo;        
         this.numero = numero;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
+        grupos=new ArrayList<Grupo>();
     }    
     
 
@@ -94,5 +102,22 @@ public class Ciclo {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+    public static final String[] getClassNames(){  
+        String[] aux={ATRIBUTTE_CODIGO,ATRIBUTTE_NUMERO,ATRIBUTTE_FECHA_INI,ATRIBUTTE_FECHA_FIN};
+        return aux;
+    }
     
+    /**
+     * @return the grupos
+     */
+    public ArrayList<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    /**
+     * @param grupos the grupos to set
+     */
+    public void setGrupos(ArrayList<Grupo> grupos) {
+        this.grupos = grupos;
+    }
 }

@@ -6,58 +6,56 @@
 package Control;
 
 import Datos.Datos;
-import Dto.AdministradorDto;
-import LogicaDeNegocio.Administrador;
-import Modelo.Modelos.ModeloAdministrador;
-import Vista.Forms.PersonaFormVista;
-import Vista.Principals.AdministradorPrincipalVista;
-import Vista.VistaAdministrador;
+import Dto.CursoDto;
+import LogicaDeNegocio.Carrera;
+import LogicaDeNegocio.Curso;
+import Modelo.Modelos.ModeloCurso;
+import Vista.VistaCurso;
 import java.util.ArrayList;
-import javafx.beans.value.ChangeListener;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
-import javax.swing.JOptionPane;
-
-
-
-
-//import javax.swing.admiTable.TableColumn;
 
 /**
  *
  * @author edva5
  */
-public class ControlAdministrador extends ControlPadre{
-    private Control superControl;
+public class ControlCurso extends ControlPadre {
+      private Control superControl;
     private Datos datos;
-    private ModeloAdministrador modelo;    
-    private VistaAdministrador vista;  
-    private ChangeListener<Administrador> changeListener;
+    private ModeloCurso modelo;    
+    private VistaCurso vista;  
+    //private ChangeListener<Curso> changeListener;
     /**
      *
      * @param stage
      */
-    public ControlAdministrador(ModeloAdministrador modelo,VistaAdministrador vista){
+    public ControlCurso(ModeloCurso modelo,VistaCurso vista){
         
         this.modelo = modelo;
         this.vista = vista;
         this.vista.setControl(this);        
         modelo.setTableColumnsNames(vista.getPrincipal().getAdmiTableColumns());
         vista.getPrincipal().getAdmiTableColumns().stream().forEach(x->this.vista.getPrincipal().getTable().getColumns().add(x));                                                                 
-        this.vista.getPrincipal().getTable().setItems(AccesoDatos.AccesoDatosAdministrador.getInstance().getAll());        
-        this.vista.getPrincipal().getStage().show();                                
+        this.vista.getPrincipal().getTable().setItems(AccesoDatos.AccesoDatosCurso.getInstance().getAll());        
+        this.vista.getPrincipal().getStage().show();   
+        this.vista.getForm().getCarreraCmbBx().setCellFactory(new Callback<ComboBox<Carrera>,ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(ComboBox<Carrera> param) {
+                return new ReadOnlyObjectWrapper<>(param.getValue().getNombre());
+            }
+            
+        });
+        this.vista.getForm().getCarreraCmbBx().setItems(AccesoDatos.AccesoDatosCarrera.getInstance().getAll());
         
     } 
     
@@ -91,28 +89,28 @@ public class ControlAdministrador extends ControlPadre{
     /**
      * @return the modelo
      */
-    public ModeloAdministrador getModelo() {
+    public ModeloCurso getModelo() {
         return modelo;
     }
 
     /**
      * @param modelo the modelo to set
      */
-    public void setModelo(ModeloAdministrador modelo) {
+    public void setModelo(ModeloCurso modelo) {
         this.modelo = modelo;
     }
 
     /**
      * @return the vista
      */
-    public VistaAdministrador getVista() {
+    public VistaCurso getVista() {
         return vista;
     }
 
     /**
      * @param vista the vista to set
      */
-    public void setVista(VistaAdministrador vista) {
+    public void setVista(VistaCurso vista) {
         this.vista = vista;
     }            
     @Override
@@ -128,16 +126,16 @@ public class ControlAdministrador extends ControlPadre{
                         this.getVista().getForm().getStage().show();
                         break;                                        
                     case "Guardar":           
-                        if (!modelo.agregar(getAdministradorForm()))
-                            this.getVista().getAlertDispatcher().setAlert(Alert.AlertType.ERROR, getModelo().agregarResponse(getAdministradorForm()), ButtonType.OK);                                                
+                        if (!modelo.agregar(getForm()))
+                            this.getVista().getAlertDispatcher().setAlert(Alert.AlertType.ERROR, getModelo().agregarResponse(getForm()), ButtonType.OK);                                                
                         else{
                             getVista().getForm().getStage().close();
                             getVista().getPrincipal().getStage().show();                            
                             }
                         break;
                     case "Modificar":                        
-                        if (!modelo.modificar(getAdministradorForm()))
-                            this.getVista().getAlertDispatcher().setAlert(Alert.AlertType.ERROR, getModelo().modificarResponse(getAdministradorForm()), ButtonType.OK);                        
+                        if (!modelo.modificar(getForm()))
+                            this.getVista().getAlertDispatcher().setAlert(Alert.AlertType.ERROR, getModelo().modificarResponse(getForm()), ButtonType.OK);                        
                         else
                         {
                             getVista().getForm().getStage().close();
@@ -145,8 +143,8 @@ public class ControlAdministrador extends ControlPadre{
                         }                        
                         break;
                     case "Eliminar":                        
-                        if (!modelo.eliminar(getAdministradorForm()))
-                            this.getVista().getAlertDispatcher().setAlert(Alert.AlertType.ERROR, getModelo().eliminarResponse(getAdministradorForm()), ButtonType.OK);                        
+                        if (!modelo.eliminar(getForm()))
+                            this.getVista().getAlertDispatcher().setAlert(Alert.AlertType.ERROR, getModelo().eliminarResponse(getForm()), ButtonType.OK);                        
                         else
                         {
                             getVista().getForm().getStage().close();
@@ -166,7 +164,7 @@ public class ControlAdministrador extends ControlPadre{
                             this.getVista().getForm().getYesBtn().setText("Modificar");
                             this.getVista().getForm().getEliminarBtn().setVisible(true);
                             this.getVista().getForm().clearForm();
-                            this.getVista().getForm().fillForm(this.getVista().getPrincipal().getTable().getSelectionModel().getSelectedItem());
+                            fillForm(this.getVista().getPrincipal().getTable().getSelectionModel().getSelectedItem());
                             this.getVista().getForm().getStage().show();
                             vista.getPrincipal().getTable().getSelectionModel().clearSelection();                            
                         }                                                       
@@ -174,9 +172,9 @@ public class ControlAdministrador extends ControlPadre{
         else if (event instanceof WindowEvent) {                           
                         
             if (((WindowEvent)event).getEventType().equals(WindowEvent.WINDOW_CLOSE_REQUEST)) {                        
-            ArrayList<AdministradorDto> administradorDtos = new ArrayList<AdministradorDto>();
-            AccesoDatos.AccesoDatosAdministrador.getInstance().getAll().stream().forEach(x->administradorDtos.add(new AdministradorDto(x)));
-            datos.guardarDatos(administradorDtos,Datos.FICHERO_ADMINISTRADOR);
+            ArrayList<CursoDto> ciclosDtos = new ArrayList<CursoDto>();
+            AccesoDatos.AccesoDatosCurso.getInstance().getAll().stream().forEach(x->ciclosDtos.add(new CursoDto(x)));
+            datos.guardarDatos(ciclosDtos,Datos.FICHERO_CURSO);
             vista.getPrincipal().getStage().hide();
             superControl.vista.getPrincipal().getStage().show();
             }
@@ -184,30 +182,20 @@ public class ControlAdministrador extends ControlPadre{
                          
         }       
     }
-              
-    public Administrador getAdministradorForm(){
-        Administrador aux = new Administrador();
-        aux.setCedulaOPassaporte(this.vista.getForm().getIdTxtFld().getText());
-        aux.setClave(this.vista.getForm().getClaveTxtFld().getText());
-        aux.setEmail(this.vista.getForm().getEmailTxtFld().getText());
-        aux.setTelefono(this.vista.getForm().getTelefonoTxtFld().getText());
-        aux.setApellido1(this.vista.getForm().getApellido1TxtFld().getText());
-        aux.setApellido2(this.vista.getForm().getApellido2TxtFld().getText());
+    private Curso getForm(){
+        Curso aux = new Curso();
         aux.setNombre(this.vista.getForm().getNombreTxtFld().getText());
-        aux.setFechaNacimiento(this.vista.getForm().getDatePicker().getValue());
+        aux.setCodigo(this.vista.getForm().getCodigoTxtFld().getText());
+        aux.setCreditos(Integer.parseInt(this.vista.getForm().getCreditosSpnnr().getValue().toString()));
+        aux.setHorasSemanales(Integer.parseInt(this.vista.getForm().getHorasSpnnr().getValue().toString()));
+        aux.setCarreras((Carrera) this.vista.getForm().getCarreraCmbBx().getSelectionModel().getSelectedItem());
         return aux;
     }
-    public void fillForm(Administrador a){    
-        this.vista.getForm().getIdTxtFld().setEditable(false);
-        this.vista.getForm().getIdTxtFld().setText(a.getCedulaOPassaporte());
-        this.vista.getForm().getClaveTxtFld().setText(a.getClave());
-        this.vista.getForm().getEmailTxtFld().setText(a.getEmail());         
-        this.vista.getForm().getTelefonoTxtFld().setText(a.getTelefono());
-        this.vista.getForm().getApellido1TxtFld().setText(a.getApellido1());
-        this.vista.getForm().getApellido2TxtFld().setText(a.getApellido2());         
-        this.vista.getForm().getNombreTxtFld().setText(a.getNombre());
-        this.vista.getForm().getDatePicker().setValue(a.getFechaNacimiento());
+    private void fillForm(Curso c){
+        this.vista.getForm().getNombreTxtFld().setText(c.getNombre());
+        this.vista.getForm().getCodigoTxtFld().setText(c.getCodigo());
+        this.vista.getForm().getCreditosSpnnr().setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,12,c.getCreditos()));
+        this.vista.getForm().getHorasSpnnr().setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,24,c.getHorasSemanales()));
+        this.vista.getForm().getCarreraCmbBx().getSelectionModel().select(c.getCarreras());
     }
-    
-    
 }

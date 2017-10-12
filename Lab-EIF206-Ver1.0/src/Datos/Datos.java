@@ -101,7 +101,7 @@ public class Datos {
                 break;
             case FICHERO_CICLO:
                 ArrayList<CicloDto> listaCiclo = list;
-                loadArchivesToWrite(FICHERO_CARRERA);
+                loadArchivesToWrite(FICHERO_CICLO);
                 for (CicloDto c:listaCiclo)
                     objetoSalida.writeObject(c);                
                 objetoSalida.close();        

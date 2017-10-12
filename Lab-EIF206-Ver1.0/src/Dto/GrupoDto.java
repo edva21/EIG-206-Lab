@@ -14,20 +14,6 @@ import java.util.ArrayList;
  * @author edva5
  */
 public class GrupoDto implements Serializable{
-
-    /**
-     * @return the estudintes
-     */
-    public ArrayList<EstudianteDto> getEstudintes() {
-        return estudintes;
-    }
-
-    /**
-     * @param estudintes the estudintes to set
-     */
-    public void setEstudintes(ArrayList<EstudianteDto> estudintes) {
-        this.estudintes = estudintes;
-    }
     private String id; 
     private CursoDto curso;
     private CicloDto ciclo;
@@ -52,6 +38,20 @@ public class GrupoDto implements Serializable{
         this.curso = curso;
         this.ciclo = ciclo;
         this.prof = prof;
+        this.estudintes = estudintes;
+    }
+    
+    /**
+     * @return the estudintes
+     */
+    public ArrayList<EstudianteDto> getEstudintes() {
+        return estudintes;
+    }
+
+    /**
+     * @param estudintes the estudintes to set
+     */
+    public void setEstudintes(ArrayList<EstudianteDto> estudintes) {
         this.estudintes = estudintes;
     }
     

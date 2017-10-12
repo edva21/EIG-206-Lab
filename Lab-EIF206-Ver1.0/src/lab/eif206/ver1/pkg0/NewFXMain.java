@@ -11,12 +11,14 @@ import LogicaDeNegocio.Administrador;
 import Modelo.Modelo;
 import Modelo.Modelos.ModeloAdministrador;
 import Vista.Forms.CicloFormVista;
+import Vista.Forms.CursoForm;
 import Vista.Inicio.LogInVista;
 import Vista.Inicio.PrimeraEscenaVista;
 import Vista.VistaAdministrador;
 import Vista.VistaInicio;
 import java.time.LocalDate;
 import javafx.application.Application;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -27,11 +29,13 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {                
-    /*VistaInicio  inicio= new VistaInicio();
+    VistaInicio  inicio= new VistaInicio();
     Modelo modelo = new Modelo();
-    Control control= new Control(inicio, modelo);*/
-        CicloFormVista cicloFormVista = new CicloFormVista();
-        cicloFormVista.getStage().show();
+    Control control= new Control(inicio, modelo);
+        
+        /*CursoForm cursoForm = new CursoForm();
+        cursoForm.getStage().show();
+        cursoForm.getCreditosSpnnr().setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,12,3));*/
     }
 
     /**

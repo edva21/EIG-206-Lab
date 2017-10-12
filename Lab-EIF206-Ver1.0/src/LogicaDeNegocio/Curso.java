@@ -15,34 +15,48 @@ import java.util.ArrayList;
 public class Curso {
 
     /**
-     * @return the grupos
+     * @return the carreras
      */
-    public ArrayList<Grupo> getGrupos() {
-        return grupos;
+    public Carrera getCarreras() {
+        return carreras;
     }
 
     /**
-     * @param grupos the grupos to set
+     * @param carreras the carreras to set
      */
+    public void setCarreras(Carrera carreras) {
+        this.carreras = carreras;
+    }
+
+    /**
+     * @return the carreras
+     */
+
     public void setGrupos(ArrayList<Grupo> grupos) {
         this.grupos = grupos;
     }
+    public static final String ATRIBUTTE_CODIGO="Codigo",ATRIBUTTE_NOMBRE="Nombre",ATRIBUTTE_CREDITOS="CREDITOS",ATRIBUTTE_HORAS_SEMANALES="Horas Semanales",ATRIBUTTE_CARRERA="Carrera";
     private String codigo;
     private String nombre;
     private int creditos;
     private int horasSemanales;
     private ArrayList<Grupo> grupos;//Manca
-
+    private Carrera carreras;
     public Curso() {
+        grupos = new ArrayList<Grupo>();        
+        carreras = new Carrera();
     }
     public Curso(String codigo) {
         this.codigo=codigo;
+        grupos = new ArrayList<Grupo>();        
+        carreras = new Carrera();
     }
     public Curso(CursoDto c) {
         this.codigo = c.getCodigo();
         this.nombre = c.getNombre();
         this.creditos = c.getCreditos();
-        this.horasSemanales = c.getHorasSemanales();
+        this.horasSemanales = c.getHorasSemanales();        
+        carreras = new Carrera(c.getCarrera());
         grupos = new ArrayList<Grupo>();
         c.getGrupos().stream().forEach(x->grupos.add(new Grupo(x)));
     }
@@ -51,7 +65,8 @@ public class Curso {
         this.nombre = nombre;
         this.creditos = creditos;
         this.horasSemanales = horasSemanales;
-        grupos = new ArrayList<Grupo>();
+        grupos = new ArrayList<Grupo>();    
+        carreras = new Carrera();
     }
 
     /**
@@ -109,5 +124,24 @@ public class Curso {
     public void setHorasSemanales(int horasSemanales) {
         this.horasSemanales = horasSemanales;
     }
-    
+  
+
+    /**
+     * @param carreras the carreras to set
+     */
+  
+    /**
+     * @return the grupos
+     */
+    public ArrayList<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    /**
+     * @param grupos the grupos to set
+     */
+    public static String[] getClassNames(){
+        String[] aux={ATRIBUTTE_CARRERA,ATRIBUTTE_CODIGO,ATRIBUTTE_CREDITOS,ATRIBUTTE_HORAS_SEMANALES,ATRIBUTTE_NOMBRE};
+        return aux;
+    }
 }

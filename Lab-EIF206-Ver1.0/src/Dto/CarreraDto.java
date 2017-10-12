@@ -23,12 +23,14 @@ public class CarreraDto implements Serializable{
         this.nombre = c.getNombre();
         this.titulo = c.getTitulo();     
         cursos = new ArrayList<CursoDto>();        
-        c.getCursos().stream().forEach(x->cursos.add(new CursoDto(x)));
+        if (!c.getCursos().isEmpty())
+            c.getCursos().stream().forEach(x->cursos.add(new CursoDto(x)));
     }
     public CarreraDto(String codigo, String nombre, String titulo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.titulo = titulo;        
+        cursos = new ArrayList<CursoDto>(); 
     }    
      /**
      * @return the codigo

@@ -27,9 +27,11 @@ public class Carrera implements Serializable{
     //Constructores
 
     public Carrera() {
+        cursos= new ArrayList<Curso>();
     }
     public Carrera(String codigo) {
         this.codigo=codigo;
+        cursos= new ArrayList<Curso>();
     }
     public Carrera(CarreraDto c) {
         this.codigo = c.getCodigo();

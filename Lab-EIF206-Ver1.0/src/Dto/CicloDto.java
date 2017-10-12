@@ -8,23 +8,27 @@ package Dto;
 import LogicaDeNegocio.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
  * @author edva5
  */
 public class CicloDto implements Serializable{
+
     private String codigo,fechaIni,fechaFin;    
     private int numero;    
-
+    private ArrayList<GrupoDto> grupos;
     public CicloDto() {
+        grupos= new ArrayList<GrupoDto>();
     }
     public CicloDto(Ciclo c) {
         codigo=c.getCodigo();
         fechaIni=c.getFechaIni().toString();
-        fechaFin=c.getFechaFin().toString();
-        
+        fechaFin=c.getFechaFin().toString();        
         numero=c.getNumero();
+        grupos= new ArrayList<GrupoDto>();
+        c.getGrupos().stream().forEach(x->grupos.add(new GrupoDto(x)));
     }
 
 
@@ -84,4 +88,17 @@ public class CicloDto implements Serializable{
         this.codigo = codigo;
     }
     
+    /**
+     * @return the grupos
+     */
+    public ArrayList<GrupoDto> getGrupos() {
+        return grupos;
+    }
+
+    /**
+     * @param grupos the grupos to set
+     */
+    public void setGrupos(ArrayList<GrupoDto> grupos) {
+        this.grupos = grupos;
+    }
 }

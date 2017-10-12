@@ -8,17 +8,23 @@ package Control;
 import Datos.Datos;
 import Dto.AdministradorDto;
 import Dto.CarreraDto;
+import Dto.CicloDto;
+import Dto.CursoDto;
 import Dto.MatriculadorDto;
 import LogicaDeNegocio.Administrador;
 
 import Modelo.Modelo;
 import Modelo.Modelos.ModeloAdministrador;
 import Modelo.Modelos.ModeloCarrera;
+import Modelo.Modelos.ModeloCiclo;
+import Modelo.Modelos.ModeloCurso;
 import Modelo.Modelos.ModeloEstudiante;
 import Modelo.Modelos.ModeloMatriculador;
 import Modelo.Modelos.ModeloProfesor;
 import Vista.VistaAdministrador;
 import Vista.VistaCarrera;
+import Vista.VistaCiclo;
+import Vista.VistaCurso;
 import Vista.VistaEstudiante;
 import Vista.VistaInicio;
 import Vista.VistaMatriculador;
@@ -54,6 +60,8 @@ public class Control implements EventHandler{
     ModeloMatriculador modeloMatriculador;
     ModeloEstudiante modeloEstudiante;
     ModeloCarrera modeloCarrera;
+    ModeloCiclo modeloCiclo;
+    ModeloCurso modeloCurso;
     
     //Vistas
     Vista.VistaAdministrador vistaAdministrador;
@@ -61,12 +69,16 @@ public class Control implements EventHandler{
     VistaMatriculador vistaMatriculador;
     Vista.VistaEstudiante vistaEstudiante;
     VistaCarrera vistaCarrera;
+    VistaCiclo vistaCiclo;
+    Vista.VistaCurso vistaCurso;
     //Controles
     ControlAdministrador controlAdministrador;
     ControlProfesor controlProfesor;
     ControlMatriculador controlMatriculador;
     ControlEstudiante controlEstudiante;
     ControlCarrera controlCarrera;
+    ControlCiclo controlCiclo;
+    ControlCurso controlCurso;
     
     public Control() {
     }
@@ -79,13 +91,16 @@ public class Control implements EventHandler{
             ArrayList<MatriculadorDto> matriculadoresDto= new ArrayList<>(datos.getLista(Datos.FICHERO_MATRICULADOR));
             ArrayList<AdministradorDto> administradoresDto= new ArrayList<>(datos.getLista(Datos.FICHERO_ADMINISTRADOR));
             ArrayList<CarreraDto> carrerasDto= new ArrayList<>(datos.getLista(Datos.FICHERO_CARRERA));
+            ArrayList<CicloDto> ciclosDto= new ArrayList<>(datos.getLista(Datos.FICHERO_CICLO));
+            ArrayList<CursoDto> cursosDto= new ArrayList<>(datos.getLista(Datos.FICHERO_CURSO));
             
             AccesoDatos.AccesoDatosProfesor.getInstance().setProfesoresDto(profesoresDto);
             AccesoDatos.AccesoDatosMatriculador.getInstance().setMatriculadoresDto(matriculadoresDto);
             AccesoDatos.AccesoDatosAdministrador.getInstance().setAdministradoresDto(administradoresDto);
             AccesoDatos.AccesoDatosEstudiante.getInstance().setEstudianteesDto(estudiantesDto);
             AccesoDatos.AccesoDatosCarrera.getInstance().setCarreraDto(carrerasDto);
-            
+            AccesoDatos.AccesoDatosCiclo.getInstance().setCicloesDto(ciclosDto);
+            AccesoDatos.AccesoDatosCurso.getInstance().setCursoesDto(cursosDto);
           
             
         } catch (IOException ex) {
@@ -171,6 +186,20 @@ public class Control implements EventHandler{
                     controlEstudiante = new ControlEstudiante(modeloEstudiante, vistaEstudiante);
                     controlEstudiante.setDatos(datos);
                     controlEstudiante.setSuperControl(this);
+                    break;
+                case "mantenimientoCicloMnuItm":
+                    modeloCiclo = new ModeloCiclo();
+                    vistaCiclo = new VistaCiclo();
+                    controlCiclo = new ControlCiclo(modeloCiclo,vistaCiclo);
+                    controlCiclo.setDatos(datos);
+                    controlCiclo.setSuperControl(this);
+                    break;
+                case "mantenimientoCursoMnuItm":
+                    modeloCurso = new ModeloCurso();
+                    vistaCurso = new VistaCurso();
+                    controlCurso = new ControlCurso(modeloCurso,vistaCurso);
+                    controlCurso.setDatos(datos);
+                    controlCurso.setSuperControl(this);
                     break;
             }
         }

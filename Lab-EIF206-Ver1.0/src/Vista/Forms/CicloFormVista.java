@@ -22,7 +22,8 @@ import javafx.stage.Stage;
  * @author edva5
  */
 public class CicloFormVista {
-     private Control.ControlCarrera control;
+
+     private Control.ControlCiclo control;
     private Stage stage;
     private Parent root;
     private Scene scene;
@@ -35,7 +36,7 @@ public class CicloFormVista {
         try {
             root = FXMLLoader.load(getClass().getResource("/Vista/XFMLDocuments/CicloForm.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(CarreraFormVista.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CicloFormVista.class.getName()).log(Level.SEVERE, null, ex);
         }
         scene = new Scene(getRoot());
         codigoTxtFld=(TextField) root.lookup("#codigoTxtFld");
@@ -53,24 +54,28 @@ public class CicloFormVista {
         stage.setScene(scene);
         
     }
-    public void clearSpaces(){
+    public void clearForm(){
+        codigoTxtFld.setEditable(true);
         codigoTxtFld.setText("");
         inicioDtPckr.setValue(null);
         conclucionDtPckr.setValue(null);
-        comboBox.getSelectionModel().selectFirst();
+        getComboBox().getSelectionModel().selectFirst();
     }
     /**
      * @return the control
      */
-    public Control.ControlCarrera getControl() {
+    public Control.ControlCiclo getControl() {
         return control;
     }
 
     /**
      * @param control the control to set
      */
-    public void setControl(Control.ControlCarrera control) {
+    public void setControl(Control.ControlCiclo control) {
         this.control = control;
+        noBtn.setOnAction(control);
+        yesBtn.setOnAction(control);
+        eliminarBtn.setOnAction(control);        
     }
 
     /**
@@ -198,4 +203,18 @@ public class CicloFormVista {
     public void setConclucionDtPckr(DatePicker conclucionDtPckr) {
         this.conclucionDtPckr = conclucionDtPckr;
     }       
+    
+    /**
+     * @return the comboBox
+     */
+    public ComboBox getComboBox() {
+        return comboBox;
+    }
+
+    /**
+     * @param comboBox the comboBox to set
+     */
+    public void setComboBox(ComboBox comboBox) {
+        this.comboBox = comboBox;
+    }
 }
