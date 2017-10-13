@@ -65,6 +65,9 @@ public class CursoForm {
      */
     public void setControl(Control.ControlPadre control) {
         this.control = control;
+        noBtn.setOnAction(control);
+        eliminarBtn.setOnAction(control);
+        yesBtn.setOnAction(control);
     }
 
     /**
