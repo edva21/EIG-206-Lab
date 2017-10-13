@@ -17,13 +17,12 @@ import java.util.HashMap;
  */
 public class Estudiante extends Persona{
 
-  private ArrayList<Grupo> grupos;
-    private ArrayList<Nota> notas;
+  
+    private ArrayList<Nota> notas;//
     private ArrayList<Carrera> carreras;    
 
     public Estudiante() {
-        carreras = new ArrayList<Carrera>();        
-        grupos = new ArrayList<Grupo>();
+        carreras = new ArrayList<Carrera>();                
         notas = new ArrayList<Nota>();
     }
     
@@ -33,8 +32,7 @@ public class Estudiante extends Persona{
     
     public Estudiante(EstudianteDto e) {
         super(e);     
-        grupos = new ArrayList<Grupo>();
-        e.getGrupos().forEach(x->grupos.add(new Grupo(x)));
+        
         notas = new ArrayList<Nota>();
         e.getNotas().stream().forEach(x->notas.add(new Nota(x)));
         carreras = new ArrayList<Carrera>();
@@ -48,8 +46,7 @@ public class Estudiante extends Persona{
     public Estudiante(Carrera carrera, String cedula_o_passaporte, String nombre, String Apellido1, String Apellido2, String telefono, String email, String clave, LocalDate fecaNacimiento) {
         super(cedula_o_passaporte, nombre, Apellido1, Apellido2, telefono, email, clave, fecaNacimiento);        
         carreras = new ArrayList<Carrera>();
-        carreras.add(carrera);
-        grupos = new ArrayList<Grupo>();
+        carreras.add(carrera);        
         notas = new ArrayList<Nota>();
     }
      
@@ -75,17 +72,7 @@ public class Estudiante extends Persona{
     /**
      * @return the grupos
      */
-    public ArrayList<Grupo> getGrupos() {
-        return grupos;
-    }
 
-    /**
-     * @param grupos the grupos to set
-     */
-    public void setGrupos(ArrayList<Grupo> grupos) {
-        this.grupos = grupos;
-    }       
-    
     /**
      * @return the carreras
      */

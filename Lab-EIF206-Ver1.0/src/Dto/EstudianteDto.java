@@ -18,16 +18,14 @@ import java.util.HashMap;
  */
 public class EstudianteDto extends PersonaDto implements Comparable<EstudianteDto>, Serializable{
 
-  private ArrayList<GrupoDto> grupos;
+  
     private ArrayList<NotaDto> notas;
     private ArrayList<CarreraDto> carreras;    
 
     public EstudianteDto(Estudiante e) {
         super(e);
         carreras = new ArrayList<CarreraDto>();
-        e.getCarreras().stream().forEach(x->carreras.add(new CarreraDto(x)));
-        grupos = new ArrayList<GrupoDto>();
-        e.getGrupos().stream().forEach(x->grupos.add(new GrupoDto(x)));
+        e.getCarreras().stream().forEach(x->carreras.add(new CarreraDto(x)));        
         notas= new ArrayList<NotaDto>();
         e.getNotas().stream().forEach(x->notas.add(new NotaDto(x)));
      
@@ -51,19 +49,7 @@ public class EstudianteDto extends PersonaDto implements Comparable<EstudianteDt
 
     
 
-    /**
-     * @return the grupos
-     */
-    public ArrayList<GrupoDto> getGrupos() {
-        return grupos;
-    }
 
-    /**
-     * @param grupos the grupos to set
-     */
-    public void setGrupos(ArrayList<GrupoDto> grupos) {
-        this.grupos = grupos;
-    }
     
 
     @Override

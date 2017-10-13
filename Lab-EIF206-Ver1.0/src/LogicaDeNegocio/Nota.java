@@ -13,8 +13,8 @@ import Dto.NotaDto;
  */
 public class Nota {
     private String id;
-    private int anho;
-    private int semestre;
+    private Curso Curso;
+    private Ciclo ciclo;
     private int Nota;
     public Nota(String id) {
         this.id = id;
@@ -23,41 +23,12 @@ public class Nota {
     }
     public Nota(NotaDto n) {
         this.id = n.getId();
-        this.Nota = n.getNota();
-        semestre=n.getSemestre();
-        anho=n.getAnho();
+        this.Nota = n.getNota();        
     }   
     public Nota(String id, int Nota) {
         this.id = id;
         this.Nota = Nota;
     }   
-    /**
-     * @return the anho
-     */
-    public int getAnho() {
-        return anho;
-    }
-
-    /**
-     * @param anho the anho to set
-     */
-    public void setAnho(int anho) {
-        this.anho = anho;
-    }
-
-    /**
-     * @return the semestre
-     */ 
-    public int getSemestre() {
-        return semestre;
-    }
-
-    /**
-     * @param semestre the semestre to set
-     */
-    public void setSemestre(int semestre) {
-        this.semestre = semestre;
-    }
     
     /**
      * @return the id

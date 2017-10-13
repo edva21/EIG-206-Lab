@@ -20,9 +20,7 @@ public class NotaDto implements Serializable{
     public NotaDto() {
     }
     public NotaDto(Nota n) {
-        id=n.getId();
-        anho=n.getAnho();
-        semestre = n.getSemestre();
+        id=n.getId();        
         Nota = n.getNota();
     }
     public NotaDto(String id, int Nota) {
